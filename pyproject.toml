@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "pypufferblow"
+version = "0.1.0"
+description = "The official SDK for pufferblow"
+authors = ["ramsy0dev <ramsy0dev@gmail.com>"]
+license = "GNU 3.0"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">= 3.11"
+sphinx = "^8.2.3"
+sphinx-book-theme = "^1.1.4"
+sphinx-autobuild = "^2024.10.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
