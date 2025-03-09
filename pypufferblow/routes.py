@@ -34,9 +34,9 @@ channels_routes: list[Route] = [
 ]
 
 messages_routes: list[Route] = [
-    Route(f"{base_route}/"),
-    Route(f"{base_route}/"),
-    Route(f"{base_route}/"),
-    Route(f"{base_route}/"),
-    Route(f"{base_route}/")
+    Route(f"{base_route}/", methods=[]),
+    Route(f"{base_route}/", methods=[]),
+    Route(f"{base_route}/", methods=[]),
+    Route(f"{base_route}/", methods=[]),
+    Route(f"{base_route}/", methods=[])
 ]

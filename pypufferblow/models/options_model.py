@@ -13,10 +13,8 @@ class OptionsModel:
         port: int | None = 7575,
         username: str | None = None,
         password: str | None = None,
-        auth_token: str | None = None
     ) -> None:
         self.host = host
         self.port = port
         self.username = username
         self.password = password
-        self.auth_token = auth_token

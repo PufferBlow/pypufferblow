@@ -1,6 +1,7 @@
 
 __all__ = [
-    "Client"
+    "Client",
+    "ClientOptions"
 ]
 
 # Channels class
@@ -13,6 +14,13 @@ from pypufferblow.channels import (
 from pypufferblow.users import (
     Users,
     UsersOptions
+)
+
+# Routes
+from pypufferblow.routes import (
+    users_routes,
+    channels_routes,
+    messages_routes
 )
 
 # Models
@@ -30,85 +38,108 @@ class ClientOptions(OptionsModel): ...
 class Client:
     """
     The pufferblow client object.
+    
+    This class provides methods to interact with the pufferblow API, including user and channel management.
+
+    Attributes:
+        users (Users): The Users object for managing users.
+        channels (Channels): The Channels object for managing channels.
+    
+    Example:
+        .. code-block:: python
+        
+            >>> from pypufferblow.client import Client, ClientOptions
+            >>> client_options = ClientOptions(
+            ...    host="localhost",
+            ...    port=5000,
+            ...    username="user1",
+            ...    password="SUPER_SERCRET_PASSWORD"
+            ... )
+            >>> client = Client(client_options)
     """
     users: Users = None
     channels: Channels = None
     
     def __init__(self, options: ClientOptions) -> None:
+        """
+        Initialize the Client object with the given options.
+
+        Args:
+            options (ClientOptions): The options for the client, including host, port, username, and password.
+        
+        Returns:
+            None.
+        """
         self.options = options
         self.host = options.host
         self.port = options.port
         self.username = options.username
         self.password = options.password
         
+        # Add the base api route to the routes
+        for route_list in [users_routes, channels_routes, messages_routes]:
+            for i in range(len(route_list)):
+                if self.host not in route_list[i].api_route:
+                    route_list[i].api_route = f"http://{self.host}:{self.port}" + route_list[i].api_route
+        
         # Create Users object
         self.users()
         
         # Create Channels object
         self.channels()
-
-        # Connect to the server
-        self._connect()
-    
-    def _connect(self) -> None:
-        """
-        Connect to the pufferblow server.
-        """
-        try:
-            auth_token = self.users.sign_in()
-            self.options.auth_token = auth_token
-        except UsernameNotFound:
-            raise UsernameNotFound(f"The provided username '{self.username}' doesn't seem to be associated with an account.")
-        except InvalidPassword:
-            raise InvalidPassword("The provided password is incorrect.")
     
     def users(self) -> Users:
         """
-        Create a Users object
+        Create a Users object for communicating with the users routes.
+        
+        Returns:
+            Users: The Users object for managing users.
         """
         self.users = Users(self.options.to_users_options())
+        self.users.API_ROUTES = users_routes
         
         return self.users
 
     def channels(self) -> Channels:
-        """"
-        Create a Channels object
+        """
+        Create a Channels object for communicating with the channels routes.
+        
+        Returns:
+            Channels: The Channels object for managing channels.
         """
         self.channels = Channels(self.options.to_channels_options())
+        self.channels.API_ROUTES = channels_routes
         
         return self.channels
 
 class ClientOptions(OptionsModel):
     """
-    The options for the client.
+    ClientOptions class used for managing the Client object options.
     """
-    is_signed_in: bool = False
-    is_admin: bool = False
-    is_moderator: bool = False
-    
-    def __init__(self):
-        super().__init__(self)
-    
     def to_users_options(self) -> UsersOptions:
         """
         Convert to a UsersOptions object.
+        
+        Returns:
+            UserOptions: The UserOptions object.
         """
         return UsersOptions(
             host=self.host,
             port=self.port,
             username=self.username,
-            password=self.password,
-            auth_token=self.auth_token
+            password=self.password
         )
 
     def to_channels_options(self) -> ChannelsOptions:
         """
         Convert to ChannelsOptions object.
+        
+        Returns:
+            ChannelsOptions: The ChannelsOptions object.
         """
         return ChannelsOptions(
             host=self.host,
             port=self.port,
             username=self.username,
-            password=self.password,
-            auth_token=self.auth_token
+            password=self.password
         )
