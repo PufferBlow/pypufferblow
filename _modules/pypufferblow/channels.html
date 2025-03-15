@@ -1,0 +1,889 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pypufferblow.channels &#8212; pypufferblow 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=a1637f0b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pypufferblow/channels';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pypufferblow 0.1.0 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to pypufferblow’s documentation!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../client.html">Client Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../users.html">Users Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../channels.html">Channels Module</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tests/tests.html">Tests</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_client.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_users.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_channels.html">Test Client Module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exceptions.html">Exceptions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow/issues/new?title=Issue%20on%20page%20%2F_modules/pypufferblow/channels.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for pypufferblow.channels</h1><div class="highlight"><pre>
+<span></span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Channels&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+
+<span class="c1"># Routes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.routes</span><span class="w"> </span><span class="kn">import</span> <span class="n">channels_routes</span>
+
+<span class="c1"># Exceptions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BadAuthToken</span><span class="p">,</span>
+    <span class="n">NotAnAdminOrServerOwner</span><span class="p">,</span>
+    <span class="n">ChannelNameAlreadyExists</span><span class="p">,</span>
+    <span class="n">ChannelNotFound</span><span class="p">,</span>
+    <span class="n">UserNotFound</span><span class="p">,</span>
+    <span class="n">FaildToRemoveUserFromChannelUserIsAdmin</span><span class="p">,</span>
+    <span class="n">ExceededMaxMessagesPerPage</span><span class="p">,</span>
+    <span class="n">MessageIsTooLong</span><span class="p">,</span>
+    <span class="n">MessageNotFound</span>
+<span class="p">)</span>
+
+<span class="c1"># Models</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.models.route_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Route</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.models.user_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.models.options_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptionsModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.models.channel_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChannelModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.models.message_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">MessageModel</span>
+
+<span class="c1"># Channels types</span>
+<span class="n">PRIVATE_CHANNEL</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mh">0x001</span>
+<span class="n">PUBLIC_CHANNEL</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mh">0x002</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Channels</span><span class="p">:</span> <span class="o">...</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ChannelsOptions</span><span class="p">(</span><span class="n">OptionsModel</span><span class="p">):</span> <span class="o">...</span>
+
+<div class="viewcode-block" id="Channels">
+<a class="viewcode-back" href="../../pypufferblow.channels.html#pypufferblow.channels.Channels">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Channels</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The underline class for managing the channels routes.</span>
+<span class="sd">    </span>
+<span class="sd">    Attributes:</span>
+<span class="sd">        API_ROUTES (list[Route]): The list of the API routes.</span>
+<span class="sd">        LIST_CHANNELS_API_ROUTE (Route): The list channels API route.</span>
+<span class="sd">        CREATE_CHANNEL_API_ROUTE (Route): The create channel API route.</span>
+<span class="sd">        DELETE_CHANNEL_API_ROUTE (Route): The delete channel API route.</span>
+<span class="sd">        ADD_USER_TO_CHANNEL_API_ROUTE (Route): The add user to channel API route.</span>
+<span class="sd">        REMOVE_USER_FROM_CHANNEL_API_ROUTE (Route): The remove user from channel API route.</span>
+<span class="sd">        LOAD_MESSAGES_API_ROUTE (Route): The load messages API route.</span>
+<span class="sd">        SEND_MESSAGE_API_ROUTE (Route): The send message API route.</span>
+<span class="sd">        MARK_MESSAGE_AS_READ_API_ROUTE (Route): The mark message as read API route.</span>
+<span class="sd">        DELETE_MESSAGE_API_ROUTE (Route): The delete message API route.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">API_ROUTES</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Route</span><span class="p">]</span> <span class="o">=</span> <span class="n">channels_routes</span>
+    
+    <span class="n">LIST_CHANNELS_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">channels_routes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">CREATE_CHANNEL_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">channels_routes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">DELETE_CHANNEL_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">channels_routes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">ADD_USER_TO_CHANNEL_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">channels_routes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">REMOVE_USER_FROM_CHANNEL_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">channels_routes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">LOAD_MESSAGES_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">channels_routes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">SEND_MESSAGE_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">channels_routes</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+    <span class="n">MARK_MESSAGE_AS_READ_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">channels_routes</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+    <span class="n">DELETE_MESSAGE_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">channels_routes</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">ChannelsOptions</span><span class="p">)</span> <span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the Channels object with the given options.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            options (ChannelsOptions): The options for the Channels object, including host, port, username, and password.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">host</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">username</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">password</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">user</span>
+    
+<div class="viewcode-block" id="Channels.list_channels">
+<a class="viewcode-back" href="../../pypufferblow.channels.html#pypufferblow.channels.Channels.list_channels">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_channels</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ChannelModel</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List the channels.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            None.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            list[ChannelModel]: A list of ChannelModel objects.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span>
+        <span class="p">}</span>
+        
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">LIST_CHANNELS_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided auth-token &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="si">}</span><span class="s2">&#39; is not correctly formated&quot;</span><span class="p">)</span>
+        
+        <span class="n">channels</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;channels&quot;</span><span class="p">)</span>
+        <span class="n">channels</span> <span class="o">=</span> <span class="p">[</span><span class="n">ChannelModel</span><span class="p">()</span><span class="o">.</span><span class="n">parse_json</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span> <span class="k">for</span> <span class="n">channel</span> <span class="ow">in</span> <span class="n">channels</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">channels</span></div>
+
+    
+<div class="viewcode-block" id="Channels.get_channel_info">
+<a class="viewcode-back" href="../../pypufferblow.channels.html#pypufferblow.channels.Channels.get_channel_info">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_channel_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChannelModel</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the channel info.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            channel_id (str): The channel&#39;s id.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            ChannelModel: A ChannelModel object containing the channel info.</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+<span class="sd">            </span>
+<span class="sd">                &gt;&gt;&gt; client.channels.get_channel_info()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="o">...</span></div>
+
+    
+<div class="viewcode-block" id="Channels.create_channel">
+<a class="viewcode-back" href="../../pypufferblow.channels.html#pypufferblow.channels.Channels.create_channel">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">is_private</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a new channel.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            channel_name (str): The channel&#39;s name.</span>
+<span class="sd">            is_private (bool, default: False): The channel&#39;s type.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None.</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+<span class="sd">            </span>
+<span class="sd">                &gt;&gt;&gt; channel = client.channels.create_channel(</span>
+<span class="sd">                ...    &quot;general&quot;</span>
+<span class="sd">                ... )</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;channel_name&quot;</span><span class="p">:</span> <span class="n">channel_name</span><span class="p">,</span>
+            <span class="s2">&quot;is_private&quot;</span><span class="p">:</span> <span class="n">is_private</span><span class="p">,</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_server_owner</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Operation not permitted. You are not an admin or a server owner.&quot;</span><span class="p">)</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">CREATE_CHANNEL_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Operation not permitted. You are not an admin or a server owner.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">409</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ChannelNameAlreadyExists</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided channel name &#39;</span><span class="si">{</span><span class="n">channel_name</span><span class="si">}</span><span class="s2">&#39; already existrs. Please change it and try again.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided auth-token &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="si">}</span><span class="s2">&#39; is not correctly formated&quot;</span><span class="p">)</span>
+        
+        <span class="n">channel_data</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;channel_data&quot;</span><span class="p">)</span>
+        <span class="n">channel</span> <span class="o">=</span> <span class="n">ChannelModel</span><span class="p">()</span><span class="o">.</span><span class="n">parse_json</span><span class="p">(</span><span class="n">channel_data</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">channel</span></div>
+
+    
+<div class="viewcode-block" id="Channels.delete_channel">
+<a class="viewcode-back" href="../../pypufferblow.channels.html#pypufferblow.channels.Channels.delete_channel">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete_channel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete a channel.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            channel_id (str): The channel&#39;s id.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None.</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; channel_id = &quot;6da0492c-631e-53f0-8f9f-2cbab5045351&quot;</span>
+<span class="sd">                &gt;&gt;&gt; client.channels.delete_channel(&quot;channel_id&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;channel_id&quot;</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">,</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_server_owner</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Operation not permitted. You are not an admin or a server owner.&quot;</span><span class="p">)</span>
+    
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">DELETE_CHANNEL_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Operation not permitted. You are not an admin or a server owner.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ChannelNotFound</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided channel id &#39;</span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">&#39; does not exist.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided auth-token &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="si">}</span><span class="s2">&#39; is not correctly formated&quot;</span><span class="p">)</span></div>
+
+        
+<div class="viewcode-block" id="Channels.add_user">
+<a class="viewcode-back" href="../../pypufferblow.channels.html#pypufferblow.channels.Channels.add_user">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add a user to a channel.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            channel_id (str): The channel&#39;s id.</span>
+<span class="sd">            user_id (str): The user&#39;s id.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None.</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+<span class="sd">            </span>
+<span class="sd">                &gt;&gt;&gt; channel_id = &quot;6da0492c-631e-53f0-8f9f-2cbab5045351&quot;</span>
+<span class="sd">                &gt;&gt;&gt; user_id = &quot;9ad0dc2f-536v-43f5-x6g4-2dfbh564234&quot;</span>
+<span class="sd">                &gt;&gt;&gt; client.channels.add_user(channel_id, user_id)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;channel_id&quot;</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">,</span>
+            <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_server_owner</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Operation not permitted. You are not an admin or a server owner.&quot;</span><span class="p">)</span>
+        
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ADD_USER_TO_CHANNEL_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Operation not permitted. You are not an admin or a server owner.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">user_id</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">UserNotFound</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided user id &#39;</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&#39; does not exist.&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">channel_id</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">ChannelNotFound</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided channel id &#39;</span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">&#39; does not exist.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided auth-token &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="si">}</span><span class="s2">&#39; is not correctly formated&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="s2">&quot;is not private&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">):</span>
+            <span class="k">pass</span></div>
+
+        
+<div class="viewcode-block" id="Channels.remove_user">
+<a class="viewcode-back" href="../../pypufferblow.channels.html#pypufferblow.channels.Channels.remove_user">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">user_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove a user from a channel.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            channel_id (str): The channel&#39;s id.</span>
+<span class="sd">            user_id (str): The user&#39;s id.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None.</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+<span class="sd">            </span>
+<span class="sd">                &gt;&gt;&gt; channel_id = &quot;6da0492c-631e-53f0-8f9f-2cbab5045351&quot;</span>
+<span class="sd">                &gt;&gt;&gt; user_id = &quot;9ad0dc2f-536v-43f5-x6g4-2dfbh564234&quot;</span>
+<span class="sd">                &gt;&gt;&gt; client.channels.remove_user(channel_id, user_id)</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;channel_id&quot;</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">,</span>
+            <span class="s2">&quot;user_id&quot;</span><span class="p">:</span> <span class="n">user_id</span><span class="p">,</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span>
+        <span class="p">}</span>
+        
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_admin</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">is_server_owner</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Operation not permitted. You are not an admin or a server owner.&quot;</span><span class="p">)</span>
+        
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">REMOVE_USER_FROM_CHANNEL_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;server owner&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">&quot;user is admin&quot;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">FaildToRemoveUserFromChannelUserIsAdmin</span><span class="p">(</span><span class="s2">&quot;Operation not permitted. The user is an admin or a server owner.&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Operation not permitted. You are not an admin or a server owner.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">user_id</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">UserNotFound</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided user id &#39;</span><span class="si">{</span><span class="n">user_id</span><span class="si">}</span><span class="s2">&#39; does not exist.&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">channel_id</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">ChannelNotFound</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided channel id &#39;</span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">&#39; does not exist.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided auth-token &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="si">}</span><span class="s2">&#39; is not correctly formated&quot;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="s2">&quot;is not private&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">):</span>
+            <span class="k">pass</span></div>
+
+    
+<div class="viewcode-block" id="Channels.load_messages">
+<a class="viewcode-back" href="../../pypufferblow.channels.html#pypufferblow.channels.Channels.load_messages">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">load_messages</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">MessageModel</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Load messages from a channel.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            channel_id (str): The channel&#39;s id.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            list[MessageModel]: A list of MessageModel objects.</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+<span class="sd">            </span>
+<span class="sd">                &gt;&gt;&gt; channel_id = &quot;6da0492c-631e-53f0-8f9f-2cbab5045351&quot;</span>
+<span class="sd">                &gt;&gt;&gt; messages = client.channels.load_messages(</span>
+<span class="sd">                ...    channel_id=channel_id</span>
+<span class="sd">                ... )</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;channel_id&quot;</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">,</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span>
+        <span class="p">}</span>
+        
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">LOAD_MESSAGES_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ChannelNotFound</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided channel id &#39;</span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">&#39; does not exist.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;messages_per_page&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">ExceededMaxMessagesPerPage</span><span class="p">(</span><span class="s2">&quot;The number of messages per page exceeds the maximum limit.&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided auth-token &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="si">}</span><span class="s2">&#39; is not correctly formated&quot;</span><span class="p">)</span>
+        
+        <span class="n">messages</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;messages&quot;</span><span class="p">)</span>
+        <span class="n">messages</span> <span class="o">=</span> <span class="p">[</span><span class="n">MessageModel</span><span class="p">()</span><span class="o">.</span><span class="n">parse_json</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">messages</span><span class="p">]</span>
+        
+        <span class="k">return</span> <span class="n">messages</span></div>
+
+
+<div class="viewcode-block" id="Channels.send_message">
+<a class="viewcode-back" href="../../pypufferblow.channels.html#pypufferblow.channels.Channels.send_message">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">send_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Send a message in a channel.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            channel_id (str): The channel&#39;s id.</span>
+<span class="sd">            message (str): The message to send.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None.</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; channel_id = &quot;6da0492c-631e-53f0-8f9f-2cbab5045351&quot;</span>
+<span class="sd">                &gt;&gt;&gt; message = &quot;Hello World&quot;</span>
+<span class="sd">                &gt;&gt;&gt; client.channels.send_message(</span>
+<span class="sd">                ...    channel_id=channel_id,</span>
+<span class="sd">                ...    message=message</span>
+<span class="sd">                ... )</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;channel_id&quot;</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">,</span>
+            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="n">message</span><span class="p">,</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span>
+        <span class="p">}</span>
+        
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SEND_MESSAGE_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;the message is too long&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">MessageIsTooLong</span><span class="p">(</span><span class="s2">&quot;The message is too long&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided auth-token &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="si">}</span><span class="s2">&#39; is not correctly formated&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ChannelNotFound</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided channel id &#39;</span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">&#39; does not exist.&quot;</span><span class="p">)</span></div>
+
+        
+<div class="viewcode-block" id="Channels.mark_message_as_read">
+<a class="viewcode-back" href="../../pypufferblow.channels.html#pypufferblow.channels.Channels.mark_message_as_read">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mark_message_as_read</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Mark as a message as being red.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            channel_id (str): The channel&#39;s id.</span>
+<span class="sd">            message_id (str): The message&#39;s id.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None.</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; channel_id = &quot;6da0492c-631e-53f0-8f9f-2cbab5045351&quot;</span>
+<span class="sd">                &gt;&gt;&gt; message_id = &quot;9ad0dc2f-536v-43f5-x6g4-2dfbh564234&quot;</span>
+<span class="sd">                &gt;&gt;&gt; client.channels.mark_message_as_read(</span>
+<span class="sd">                ...    channel_id=channel_id,</span>
+<span class="sd">                ...    message_id=message_id</span>
+<span class="sd">                ... )</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;channel_id&quot;</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">,</span>
+            <span class="s2">&quot;message_id&quot;</span><span class="p">:</span> <span class="n">message_id</span><span class="p">,</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span>
+        <span class="p">}</span>
+        
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">MARK_MESSAGE_AS_READ_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided auth-token &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="si">}</span><span class="s2">&#39; is not correctly formated&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;message_id&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">MessageNotFound</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided message id &#39;</span><span class="si">{</span><span class="n">message_id</span><span class="si">}</span><span class="s2">&#39; does not exists.&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ChannelNotFound</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided channel id &#39;</span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">&#39; does not exists.&quot;</span><span class="p">)</span></div>
+
+        
+<div class="viewcode-block" id="Channels.delete_message">
+<a class="viewcode-back" href="../../pypufferblow.channels.html#pypufferblow.channels.Channels.delete_message">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">delete_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Delete a message in a channel.</span>
+<span class="sd">        </span>
+<span class="sd">        Args:</span>
+<span class="sd">            channel_id (str): The channel&#39;s id.</span>
+<span class="sd">            message_id (str): The message&#39;s id.</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None.</span>
+<span class="sd">        </span>
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; channel_id = &quot;6da0492c-631e-53f0-8f9f-2cbab5045351&quot;</span>
+<span class="sd">                &gt;&gt;&gt; message_id = &quot;9ad0dc2f-536v-43f5-x6g4-2dfbh564234&quot;</span>
+<span class="sd">                &gt;&gt;&gt; client.channels.delete_message(</span>
+<span class="sd">                ...    channel_id=channel_id,</span>
+<span class="sd">                ...    message_id=message_id</span>
+<span class="sd">                ... )</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;channel_id&quot;</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">,</span>
+            <span class="s2">&quot;message_id&quot;</span><span class="p">:</span> <span class="n">message_id</span><span class="p">,</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span>
+        <span class="p">}</span>
+        
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">DELETE_MESSAGE_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided auth-token &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="si">}</span><span class="s2">&#39; is not correctly formated&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Operation not permitted.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">404</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;message_id&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;detail&quot;</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">MessageNotFound</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided message id &#39;</span><span class="si">{</span><span class="n">message_id</span><span class="si">}</span><span class="s2">&#39; does not exists.&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ChannelNotFound</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The provided channel id &#39;</span><span class="si">{</span><span class="n">channel_id</span><span class="si">}</span><span class="s2">&#39; does not exists.&quot;</span><span class="p">)</span></div>
+</div>
+
+        
+<span class="k">class</span><span class="w"> </span><span class="nc">ChannelsOptions</span><span class="p">(</span><span class="n">OptionsModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Channels options</span>
+<span class="sd">    &quot;&quot;&quot;</span>  
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">:</span> <span class="n">UserModel</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ramsy0dev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, ramsy0dev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
