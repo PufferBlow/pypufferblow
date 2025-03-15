@@ -329,6 +329,33 @@ class Users:
         self.user.auth_token = response.json().get("auth_token")
         self.user.auth_token_expire_time = response.json().get("auth_token_expire_time")
 
+    def list_users(self) -> list[UserModel]:
+        """
+        List all the users.
+        
+        Args:
+            None.
+        
+        Returns:
+            list[UserModel]: A list of UserModel objects.
+        """
+        params = {
+            "auth_token": self.user.auth_token
+        }
+        
+        response = requests.get(
+            self.LIST_USERS_API_ROUTE.api_route,
+            params=params
+        )
+        
+        if response.status_code == 400:
+            raise BadAuthToken(f"The provided auth-token '{self.user.auth_token}' is not correctly formated")
+
+        users = response.json().get("users")
+        users = [UserModel().parse_json(data=user) for user in users]
+        
+        return users
+        
 class UsersOptions(OptionsModel):
     """
     UsersOptions class used for managing the Users object options.

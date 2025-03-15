@@ -87,5 +87,5 @@ class UserModel:
         """
         Parse the attributes from a json
         """
-        for attr in data["user_data"]:
-            self.__setattr__(attr, data["user_data"][attr])
+        for attr in data:
+            self.__setattr__(attr, data[attr])
