@@ -1,10 +1,13 @@
 import random
 
-# client
+# Client model
 from pypufferblow.client import Client, ClientOptions
 
 # User status values
 from pypufferblow.users import USER_STATUS
+
+# Models
+from pypufferblow.models.user_model import UserModel
 
 # exceptions
 from pypufferblow.exceptions import (
@@ -18,12 +21,12 @@ from pypufferblow.exceptions import (
 # Value storage
 from tests.conftest import ValueStorage
 
-def test_client_sign_up():
+def test_users_model_sign_up():
     """
-    Test the Client object sign-up functionality.
+    Test the Users object sign-up functionality.
 
-    This test verifies that a new user can successfully sign up using the Client object.
-    It initializes the Client with the provided username and password, and then calls
+    This test verifies that a new user can successfully sign up using the Users object.
+    It initializes the Users with the provided username and password, and then calls
     the sign-up method. The authentication token is stored in ValueStorage for further use.
     """
     client_options = ClientOptions(
@@ -31,17 +34,15 @@ def test_client_sign_up():
         password=ValueStorage.password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
 
     client.users.sign_up()
     
     ValueStorage.auth_token = client.users.user.auth_token
     
-    print(f"Auth token: {ValueStorage.auth_token}")
-    
-def test_client_sign_up_username_already_exists():
+def test_users_model_sign_up_username_already_exists():
     """
-    Test the Client object sign-up functionality when the username already exists.
+    Test the Users object sign-up functionality when the username already exists.
 
     This test verifies that an exception is raised when trying to sign up with a username
     that already exists in the system.
@@ -51,19 +52,19 @@ def test_client_sign_up_username_already_exists():
         password=ValueStorage.password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
 
     try:
         client.users.sign_up()
     except Exception as e:
         assert True
 
-def test_client_sign_in() -> None:
+def test_users_model_sign_in() -> None:
     """
-    Test the Client object sign-in functionality.
+    Test the Users object sign-in functionality.
 
-    This test verifies that an existing user can successfully sign in using the Client object.
-    It initializes the Client with the provided username and password, and then calls
+    This test verifies that an existing user can successfully sign in using the Users object.
+    It initializes the Users with the provided username and password, and then calls
     the sign-in method. The authentication token is stored in ValueStorage for further use.
     """
     client_options = ClientOptions(
@@ -71,15 +72,15 @@ def test_client_sign_in() -> None:
         password=ValueStorage.password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
     
     client.users.sign_in()
     
     ValueStorage.auth_token = client.users.user.auth_token
     
-def test_client_sign_in_username_not_found() -> None:
+def test_users_model_sign_in_username_not_found() -> None:
     """
-    Test the Client object sign-in functionality when the username is not found.
+    Test the Users object sign-in functionality when the username is not found.
 
     This test verifies that an exception is raised when trying to sign in with a username
     that does not exist in the system.
@@ -89,16 +90,16 @@ def test_client_sign_in_username_not_found() -> None:
         password=ValueStorage.password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
     
     try:
         client.users.sign_in()
     except UsernameNotFound as e:
         assert True
 
-def test_client_sign_in_invalid_password() -> None:
+def test_users_model_sign_in_invalid_password() -> None:
     """
-    Test the Client object sign-in functionality with an invalid password.
+    Test the Users object sign-in functionality with an invalid password.
 
     This test verifies that an exception is raised when trying to sign in with an invalid password.
     """
@@ -107,19 +108,19 @@ def test_client_sign_in_invalid_password() -> None:
         password=ValueStorage.new_password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
     
     try:
         client.users.sign_in()
     except InvalidPassword as e:
         assert True
 
-def test_client_update_username() -> None:
+def test_users_model_update_username() -> None:
     """
-    Test the Client object update username functionality.
+    Test the Users object update username functionality.
 
-    This test verifies that an existing user can successfully update their username using the Client object.
-    It initializes the Client with the provided username and password, sets the authentication token,
+    This test verifies that an existing user can successfully update their username using the Users object.
+    It initializes the Users with the provided username and password, sets the authentication token,
     and then calls the update username method.
     """
     client_options = ClientOptions(
@@ -127,15 +128,15 @@ def test_client_update_username() -> None:
         password=ValueStorage.password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
     client.users.user.auth_token = ValueStorage.auth_token
     
     
     client.users.update_username(new_username=ValueStorage.new_username)
     
-def test_client_update_username_already_exists() -> None:
+def test_users_model_update_username_already_exists() -> None:
     """
-    Test the Client object update username functionality when the new username already exists.
+    Test the Users object update username functionality when the new username already exists.
 
     This test verifies that an exception is raised when trying to update the username to one that already exists.
     """
@@ -144,7 +145,7 @@ def test_client_update_username_already_exists() -> None:
         password=ValueStorage.password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
     client.users.user.auth_token = ValueStorage.auth_token
     
     try:
@@ -152,12 +153,12 @@ def test_client_update_username_already_exists() -> None:
     except UsernameAlreadyExists as e:
         assert True
 
-def test_client_update_user_status() -> None:
+def test_users_model_update_user_status() -> None:
     """
-    Test the Client object update user status functionality.
+    Test the Users object update user status functionality.
 
-    This test verifies that an existing user can successfully update their status using the Client object.
-    It initializes the Client with the provided username and password, sets the authentication token,
+    This test verifies that an existing user can successfully update their status using the Users object.
+    It initializes the Users with the provided username and password, sets the authentication token,
     and then calls the update user status method with a random valid status.
     """
     client_options = ClientOptions(
@@ -165,14 +166,14 @@ def test_client_update_user_status() -> None:
         password=ValueStorage.password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
     client.users.user.auth_token = ValueStorage.auth_token
     
     client.users.update_user_status(new_status=USER_STATUS[random.choice([i for i in range(len(USER_STATUS))])])    
 
-def test_client_update_user_status_invalid_status_value() -> None:
+def test_users_model_update_user_status_invalid_status_value() -> None:
     """
-    Test the Client object update user status functionality with an invalid status value.
+    Test the Users object update user status functionality with an invalid status value.
 
     This test verifies that an exception is raised when trying to update the user status to an invalid value.
     """
@@ -181,7 +182,7 @@ def test_client_update_user_status_invalid_status_value() -> None:
         password=ValueStorage.password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
     client.users.user.auth_token = ValueStorage.auth_token
     
     try:
@@ -189,12 +190,12 @@ def test_client_update_user_status_invalid_status_value() -> None:
     except InvalidStatusValue as e:
         assert True
 
-def test_client_update_user_password() -> None:
+def test_users_model_update_user_password() -> None:
     """
-    Test the Client object update user password functionality.
+    Test the Users object update user password functionality.
 
-    This test verifies that an existing user can successfully update their password using the Client object.
-    It initializes the Client with the provided username and password, sets the authentication token,
+    This test verifies that an existing user can successfully update their password using the Users object.
+    It initializes the Users with the provided username and password, sets the authentication token,
     and then calls the update user password method with the old and new passwords.
     """
     client_options = ClientOptions(
@@ -202,7 +203,7 @@ def test_client_update_user_password() -> None:
         password=ValueStorage.password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
     client.users.user.auth_token = ValueStorage.auth_token
 
     client.users.update_user_password(
@@ -210,9 +211,9 @@ def test_client_update_user_password() -> None:
         new_password=ValueStorage.new_password
     )
     
-def test_client_update_user_password_invalid_password() -> None:
+def test_users_model_update_user_password_invalid_password() -> None:
     """
-    Test the Client object update user password functionality with an invalid password.
+    Test the Users object update user password functionality with an invalid password.
 
     This test verifies that an exception is raised when trying to update the user password with an invalid old password.
     """
@@ -221,7 +222,7 @@ def test_client_update_user_password_invalid_password() -> None:
         password=ValueStorage.password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
     client.users.user.auth_token = ValueStorage.auth_token
     
     try:
@@ -232,12 +233,12 @@ def test_client_update_user_password_invalid_password() -> None:
     except InvalidPassword as e:
         assert True
 
-def test_client_reset_user_auth_token() -> None:
+def test_users_model_reset_user_auth_token() -> None:
     """
-    Test the Client object reset user authentication token functionality.
+    Test the Users object reset user authentication token functionality.
 
-    This test verifies that an existing user can successfully reset their authentication token using the Client object.
-    It initializes the Client with the provided username and password, sets the authentication token,
+    This test verifies that an existing user can successfully reset their authentication token using the Users object.
+    It initializes the Users with the provided username and password, sets the authentication token,
     and then calls the reset user authentication token method.
     """
     client_options = ClientOptions(
@@ -245,14 +246,14 @@ def test_client_reset_user_auth_token() -> None:
         password=ValueStorage.new_password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
     client.users.user.auth_token = ValueStorage.auth_token
     
     client.users.reset_user_auth_token()
 
-def test_client_reset_user_auth_token_invalid_password() -> None:
+def test_users_model_reset_user_auth_token_invalid_password() -> None:
     """
-    Test the Client object reset user authentication token functionality with an invalid password.
+    Test the Users object reset user authentication token functionality with an invalid password.
 
     This test verifies that an exception is raised when trying to reset the authentication token with an invalid password.
     """
@@ -261,7 +262,7 @@ def test_client_reset_user_auth_token_invalid_password() -> None:
         password=ValueStorage.password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
     client.users.user.auth_token = ValueStorage.auth_token
     
     try:
@@ -269,9 +270,9 @@ def test_client_reset_user_auth_token_invalid_password() -> None:
     except InvalidPassword as e:
         assert True
 
-def test_client_reset_user_auth_token_bad_auth_token() -> None:
+def test_users_model_reset_user_auth_token_bad_auth_token() -> None:
     """
-    Test the Client object reset user authentication token functionality with a bad authentication token.
+    Test the Users object reset user authentication token functionality with a bad authentication token.
 
     This test verifies that an exception is raised when trying to reset the authentication token with a bad token format.
     """
@@ -280,10 +281,48 @@ def test_client_reset_user_auth_token_bad_auth_token() -> None:
         password=ValueStorage.new_password
     )
     
-    client = Client(client_options)
+    client= Client(client_options)
     client.users.user.auth_token = ValueStorage.bad_formated_auth_token
     
     try:
         client.users.reset_user_auth_token()
     except BadAuthToken as e:
         assert True
+
+def test_users_list_users() -> None:
+    """
+    Test Users object list users functionality.
+    
+    This test verifies that the list users method returns a list of users.
+    """
+    client_options = ClientOptions(
+        username=ValueStorage.new_username,
+        password=ValueStorage.new_password
+    )
+    
+    client= Client(client_options)
+    client.users.user.auth_token = ValueStorage.auth_token
+    
+    users = client.users.list_users()
+    
+    assert type(users) == list
+
+def test_users_list_users_bad_auth_token() -> None:
+    """
+    Test Users object list users functionality with a bad authentication token.
+    
+    This test verifies that an exception is raised when trying to list users with a bad auth token.
+    """
+    client_options = ClientOptions(
+        username=ValueStorage.new_username,
+        password=ValueStorage.new_password
+    )
+    
+    client= Client(client_options)
+    client.users.user.auth_token = ValueStorage.bad_formated_auth_token
+    
+    try:
+        client.users.list_users()
+    except BadAuthToken as e:
+        assert True
+    
