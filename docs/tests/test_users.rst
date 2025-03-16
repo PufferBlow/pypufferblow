@@ -1,5 +1,5 @@
 Test Client Module
 ==================
 
-.. automodule:: tests.test_01_client_object
+.. automodule:: tests.test_02_users_object
    :members:
