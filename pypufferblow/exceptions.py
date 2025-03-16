@@ -4,7 +4,16 @@ __all__ = [
     "InvalidPassword",
     "UsernameAlreadyExists",
     "BadAuthToken",
-    "InvalidStatusValue"
+    "InvalidStatusValue",
+    "FaildToInitChannels",
+    "NotAnAdminOrServerOwner",
+    "ChannelNameAlreadyExists",
+    "ChannelNotFound",
+    "FaildToRemoveUserFromChannelUserIsAdmin",
+    "ExceededMaxMessagesPerPage",
+    "MessageIsTooLong",
+    "MessageNotFound",
+    "UserNotFound"
 ]
 
 # Signin exceptions
@@ -19,3 +28,19 @@ class BadAuthToken(Exception): ...
 
 # Update user profile
 class InvalidStatusValue(Exception): ...
+
+# Initialize the Channels
+class FaildToInitChannels(Exception): ...
+
+# Not an admin or server owner exception
+class NotAnAdminOrServerOwner(Exception): ...
+
+# Channels exceptions
+class ChannelNameAlreadyExists(Exception): ...
+class ChannelNotFound(Exception): ...
+class FaildToRemoveUserFromChannelUserIsAdmin(Exception): ...
+class ExceededMaxMessagesPerPage(Exception): ...
+class MessageIsTooLong(Exception): ...
+class MessageNotFound(Exception): ...
+
+class UserNotFound(Exception): ...
