@@ -16,6 +16,9 @@ from pypufferblow.users import (
     UsersOptions
 )
 
+# Models
+from pypufferblow.models.user_model import UserModel
+
 # Routes
 from pypufferblow.routes import (
     users_routes,
@@ -29,7 +32,8 @@ from pypufferblow.models.options_model import OptionsModel
 # Exceptions
 from pypufferblow.exceptions import (
     UsernameNotFound,
-    InvalidPassword
+    InvalidPassword,
+    FaildToInitChannels
 )
 
 class Client: ...
@@ -51,7 +55,7 @@ class Client:
             >>> from pypufferblow.client import Client, ClientOptions
             >>> client_options = ClientOptions(
             ...    host="localhost",
-            ...    port=5000,
+            ...    port=7575,
             ...    username="user1",
             ...    password="SUPER_SERCRET_PASSWORD"
             ... )
@@ -84,9 +88,7 @@ class Client:
         
         # Create Users object
         self.users()
-        
-        # Create Channels object
-        self.channels()
+
     
     def users(self) -> Users:
         """
@@ -107,6 +109,13 @@ class Client:
         Returns:
             Channels: The Channels object for managing channels.
         """
+        if self.options.user is None:
+            if self.users.user is None:
+                raise FaildToInitChannels("Failed to initialize the Channels object."
+                                        "Make sure the call on the 'Users.sign_in' or 'Users.sign_up' method to create a user model object.")
+            
+            self.options.user = self.users.user
+        
         self.channels = Channels(self.options.to_channels_options())
         self.channels.API_ROUTES = channels_routes
         
@@ -116,6 +125,11 @@ class ClientOptions(OptionsModel):
     """
     ClientOptions class used for managing the Client object options.
     """
+    
+    def __init__(self, user: UserModel | None = None, **kwargs):
+        super().__init__(**kwargs)
+        self.user = user
+        
     def to_users_options(self) -> UsersOptions:
         """
         Convert to a UsersOptions object.
@@ -141,5 +155,6 @@ class ClientOptions(OptionsModel):
             host=self.host,
             port=self.port,
             username=self.username,
-            password=self.password
+            password=self.password,
+            user=self.user
         )
