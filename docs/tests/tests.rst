@@ -6,3 +6,5 @@ Tests
    :caption: Contents:
 
    test_client
+   test_users
+   test_channels
