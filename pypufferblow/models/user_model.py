@@ -1,21 +1,7 @@
-x = {
-    "status_code": 200,
-    "user_data": {
-        "user_id": "7addeb5a-3b44-5db8-8255-ccab8e9bcf4d",
-        "username": "r0d",
-        "status": "online",
-        "last_seen": "2025-03-09T18:00:08",
-        "conversations": [],
-        "contacts": [],
-        "joined_servers_ids": [],
-        "auth_token_expire_time": "2025-04-09",
-        "created_at": "2025-03-09T00:00:00",
-        "updated_at": "2025-03-09T17:00:02",
-        "is_admin": False,
-        "is_owner": False,
-    },
-}
 
+__all__ = [
+    "UserModel"
+]
 
 class UserModel:
     """
