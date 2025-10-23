@@ -14,15 +14,20 @@ class UserModel:
     joined_servers_ids: list[str]
     conversations: list[str]
     contacts: list[str]
-    
+
     is_owner: bool = False
     is_admin: bool = False
 
     created_at: str
     updated_at: str
-    
+
     auth_token: str
     auth_token_expire_time: str
+
+    # Profile customization
+    avatar_url: str | None = None
+    banner_url: str | None = None
+    about: str | None = None
 
     def __init__(
         self,
@@ -33,15 +38,19 @@ class UserModel:
         joined_servers_ids: list[str] | None = None,
         conversations: list[str] | None = list(),
         contacts: list[str]| None = list(),
-        
+
         is_owner: bool | None = False,
         is_admin: bool | None = False,
 
         created_at: str | None = None,
         updated_at: str | None = None,
-        
+
         auth_token: str | None = None,
         auth_token_expire_time: str | None = None,
+
+        avatar_url: str | None = None,
+        banner_url: str | None = None,
+        about: str | None = None,
     ) -> None:
         self.user_id = user_id
         self.username = username
@@ -50,15 +59,19 @@ class UserModel:
         self.joined_servers_ids = joined_servers_ids
         self.conversations = conversations
         self.contacts = contacts
-    
+
         self.is_owner = is_owner
         self.is_admin = is_admin
 
         self.created_at = created_at
         self.updated_at = updated_at
-    
+
         self.auth_token = auth_token
         self.auth_token_expire_time = auth_token_expire_time
+
+        self.avatar_url = avatar_url
+        self.banner_url = banner_url
+        self.about = about
     
     def __repr__(self):
         return (

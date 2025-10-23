@@ -108,34 +108,56 @@ class Channels:
     def get_channel_info(self, channel_id: str) -> ChannelModel:
         """
         Get the channel info.
-        
+
         Args:
             channel_id (str): The channel's id.
-        
+
         Returns:
             ChannelModel: A ChannelModel object containing the channel info.
-        
+
         Example:
             .. code-block:: python
-            
-                >>> client.channels.get_channel_info()
+
+                >>> channel_id = "6da0492c-631e-53f0-8f9f-2cbab5045351"
+                >>> channel = client.channels.get_channel_info(channel_id)
         """
-        ...
+        params = {
+            "channel_id": channel_id,
+            "auth_token": self.user.auth_token
+        }
+
+        response = requests.get(
+            self.LIST_CHANNELS_API_ROUTE.api_route,
+            params=params
+        )
+
+        if response.status_code == 400:
+            raise BadAuthToken(f"The provided auth-token '{self.user.auth_token}' is not correctly formated")
+        elif response.status_code == 404:
+            raise ChannelNotFound(f"The provided channel id '{channel_id}' does not exist.")
+
+        channels = response.json().get("channels")
+        for channel_data in channels:
+            channel = ChannelModel().parse_json(channel_data)
+            if channel.channel_id == channel_id:
+                return channel
+
+        raise ChannelNotFound(f"The provided channel id '{channel_id}' does not exist.")
     
-    def create_channel(self, channel_name: str, is_private: bool | None = False) -> None:
+    def create_channel(self, channel_name: str, is_private: bool | None = False) -> ChannelModel:
         """
         Create a new channel.
-        
+
         Args:
             channel_name (str): The channel's name.
             is_private (bool, default: False): The channel's type.
-        
+
         Returns:
-            None.
-        
+            ChannelModel: The created channel.
+
         Example:
             .. code-block:: python
-            
+
                 >>> channel = client.channels.create_channel(
                 ...    "general"
                 ... )

@@ -13,7 +13,11 @@ __all__ = [
     "ExceededMaxMessagesPerPage",
     "MessageIsTooLong",
     "MessageNotFound",
-    "UserNotFound"
+    "UserNotFound",
+    "FileNotFound",
+    "UnsupportedFileType",
+    "IPSecurityError",
+    "ServerError"
 ]
 
 # Signin exceptions
@@ -44,3 +48,11 @@ class MessageIsTooLong(Exception): ...
 class MessageNotFound(Exception): ...
 
 class UserNotFound(Exception): ...
+
+# File operations exceptions
+class FileNotFound(Exception): ...
+class UnsupportedFileType(Exception): ...
+
+# Admin operations exceptions
+class IPSecurityError(Exception): ...
+class ServerError(Exception): ...
