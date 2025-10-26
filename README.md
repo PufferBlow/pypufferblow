@@ -34,10 +34,19 @@ channel_list = channels.list_channels()
 # Send a message
 channels.send_message(channel_id="some_channel_id", message="Hello!")
 
+# Send a message with attachments
+channels.send_message(
+    channel_id="some_channel_id",
+    message="Check this out!",
+    attachments=["path/to/image.png", "path/to/document.pdf"]
+)
+
 # Real-time messaging with WebSocket
 ws = client.websocket()
 def on_message(msg):
     print(f"Received: {msg.message}")
+    if msg.attachments:
+        print("Attachments:", msg.attachments)
 ws.on_message = on_message
 ws.connect()
 
@@ -99,6 +108,7 @@ Manage channels and messaging.
 ```python
 channels = client.channels()
 channels.send_message(channel_id, "Hello!")
+channels.send_message(channel_id, "Hello!", attachments=["image.png", "doc.pdf"])
 messages = channels.load_messages(channel_id)
 ```
 

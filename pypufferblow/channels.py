@@ -7,7 +7,7 @@ __all__ = [
 import requests
 
 # Routes
-from pypufferblow.routes import channels_routes
+from pypufferblow.routes import channels_routes, cdn_routes
 
 # Exceptions
 from pypufferblow.exceptions import (
@@ -53,7 +53,8 @@ class Channels:
         DELETE_MESSAGE_API_ROUTE (Route): The delete message API route.
     """
     API_ROUTES: list[Route] = channels_routes
-    
+    CDN_API_ROUTES: list[Route] = cdn_routes
+
     LIST_CHANNELS_API_ROUTE: Route = channels_routes[0]
     CREATE_CHANNEL_API_ROUTE: Route = channels_routes[1]
     DELETE_CHANNEL_API_ROUTE: Route = channels_routes[2]
@@ -63,6 +64,8 @@ class Channels:
     SEND_MESSAGE_API_ROUTE: Route = channels_routes[6]
     MARK_MESSAGE_AS_READ_API_ROUTE: Route = channels_routes[7]
     DELETE_MESSAGE_API_ROUTE: Route = channels_routes[8]
+
+    CDN_UPLOAD_API_ROUTE: Route = cdn_routes[0]
     
     def __init__(self, options: ChannelsOptions) ->None:
         """
@@ -356,20 +359,87 @@ class Channels:
         
         messages = response.json().get("messages")
         messages = [MessageModel().parse_json(message) for message in messages]
-        
+
         return messages
 
-    def send_message(self, channel_id: str, message: str) -> None:
+    def upload_file(self, file_path: str | None = None, file_data: bytes | None = None, filename: str | None = None, directory: str = "uploads") -> str:
         """
-        Send a message in a channel.
-        
+        Upload a file to the CDN and get the URL.
+
+        Args:
+            file_path (str): Path to the file to upload (alternative to file_data)
+            file_data (bytes): File data as bytes (alternative to file_path)
+            filename (str): Filename when using file_data (required if not using file_path)
+            directory (str): Target directory for upload ("uploads", "images", etc.)
+
+        Returns:
+            str: The CDN URL of the uploaded file.
+
+        Example:
+            .. code-block:: python
+
+                >>> file_url = client.channels.upload_file(file_path="image.png")
+                >>> file_url = client.channels.upload_file(file_data=binary_data, filename="image.png")
+        """
+        if file_path and file_data:
+            raise ValueError("Provide either file_path or file_data, not both")
+
+        if not file_path and not file_data:
+            raise ValueError("Provide either file_path or file_data")
+
+        if not file_path and file_data and not filename:
+            raise ValueError("filename is required when providing file_data")
+
+        # Prepare multipart form data
+        files = {}
+        if file_path:
+            try:
+                with open(file_path, 'rb') as f:
+                    files['file'] = (file_path.split('/')[-1], f.read())
+            except FileNotFoundError:
+                raise FileNotFoundError(f"File not found: {file_path}")
+            except IOError as e:
+                raise IOError(f"Error reading file {file_path}: {e}")
+        else:
+            # file_data and filename provided
+            files['file'] = (filename, file_data)
+
+        data = {
+            'auth_token': self.user.auth_token,
+            'directory': directory
+        }
+
+        response = requests.post(
+            self.CDN_UPLOAD_API_ROUTE.api_route,
+            files=files,
+            data=data
+        )
+
+        if response.status_code == 403:
+            raise NotAnAdminOrServerOwner("Server owner access required for CDN uploads.")
+        elif response.status_code == 400:
+            error_detail = response.json().get("detail", "File upload failed")
+            raise ValueError(f"Upload failed: {error_detail}")
+        elif response.status_code == 404:
+            raise BadAuthToken(f"The provided auth-token '{self.user.auth_token}' is not correctly formatted")
+        elif response.status_code != 201:
+            raise Exception(f"Upload failed with status {response.status_code}: {response.text}")
+
+        result = response.json()
+        return result.get("url")
+
+    def send_message(self, channel_id: str, message: str, attachments: list[str] | None = None) -> None:
+        """
+        Send a message in a channel with optional attachments.
+
         Args:
             channel_id (str): The channel's id.
             message (str): The message to send.
-        
+            attachments (list[str], optional): List of file paths to attach to the message.
+
         Returns:
             None.
-        
+
         Example:
             .. code-block:: python
 
@@ -379,25 +449,62 @@ class Channels:
                 ...    channel_id=channel_id,
                 ...    message=message
                 ... )
+
+                # With attachments
+                >>> client.channels.send_message(
+                ...    channel_id=channel_id,
+                ...    message="Check this out!",
+                ...    attachments=["image.png", "document.pdf"]
+                ... )
         """
-        params = {
-            "channel_id": channel_id,
+        # Prepare data for the request
+        data = {
+            "auth_token": self.user.auth_token,
             "message": message,
-            "auth_token": self.user.auth_token
         }
-        
-        response = requests.post(
-            self.SEND_MESSAGE_API_ROUTE.api_route,
-            params=params
-        )
-        
-        if response.status_code == 400:
-            if "the message is too long" in response.json().get("detail"):
-                raise MessageIsTooLong("The message is too long")
-            else:
-                raise BadAuthToken(f"The provided auth-token '{self.user.auth_token}' is not correctly formated")
-        elif response.status_code == 404:
-            raise ChannelNotFound(f"The provided channel id '{channel_id}' does not exist.")
+
+        # Prepare multipart form data if attachments are provided
+        files = {}
+        if attachments:
+            for file_path in attachments:
+                if not isinstance(file_path, str):
+                    raise ValueError(f"All attachments must be file paths (strings), got {type(file_path)}")
+
+                try:
+                    files['attachments'] = (file_path.split('/')[-1], open(file_path, 'rb'))
+                except FileNotFoundError:
+                    raise FileNotFoundError(f"Attachment file not found: {file_path}")
+                except IOError as e:
+                    raise IOError(f"Error reading attachment file {file_path}: {e}")
+
+        try:
+            response = requests.post(
+                f"{self.SEND_MESSAGE_API_ROUTE.api_route}/{channel_id}",
+                data=data,
+                files=files
+            )
+
+            if response.status_code == 400:
+                if "the message is too long" in response.json().get("detail"):
+                    raise MessageIsTooLong("The message is too long")
+                else:
+                    raise BadAuthToken(f"The provided auth-token '{self.user.auth_token}' is not correctly formatted")
+            elif response.status_code == 404:
+                raise ChannelNotFound(f"The provided channel id '{channel_id}' does not exist.")
+
+            # Check for successful message send
+            if response.status_code != 201:
+                try:
+                    error_detail = response.json().get("detail", "Unknown error")
+                    raise Exception(f"Failed to send message: {error_detail}")
+                except:
+                    raise Exception(f"Failed to send message: HTTP {response.status_code}")
+
+        finally:
+            # Close file handles
+            for key, value in files.items():
+                if hasattr(value[1], 'close'):
+                    value[1].close()
         
     def mark_message_as_read(self, channel_id: str, message_id: str) -> None:
         """

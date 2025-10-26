@@ -100,7 +100,8 @@ class MessageModel:
     channel_id              :       str  =  None
     conversation_id         :       str  =  None
     sent_at                 :       str
-    
+    attachments             :       list[str] = None
+
     def __init__(
         self,
         message_id : str | None = None,
@@ -109,6 +110,7 @@ class MessageModel:
         channel_id : str | None = None,
         conversation_id : str | None = None,
         sent_at : str | None = None,
+        attachments: list[str] | None = None,
     ):
         self.message_id = message_id
         self.message = message
@@ -116,6 +118,7 @@ class MessageModel:
         self.channel_id = channel_id
         self.conversation_id = conversation_id
         self.sent_at = sent_at
+        self.attachments = attachments
     
     def __repr__(self):
         return (
