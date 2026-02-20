@@ -58,12 +58,12 @@ class System:
     SERVER_LOGS_API_ROUTE: Route = system_routes[7]
     UPLOAD_AVATAR_API_ROUTE: Route = system_routes[8]
     UPLOAD_BANNER_API_ROUTE: Route = system_routes[9]
-    UPDATE_SERVER_INFO_API_ROUTE: Route = system_routes[10]
-    USER_REGISTRATIONS_CHART_API_ROUTE: Route = system_routes[11]
-    MESSAGE_ACTIVITY_CHART_API_ROUTE: Route = system_routes[12]
-    ONLINE_USERS_CHART_API_ROUTE: Route = system_routes[13]
-    CHANNEL_CREATION_CHART_API_ROUTE: Route = system_routes[14]
-    USER_STATUS_CHART_API_ROUTE: Route = system_routes[15]
+    UPDATE_SERVER_INFO_API_ROUTE: Route = system_routes[2]
+    USER_REGISTRATIONS_CHART_API_ROUTE: Route = system_routes[10]
+    MESSAGE_ACTIVITY_CHART_API_ROUTE: Route = system_routes[11]
+    ONLINE_USERS_CHART_API_ROUTE: Route = system_routes[12]
+    CHANNEL_CREATION_CHART_API_ROUTE: Route = system_routes[13]
+    USER_STATUS_CHART_API_ROUTE: Route = system_routes[14]
 
     def __init__(self, options: SystemOptions) -> None:
         """
@@ -129,11 +129,11 @@ class System:
         if not update_data:
             raise ValueError(f"No valid fields provided. Allowed: {', '.join(allowed_fields)}")
 
-        params = {"auth_token": self.auth_token, **update_data}
+        payload = {"auth_token": self.auth_token, **update_data}
 
         response = requests.put(
             self.UPDATE_SERVER_INFO_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -155,7 +155,7 @@ class System:
 
                 >>> usage = client.system.get_server_usage()
         """
-        response = requests.get(self.SERVER_USAGE_API_ROUTE.api_route)
+        response = requests.post(self.SERVER_USAGE_API_ROUTE.api_route, json={})
 
         if response.status_code != 200:
             raise ServerError("Failed to fetch server usage statistics")
@@ -198,11 +198,11 @@ class System:
 
                 >>> overview = client.system.get_server_overview()
         """
-        params = {"auth_token": self.auth_token}
+        payload = {"auth_token": self.auth_token}
 
-        response = requests.get(
+        response = requests.post(
             self.SERVER_OVERVIEW_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -224,11 +224,11 @@ class System:
 
                 >>> metrics = client.system.get_activity_metrics()
         """
-        params = {"auth_token": self.auth_token}
+        payload = {"auth_token": self.auth_token}
 
-        response = requests.get(
+        response = requests.post(
             self.ACTIVITY_METRICS_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -253,14 +253,14 @@ class System:
 
                 >>> activities = client.system.get_recent_activity(limit=20)
         """
-        params = {
+        payload = {
             "auth_token": self.auth_token,
             "limit": limit
         }
 
-        response = requests.get(
+        response = requests.post(
             self.RECENT_ACTIVITY_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -288,19 +288,19 @@ class System:
         if not self._has_required_permissions():
             raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can access server logs.")
 
-        params = {
+        payload = {
             "auth_token": self.auth_token,
             "lines": min(lines, 1000)
         }
 
         if search:
-            params["search"] = search
+            payload["search"] = search
         if level:
-            params["level"] = level
+            payload["level"] = level
 
         response = requests.post(
             self.SERVER_LOGS_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -439,13 +439,13 @@ class System:
 
                 >>> chart = client.system.get_user_registration_chart("weekly")
         """
-        params = {"auth_token": self.auth_token}
+        payload = {"auth_token": self.auth_token}
         if period:
-            params["period"] = period
+            payload["period"] = period
 
-        response = requests.get(
+        response = requests.post(
             self.USER_REGISTRATIONS_CHART_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -463,13 +463,13 @@ class System:
         Returns:
             dict: Chart data for message activity.
         """
-        params = {"auth_token": self.auth_token}
+        payload = {"auth_token": self.auth_token}
         if period:
-            params["period"] = period
+            payload["period"] = period
 
-        response = requests.get(
+        response = requests.post(
             self.MESSAGE_ACTIVITY_CHART_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -487,13 +487,13 @@ class System:
         Returns:
             dict: Chart data for online users.
         """
-        params = {"auth_token": self.auth_token}
+        payload = {"auth_token": self.auth_token}
         if period:
-            params["period"] = period
+            payload["period"] = period
 
-        response = requests.get(
+        response = requests.post(
             self.ONLINE_USERS_CHART_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -511,13 +511,13 @@ class System:
         Returns:
             dict: Chart data for channel creation.
         """
-        params = {"auth_token": self.auth_token}
+        payload = {"auth_token": self.auth_token}
         if period:
-            params["period"] = period
+            payload["period"] = period
 
-        response = requests.get(
+        response = requests.post(
             self.CHANNEL_CREATION_CHART_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -532,11 +532,11 @@ class System:
         Returns:
             dict: Chart data for user status distribution.
         """
-        params = {"auth_token": self.auth_token}
+        payload = {"auth_token": self.auth_token}
 
-        response = requests.get(
+        response = requests.post(
             self.USER_STATUS_CHART_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:

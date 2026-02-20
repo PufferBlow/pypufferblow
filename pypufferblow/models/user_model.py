@@ -94,9 +94,10 @@ class UserModel:
             f"inbox_id={self.inbox_id!r}, origin_server={self.origin_server!r}, roles_ids={self.roles_ids!r})"
         )
     
-    def parse_json(self, data: dict) -> None:
+    def parse_json(self, data: dict):
         """
         Parse the attributes from a json
         """
         for attr in data:
             self.__setattr__(attr, data[attr])
+        return self

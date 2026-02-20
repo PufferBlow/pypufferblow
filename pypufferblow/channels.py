@@ -7,7 +7,7 @@ __all__ = [
 import requests
 
 # Routes
-from pypufferblow.routes import channels_routes, cdn_routes
+from pypufferblow.routes import channels_routes, storage_routes
 
 # Exceptions
 from pypufferblow.exceptions import (
@@ -53,7 +53,7 @@ class Channels:
         DELETE_MESSAGE_API_ROUTE (Route): The delete message API route.
     """
     API_ROUTES: list[Route] = channels_routes
-    CDN_API_ROUTES: list[Route] = cdn_routes
+    STORAGE_API_ROUTES: list[Route] = storage_routes
 
     LIST_CHANNELS_API_ROUTE: Route = channels_routes[0]
     CREATE_CHANNEL_API_ROUTE: Route = channels_routes[1]
@@ -65,7 +65,7 @@ class Channels:
     MARK_MESSAGE_AS_READ_API_ROUTE: Route = channels_routes[7]
     DELETE_MESSAGE_API_ROUTE: Route = channels_routes[8]
 
-    CDN_UPLOAD_API_ROUTE: Route = cdn_routes[0]
+    STORAGE_UPLOAD_API_ROUTE: Route = storage_routes[0]
     
     def __init__(self, options: ChannelsOptions) ->None:
         """
@@ -91,13 +91,13 @@ class Channels:
         Returns:
             list[ChannelModel]: A list of ChannelModel objects.
         """
-        params = {
+        payload = {
             "auth_token": self.user.auth_token
         }
         
-        response = requests.get(
+        response = requests.post(
             self.LIST_CHANNELS_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
         
         if response.status_code == 400:
@@ -124,14 +124,13 @@ class Channels:
                 >>> channel_id = "6da0492c-631e-53f0-8f9f-2cbab5045351"
                 >>> channel = client.channels.get_channel_info(channel_id)
         """
-        params = {
-            "channel_id": channel_id,
+        payload = {
             "auth_token": self.user.auth_token
         }
 
-        response = requests.get(
+        response = requests.post(
             self.LIST_CHANNELS_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -165,7 +164,7 @@ class Channels:
                 ...    "general"
                 ... )
         """
-        params = {
+        payload = {
             "channel_name": channel_name,
             "is_private": is_private,
             "auth_token": self.user.auth_token
@@ -176,7 +175,7 @@ class Channels:
 
         response = requests.post(
             self.CREATE_CHANNEL_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
         
         if response.status_code == 403:
@@ -208,7 +207,6 @@ class Channels:
                 >>> client.channels.delete_channel("channel_id")
         """
         params = {
-            "channel_id": channel_id,
             "auth_token": self.user.auth_token
         }
         
@@ -216,7 +214,7 @@ class Channels:
             raise NotAnAdminOrServerOwner("Operation not permitted. You are not an admin or a server owner.")
     
         response = requests.delete(
-            self.DELETE_CHANNEL_API_ROUTE.api_route,
+            self.DELETE_CHANNEL_API_ROUTE.api_route.format(channel_id=channel_id),
             params=params
         )
         
@@ -245,18 +243,18 @@ class Channels:
                 >>> user_id = "9ad0dc2f-536v-43f5-x6g4-2dfbh564234"
                 >>> client.channels.add_user(channel_id, user_id)
         """
-        params = {
-            "channel_id": channel_id,
-            "user_id": user_id,
+        payload = {
+            "to_add_user_id": user_id,
             "auth_token": self.user.auth_token
         }
         
         if not self.user.is_admin and not self.user.is_server_owner:
             raise NotAnAdminOrServerOwner("Operation not permitted. You are not an admin or a server owner.")
         
-        response = requests.post(
-            self.ADD_USER_TO_CHANNEL_API_ROUTE.api_route,
-            params=params
+        response = requests.put(
+            self.ADD_USER_TO_CHANNEL_API_ROUTE.api_route.format(channel_id=channel_id),
+            params=None,
+            json=payload
         )
         
         if response.status_code == 403:
@@ -292,16 +290,15 @@ class Channels:
         
         """
         params = {
-            "channel_id": channel_id,
-            "user_id": user_id,
+            "to_remove_user_id": user_id,
             "auth_token": self.user.auth_token
         }
         
         if not self.user.is_admin and not self.user.is_server_owner:
             raise NotAnAdminOrServerOwner("Operation not permitted. You are not an admin or a server owner.")
         
-        response = requests.post(
-            self.REMOVE_USER_FROM_CHANNEL_API_ROUTE.api_route,
+        response = requests.delete(
+            self.REMOVE_USER_FROM_CHANNEL_API_ROUTE.api_route.format(channel_id=channel_id),
             params=params
         )
         
@@ -340,12 +337,11 @@ class Channels:
                 ... )
         """
         params = {
-            "channel_id": channel_id,
             "auth_token": self.user.auth_token
         }
         
         response = requests.get(
-            self.LOAD_MESSAGES_API_ROUTE.api_route,
+            self.LOAD_MESSAGES_API_ROUTE.api_route.format(channel_id=channel_id),
             params=params
         )
         
@@ -410,7 +406,7 @@ class Channels:
         }
 
         response = requests.post(
-            self.CDN_UPLOAD_API_ROUTE.api_route,
+            self.STORAGE_UPLOAD_API_ROUTE.api_route,
             files=files,
             data=data
         )
@@ -478,11 +474,11 @@ class Channels:
                     raise IOError(f"Error reading attachment file {file_path}: {e}")
 
         try:
-            response = requests.post(
-                f"{self.SEND_MESSAGE_API_ROUTE.api_route}/{channel_id}",
-                data=data,
-                files=files
-            )
+        response = requests.post(
+            self.SEND_MESSAGE_API_ROUTE.api_route.format(channel_id=channel_id),
+            data=data,
+            files=files
+        )
 
             if response.status_code == 400:
                 if "the message is too long" in response.json().get("detail"):
@@ -527,15 +523,14 @@ class Channels:
                 ...    message_id=message_id
                 ... )
         """
-        params = {
-            "channel_id": channel_id,
+        payload = {
             "message_id": message_id,
             "auth_token": self.user.auth_token
         }
         
         response = requests.put(
-            self.MARK_MESSAGE_AS_READ_API_ROUTE.api_route,
-            params=params
+            self.MARK_MESSAGE_AS_READ_API_ROUTE.api_route.format(channel_id=channel_id),
+            json=payload
         )
         
         if response.status_code == 400:
@@ -568,13 +563,12 @@ class Channels:
                 ... )
         """
         params = {
-            "channel_id": channel_id,
             "message_id": message_id,
             "auth_token": self.user.auth_token
         }
         
         response = requests.delete(
-            self.DELETE_MESSAGE_API_ROUTE.api_route,
+            self.DELETE_MESSAGE_API_ROUTE.api_route.format(channel_id=channel_id),
             params=params
         )
         

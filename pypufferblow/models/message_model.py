@@ -75,12 +75,13 @@ class WebSocketMessage:
             f"sender_user_id={self.sender_user_id}, message={self.message})"
         )
 
-    def parse_json(self, data: dict) -> None:
+    def parse_json(self, data: dict):
         """
         Parse the attributes from a JSON dict
         """
         for attr in data:
             self.__setattr__(attr, data[attr])
+        return self
 
     def to_dict(self) -> dict:
         """
@@ -126,9 +127,10 @@ class MessageModel:
             f"channel_id={self.channel_id}, conversation_id={self.conversation_id}, sent_at={self.sent_at})"
         )
     
-    def parse_json(self, data: dict) -> None:
+    def parse_json(self, data: dict):
         """
         Parse the attributes from a json
         """
         for attr in data:
             self.__setattr__(attr, data[attr])
+        return self

@@ -7,7 +7,7 @@ import requests
 from loguru import logger
 
 # Routes
-from pypufferblow.routes import cdn_routes
+from pypufferblow.routes import storage_routes
 
 # Exceptions
 from pypufferblow.exceptions import (
@@ -37,14 +37,14 @@ class CDN:
         CLEANUP_ORPHANED_API_ROUTE (Route): The cleanup orphaned files API route.
         SERVE_FILE_API_ROUTE (Route): The serve file API route.
     """
-    API_ROUTES: list[Route] = cdn_routes
+    API_ROUTES: list[Route] = storage_routes
 
-    UPLOAD_API_ROUTE: Route = cdn_routes[0]
-    LIST_FILES_API_ROUTE: Route = cdn_routes[1]
-    DELETE_FILE_API_ROUTE: Route = cdn_routes[2]
-    FILE_INFO_API_ROUTE: Route = cdn_routes[3]
-    CLEANUP_ORPHANED_API_ROUTE: Route = cdn_routes[4]
-    SERVE_FILE_API_ROUTE: Route = cdn_routes[5]
+    UPLOAD_API_ROUTE: Route = storage_routes[0]
+    LIST_FILES_API_ROUTE: Route = storage_routes[1]
+    DELETE_FILE_API_ROUTE: Route = storage_routes[2]
+    FILE_INFO_API_ROUTE: Route = storage_routes[3]
+    CLEANUP_ORPHANED_API_ROUTE: Route = storage_routes[4]
+    SERVE_FILE_API_ROUTE: Route = storage_routes[5]
 
     def __init__(self, options: CDNOptions) -> None:
         """
@@ -135,14 +135,14 @@ class CDN:
         if not self._has_required_permissions():
             raise NotAnAdminOrServerOwner("CDN file operations require admin or server owner privileges.")
 
-        params = {
+        payload = {
             "auth_token": self.auth_token,
             "directory": directory
         }
 
-        response = requests.get(
+        response = requests.post(
             self.LIST_FILES_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -171,14 +171,14 @@ class CDN:
         if not self._has_required_permissions():
             raise NotAnAdminOrServerOwner("CDN file operations require admin or server owner privileges.")
 
-        params = {
+        payload = {
             "auth_token": self.auth_token,
             "file_url": file_url
         }
 
         response = requests.post(
             self.DELETE_FILE_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -212,14 +212,14 @@ class CDN:
         if not self._has_required_permissions():
             raise NotAnAdminOrServerOwner("CDN file operations require admin or server owner privileges.")
 
-        params = {
+        payload = {
             "auth_token": self.auth_token,
             "file_url": file_url
         }
 
-        response = requests.get(
+        response = requests.post(
             self.FILE_INFO_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -244,14 +244,14 @@ class CDN:
         if not self._has_required_permissions():
             raise NotAnAdminOrServerOwner("CDN cleanup operations require server owner privileges.")
 
-        params = {
+        payload = {
             "auth_token": self.auth_token,
             "subdirectory": directory
         }
 
         response = requests.post(
             self.CLEANUP_ORPHANED_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:

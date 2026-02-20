@@ -70,11 +70,11 @@ class Admin:
         if not self._has_required_permissions():
             raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can manage blocked IPs.")
 
-        params = {"auth_token": self.auth_token}
+        payload = {"auth_token": self.auth_token}
 
-        response = requests.get(
+        response = requests.post(
             self.LIST_BLOCKED_IPS_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -102,7 +102,7 @@ class Admin:
         if not self._has_required_permissions():
             raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can manage blocked IPs.")
 
-        params = {
+        payload = {
             "auth_token": self.auth_token,
             "ip": ip,
             "reason": reason
@@ -110,7 +110,7 @@ class Admin:
 
         response = requests.post(
             self.BLOCK_IP_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -139,14 +139,14 @@ class Admin:
         if not self._has_required_permissions():
             raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can manage blocked IPs.")
 
-        params = {
+        payload = {
             "auth_token": self.auth_token,
             "ip": ip
         }
 
         response = requests.post(
             self.UNBLOCK_IP_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -173,11 +173,11 @@ class Admin:
         if not self._has_required_permissions():
             raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can manage background tasks.")
 
-        params = {"auth_token": self.auth_token}
+        payload = {"auth_token": self.auth_token}
 
-        response = requests.get(
+        response = requests.post(
             self.BACKGROUND_TASKS_STATUS_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:
@@ -205,14 +205,14 @@ class Admin:
         if not self._has_required_permissions():
             raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can manage background tasks.")
 
-        params = {
+        payload = {
             "auth_token": self.auth_token,
             "task_id": task_id
         }
 
         response = requests.post(
             self.BACKGROUND_TASKS_RUN_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
         if response.status_code == 400:

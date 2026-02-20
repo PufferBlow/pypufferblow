@@ -106,14 +106,14 @@ class Users:
             
                 >>> client.users.sign_up()
         """
-        params = {
+        payload = {
             "username": self.username,
             "password": self.password
         }
         
         response = requests.post(
             self.SIGNUP_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
         
         if response.status_code == 409:
@@ -180,17 +180,18 @@ class Users:
             
                 >>> user: UserModel = client.users.get_user_profile()
         """
-        params = {
-            "user_id": user_id if user_id is not None else self.user.user_id,
+        payload = {
             "auth_token": self.user.auth_token
         }
-        
-        response = requests.get(
+        if user_id is not None:
+            payload["user_id"] = user_id
+
+        response = requests.post(
             self.PROFILE_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
         
-        if response.status_code == 400:
+        if response.status_code in (400, 404):
             raise BadAuthToken(f"The provided auth-token '{self.user.auth_token}' is not correctly formated")
         
         user = UserModel()
@@ -213,14 +214,14 @@ class Users:
             
                 >>> client.users.update_username(new_username="new_username")
         """
-        params = {
+        payload = {
             "new_username": new_username,
             "auth_token": self.user.auth_token
         }
         
         response = requests.put(
             self.PROFILE_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
         
         if response.status_code == 409:
@@ -250,17 +251,17 @@ class Users:
                 ...    new_status=ONLINE_USER_STATUS
                 ... )
         """
-        params = {
+        payload = {
             "status": new_status,
             "auth_token": self.user.auth_token
         }
         
         response = requests.put(
             self.PROFILE_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
         
-        if response.status_code == 404:
+        if response.status_code in (400, 404):
             raise InvalidStatusValue(
                 f"The provided status value '{new_status}' is not supported."
                 f"The supported status values are: {', '.join(USER_STATUS)}"
@@ -287,7 +288,7 @@ class Users:
                 ...    new_password="NEW_SUPER_SECURE_PASSWORD"
                 ... )
         """
-        params = {
+        payload = {
             "old_password": old_password,
             "new_password": new_password,
             "auth_token": self.user.auth_token
@@ -295,7 +296,7 @@ class Users:
         
         response = requests.put(
             self.PROFILE_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
         
         if response.status_code == 401:
@@ -313,14 +314,14 @@ class Users:
             
                 >>> client.users.reset_user_auth_token()
         """
-        params = {
+        payload = {
             "password": self.password,
             "auth_token": self.user.auth_token
         }
         
-        response = requests.put(
+        response = requests.post(
             self.RESET_AUTH_TOKEN_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
         
         if response.status_code == 404:
@@ -346,17 +347,17 @@ class Users:
 
                 >>> client.users.update_user_about("Hello, I'm a software developer!")
         """
-        params = {
+        payload = {
             "about": new_about,
             "auth_token": self.user.auth_token
         }
 
         response = requests.put(
             self.PROFILE_API_ROUTE.api_route,
-            params=params
+            json=payload
         )
 
-        if response.status_code == 400:
+        if response.status_code in (400, 404):
             raise BadAuthToken(f"The provided auth-token '{self.user.auth_token}' is not correctly formatted")
 
         self.user.about = new_about
@@ -386,7 +387,7 @@ class Users:
                 data=data
             )
 
-        if response.status_code == 400:
+        if response.status_code in (400, 404):
             raise BadAuthToken(f"The provided auth-token '{self.user.auth_token}' is not correctly formatted")
         elif response.status_code == 500:
             raise Exception("Avatar upload failed")
@@ -420,7 +421,7 @@ class Users:
                 data=data
             )
 
-        if response.status_code == 400:
+        if response.status_code in (400, 404):
             raise BadAuthToken(f"The provided auth-token '{self.user.auth_token}' is not correctly formatted")
         elif response.status_code == 500:
             raise Exception("Banner upload failed")

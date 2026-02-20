@@ -41,6 +41,11 @@ from pypufferblow.admin import (
     Admin,
     AdminOptions
 )
+# Decentralized auth class
+from pypufferblow.decentralized_auth import (
+    DecentralizedAuth,
+    DecentralizedAuthOptions,
+)
 
 # Models
 from pypufferblow.models.user_model import UserModel
@@ -49,7 +54,10 @@ from pypufferblow.models.user_model import UserModel
 from pypufferblow.routes import (
     users_routes,
     channels_routes,
-    messages_routes
+    storage_routes,
+    system_routes,
+    admin_routes,
+    decentralized_auth_routes,
 )
 
 # Models
@@ -96,6 +104,7 @@ class Client:
     cdn: CDN = None
     system: System = None
     admin: Admin = None
+    decentralized_auth: DecentralizedAuth = None
     websocket: GlobalWebSocket = None
     
     def __init__(self, options: ClientOptions) -> None:
@@ -115,7 +124,14 @@ class Client:
         self.password = options.password
         
         # Add the base api route to the routes
-        for route_list in [users_routes, channels_routes, messages_routes]:
+        for route_list in [
+            users_routes,
+            channels_routes,
+            storage_routes,
+            system_routes,
+            admin_routes,
+            decentralized_auth_routes,
+        ]:
             for i in range(len(route_list)):
                 if self.host not in route_list[i].api_route:
                     route_list[i].api_route = f"http://{self.host}:{self.port}" + route_list[i].api_route
@@ -273,6 +289,23 @@ class Client:
         )
 
         return self.websocket
+
+    def decentralized_auth(self) -> DecentralizedAuth:
+        """
+        Create a DecentralizedAuth object for node-aware auth flow.
+        """
+        if not self.users.is_signed_in:
+            raise Exception(
+                "Decentralized auth requires user authentication. Please call users().sign_in() first."
+            )
+
+        options = DecentralizedAuthOptions(
+            host=self.host,
+            port=self.port,
+            auth_token=self.users.user.auth_token,
+        )
+        self.decentralized_auth = DecentralizedAuth(options)
+        return self.decentralized_auth
 
     def create_channel_websocket(self, channel_id: str) -> ChannelWebSocket:
         """

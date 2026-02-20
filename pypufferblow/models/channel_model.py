@@ -36,9 +36,10 @@ class ChannelModel:
             f"is_private={self.is_private}, allowed_users={self.allowed_users}, created_at={self.created_at})"
         )
     
-    def parse_json(self, data: dict) -> None:
+    def parse_json(self, data: dict):
         """
         Parse the attributes from a json
         """
         for attr in data:
             self.__setattr__(attr, data[attr])
+        return self
