@@ -6,6 +6,7 @@ from .websocket import *
 from .cdn import *
 from .system import *
 from .admin import *
+from .decentralized_auth import *
 
 # Models
 from .models.route_model import *
