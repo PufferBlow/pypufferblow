@@ -81,6 +81,11 @@ ws_channel.connect()
 - Message callbacks
 - Send read confirmations
 
+### Federation and Cross-Instance DMs
+- Follow remote ActivityPub accounts (`user@domain`)
+- Send direct messages to local users and remote federated users
+- Load DM history using unified conversation IDs
+
 ## API Reference
 
 ### Client
@@ -120,6 +125,26 @@ Real-time message receiving.
 ws = client.websocket()
 ws.on_message = lambda msg: print(msg.message)
 ws.connect()
+```
+
+### Federation
+
+Follow remote account and exchange DMs across instances.
+
+```python
+federation = client.federation()
+
+# Follow a remote ActivityPub account
+federation.follow_remote_account("alice@example.org")
+
+# Send DM to local user by user_id or username
+federation.send_direct_message(peer="local_username", message="hey")
+
+# Send DM to remote handle
+federation.send_direct_message(peer="alice@example.org", message="hello from pufferblow")
+
+# Load DM conversation
+dm_data = federation.load_direct_messages(peer="alice@example.org", page=1, messages_per_page=20)
 ```
 
 ## Requirements

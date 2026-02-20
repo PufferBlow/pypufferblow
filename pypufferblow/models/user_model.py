@@ -60,6 +60,7 @@ class UserModel:
         origin_server: str | None = None,
         roles_ids: list[str] | None = None,
     ) -> None:
+        """Initialize the instance."""
         self.user_id = user_id
         self.username = username
         self.status = status
@@ -85,6 +86,7 @@ class UserModel:
         self.roles_ids = roles_ids
     
     def __repr__(self):
+        """Repr special method."""
         return (
             f"UserModel(user_id={self.user_id!r}, username={self.username!r}, status={self.status!r}, "
             f"last_seen={self.last_seen!r}, joined_servers_ids={self.joined_servers_ids!r}, "

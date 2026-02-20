@@ -33,9 +33,6 @@ from pypufferblow.models.message_model import MessageModel
 PRIVATE_CHANNEL: int = 0x001
 PUBLIC_CHANNEL: int = 0x002
 
-class Channels: ...
-class ChannelsOptions(OptionsModel): ...
-
 class Channels:
     """
     The underline class for managing the channels routes.
@@ -474,11 +471,11 @@ class Channels:
                     raise IOError(f"Error reading attachment file {file_path}: {e}")
 
         try:
-        response = requests.post(
-            self.SEND_MESSAGE_API_ROUTE.api_route.format(channel_id=channel_id),
-            data=data,
-            files=files
-        )
+            response = requests.post(
+                self.SEND_MESSAGE_API_ROUTE.api_route.format(channel_id=channel_id),
+                data=data,
+                files=files
+            )
 
             if response.status_code == 400:
                 if "the message is too long" in response.json().get("detail"):
@@ -587,5 +584,6 @@ class ChannelsOptions(OptionsModel):
     Channels options
     """  
     def __init__(self, user: UserModel, **kwargs) -> None:
+        """Initialize channel options with the authenticated user context."""
         super().__init__(**kwargs)
         self.user = user

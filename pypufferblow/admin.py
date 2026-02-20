@@ -20,9 +20,6 @@ from pypufferblow.exceptions import (
 from pypufferblow.models.route_model import Route
 from pypufferblow.models.options_model import OptionsModel
 
-class Admin: ...
-class AdminOptions(OptionsModel): ...
-
 class Admin:
     """
     The Admin class for administration operations requiring elevated permissions.
@@ -245,5 +242,6 @@ class AdminOptions(OptionsModel):
     Admin options for configuring admin operations.
     """
     def __init__(self, auth_token: str, **kwargs):
+        """Initialize the instance."""
         super().__init__(**kwargs)
         self.auth_token = auth_token

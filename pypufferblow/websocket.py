@@ -29,6 +29,7 @@ class WebSocketBase:
     """Base class for WebSocket connections"""
 
     def __init__(self, auth_token: str, host_port: str):
+        """Initialize the instance."""
         self.auth_token = auth_token
         self.host_port = host_port
         self.websocket = None
@@ -179,6 +180,7 @@ class ChannelWebSocket(WebSocketBase):
     """WebSocket client for specific channel"""
 
     def __init__(self, channel_id: str, auth_token: str, host_port: str):
+        """Initialize the instance."""
         super().__init__(auth_token, host_port)
         self.channel_id = channel_id
 

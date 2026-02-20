@@ -1,4 +1,3 @@
-
 __all__ = [
     "UsernameNotFound",
     "InvalidPassword",
@@ -20,39 +19,74 @@ __all__ = [
     "ServerError"
 ]
 
-# Signin exceptions
-class UsernameNotFound(Exception): ...
-class InvalidPassword(Exception): ...
 
-# Signup exceptions
-class UsernameAlreadyExists(Exception): ...
+class UsernameNotFound(Exception):
+    """Raised when a username lookup fails."""
 
-# Auth token exceptions
-class BadAuthToken(Exception): ...
 
-# Update user profile
-class InvalidStatusValue(Exception): ...
+class InvalidPassword(Exception):
+    """Raised when an invalid password is provided."""
 
-# Initialize the Channels
-class FaildToInitChannels(Exception): ...
 
-# Not an admin or server owner exception
-class NotAnAdminOrServerOwner(Exception): ...
+class UsernameAlreadyExists(Exception):
+    """Raised when attempting to create an existing username."""
 
-# Channels exceptions
-class ChannelNameAlreadyExists(Exception): ...
-class ChannelNotFound(Exception): ...
-class FaildToRemoveUserFromChannelUserIsAdmin(Exception): ...
-class ExceededMaxMessagesPerPage(Exception): ...
-class MessageIsTooLong(Exception): ...
-class MessageNotFound(Exception): ...
 
-class UserNotFound(Exception): ...
+class BadAuthToken(Exception):
+    """Raised when an auth token is invalid or malformed."""
 
-# File operations exceptions
-class FileNotFound(Exception): ...
-class UnsupportedFileType(Exception): ...
 
-# Admin operations exceptions
-class IPSecurityError(Exception): ...
-class ServerError(Exception): ...
+class InvalidStatusValue(Exception):
+    """Raised when an unsupported user status value is used."""
+
+
+class FaildToInitChannels(Exception):
+    """Raised when the channels client cannot be initialized."""
+
+
+class NotAnAdminOrServerOwner(Exception):
+    """Raised when privileged actions are attempted without permissions."""
+
+
+class ChannelNameAlreadyExists(Exception):
+    """Raised when creating a channel with a duplicate name."""
+
+
+class ChannelNotFound(Exception):
+    """Raised when a channel could not be found."""
+
+
+class FaildToRemoveUserFromChannelUserIsAdmin(Exception):
+    """Raised when removal of an admin user from a channel is denied."""
+
+
+class ExceededMaxMessagesPerPage(Exception):
+    """Raised when requested messages exceed the allowed page size."""
+
+
+class MessageIsTooLong(Exception):
+    """Raised when a message exceeds server limits."""
+
+
+class MessageNotFound(Exception):
+    """Raised when a message could not be found."""
+
+
+class UserNotFound(Exception):
+    """Raised when a user could not be found."""
+
+
+class FileNotFound(Exception):
+    """Raised when a requested file could not be found."""
+
+
+class UnsupportedFileType(Exception):
+    """Raised when an unsupported file type is provided."""
+
+
+class IPSecurityError(Exception):
+    """Raised for IP security management failures."""
+
+
+class ServerError(Exception):
+    """Raised when server-side operations fail."""

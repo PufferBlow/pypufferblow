@@ -7,6 +7,7 @@ from .cdn import *
 from .system import *
 from .admin import *
 from .decentralized_auth import *
+from .federation import *
 
 # Models
 from .models.route_model import *

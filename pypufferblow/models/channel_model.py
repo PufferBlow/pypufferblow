@@ -23,6 +23,7 @@ class ChannelModel:
         allowed_users: list[str] | None = None,
         created_at: str | None = None
     ):
+        """Initialize the instance."""
         self.channel_id =  channel_id
         self.channel_name =  channel_name
         self.messages_ids =   messages_ids
@@ -31,6 +32,7 @@ class ChannelModel:
         self.created_at =  created_at
     
     def __repr__(self):
+        """Repr special method."""
         return (
             f"ChannelModel(channel_id={self.channel_id}, channel_name={self.channel_name}, messages_ids={self.messages_ids}, "
             f"is_private={self.is_private}, allowed_users={self.allowed_users}, created_at={self.created_at})"

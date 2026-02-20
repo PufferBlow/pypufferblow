@@ -12,6 +12,7 @@ from pypufferblow.routes import decentralized_auth_routes
 
 
 class DecentralizedAuth:
+    """DecentralizedAuth class."""
     API_ROUTES: list[Route] = decentralized_auth_routes
 
     CHALLENGE_API_ROUTE: Route = decentralized_auth_routes[0]
@@ -20,12 +21,14 @@ class DecentralizedAuth:
     REVOKE_API_ROUTE: Route = decentralized_auth_routes[3]
 
     def __init__(self, options: "DecentralizedAuthOptions") -> None:
+        """Initialize the instance."""
         self.options = options
         self.host = options.host
         self.port = options.port
         self.auth_token = options.auth_token
 
     def issue_challenge(self, node_id: str) -> dict:
+        """Issue challenge."""
         payload = {
             "auth_token": self.auth_token,
             "node_id": node_id,
@@ -44,6 +47,7 @@ class DecentralizedAuth:
         challenge_signature: str,
         shared_secret: str,
     ) -> dict:
+        """Verify challenge."""
         payload = {
             "challenge_id": challenge_id,
             "node_public_key": node_public_key,
@@ -56,6 +60,7 @@ class DecentralizedAuth:
         return response.json()
 
     def introspect_session(self, session_token: str) -> dict:
+        """Introspect session."""
         payload = {"session_token": session_token}
         response = requests.post(self.INTROSPECT_API_ROUTE.api_route, json=payload)
         if response.status_code != 200:
@@ -63,6 +68,7 @@ class DecentralizedAuth:
         return response.json()
 
     def revoke_session(self, session_id: str) -> dict:
+        """Revoke session."""
         payload = {"auth_token": self.auth_token, "session_id": session_id}
         response = requests.post(self.REVOKE_API_ROUTE.api_route, json=payload)
         if response.status_code in (400, 404):
@@ -73,6 +79,8 @@ class DecentralizedAuth:
 
 
 class DecentralizedAuthOptions(OptionsModel):
+    """DecentralizedAuthOptions class."""
     def __init__(self, auth_token: str, **kwargs):
+        """Initialize the instance."""
         super().__init__(**kwargs)
         self.auth_token = auth_token

@@ -20,9 +20,6 @@ from pypufferblow.exceptions import (
 from pypufferblow.models.route_model import Route
 from pypufferblow.models.options_model import OptionsModel
 
-class System: ...
-class SystemOptions(OptionsModel): ...
-
 class System:
     """
     The System class for system monitoring, information, and administration operations.
@@ -557,5 +554,6 @@ class SystemOptions(OptionsModel):
     System options for configuring system operations.
     """
     def __init__(self, auth_token: str, **kwargs):
+        """Initialize the instance."""
         super().__init__(**kwargs)
         self.auth_token = auth_token

@@ -46,6 +46,11 @@ from pypufferblow.decentralized_auth import (
     DecentralizedAuth,
     DecentralizedAuthOptions,
 )
+# Federation class
+from pypufferblow.federation import (
+    Federation,
+    FederationOptions,
+)
 
 # Models
 from pypufferblow.models.user_model import UserModel
@@ -58,6 +63,8 @@ from pypufferblow.routes import (
     system_routes,
     admin_routes,
     decentralized_auth_routes,
+    federation_routes,
+    direct_messages_routes,
 )
 
 # Models
@@ -69,9 +76,6 @@ from pypufferblow.exceptions import (
     InvalidPassword,
     FaildToInitChannels
 )
-
-class Client: ...
-class ClientOptions(OptionsModel): ...
 
 class Client:
     """
@@ -105,6 +109,7 @@ class Client:
     system: System = None
     admin: Admin = None
     decentralized_auth: DecentralizedAuth = None
+    federation: Federation = None
     websocket: GlobalWebSocket = None
     
     def __init__(self, options: ClientOptions) -> None:
@@ -131,6 +136,8 @@ class Client:
             system_routes,
             admin_routes,
             decentralized_auth_routes,
+            federation_routes,
+            direct_messages_routes,
         ]:
             for i in range(len(route_list)):
                 if self.host not in route_list[i].api_route:
@@ -307,6 +314,23 @@ class Client:
         self.decentralized_auth = DecentralizedAuth(options)
         return self.decentralized_auth
 
+    def federation(self) -> Federation:
+        """
+        Create a Federation object for ActivityPub and cross-instance DM operations.
+        """
+        if not self.users.is_signed_in:
+            raise Exception(
+                "Federation operations require user authentication. Please call users().sign_in() first."
+            )
+
+        options = FederationOptions(
+            host=self.host,
+            port=self.port,
+            auth_token=self.users.user.auth_token,
+        )
+        self.federation = Federation(options)
+        return self.federation
+
     def create_channel_websocket(self, channel_id: str) -> ChannelWebSocket:
         """
         Create a ChannelWebSocket object for a specific channel's real-time messaging.
@@ -342,6 +366,7 @@ class ClientOptions(OptionsModel):
     """
     
     def __init__(self, user: UserModel | None = None, **kwargs):
+        """Initialize the instance."""
         super().__init__(**kwargs)
         self.user = user
         

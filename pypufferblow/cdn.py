@@ -21,9 +21,6 @@ from pypufferblow.exceptions import (
 from pypufferblow.models.route_model import Route
 from pypufferblow.models.options_model import OptionsModel
 
-class CDN: ...
-class CDNOptions(OptionsModel): ...
-
 class CDN:
     """
     The CDN class for managing file uploads, downloads, and management operations.
@@ -304,5 +301,6 @@ class CDNOptions(OptionsModel):
     CDN options for configuring CDN operations.
     """
     def __init__(self, auth_token: str, **kwargs):
+        """Initialize the instance."""
         super().__init__(**kwargs)
         self.auth_token = auth_token

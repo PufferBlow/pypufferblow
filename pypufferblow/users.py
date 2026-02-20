@@ -26,9 +26,6 @@ from pypufferblow.models.user_model import UserModel
 from pypufferblow.models.route_model import Route
 from pypufferblow.models.options_model import OptionsModel
 
-class Users: ...
-class UsersOptions(OptionsModel): ...
-
 ONLINE_USER_STATUS: str = "ONLINE"
 OFFLINE_USER_STATUS: str = "OFFLINE"
 INVISIBLE_USER_STATUS: str = "INVISIBLE"
@@ -120,13 +117,11 @@ class Users:
             raise UsernameAlreadyExists(f"The provided username '{self.username}' already exists.")
 
         self.user.auth_token = response.json().get("auth_token")
-        self.user.user_id = self.user.auth_token.split(".")[0]
         
         self.is_signed_in = True
         
-        self.user = self.get_user_profile(
-            user_id=self.user.user_id
-        )
+        self.user = self.get_user_profile()
+        self.user.auth_token = response.json().get("auth_token")
         self.is_owner = self.user.is_owner
         self.is_admin = self.user.is_admin
         
@@ -162,6 +157,8 @@ class Users:
         
         self.user.auth_token = response.json().get("auth_token")
         self.is_signed_in = True
+        self.user = self.get_user_profile()
+        self.user.auth_token = response.json().get("auth_token")
         
         return self.user.auth_token
     
@@ -194,8 +191,12 @@ class Users:
         if response.status_code in (400, 404):
             raise BadAuthToken(f"The provided auth-token '{self.user.auth_token}' is not correctly formated")
         
+        response_data = response.json()
+        profile_data = response_data.get("user_data", response_data)
+
         user = UserModel()
-        user.parse_json(data=response.json())
+        user.parse_json(data=profile_data)
+        user.auth_token = self.user.auth_token
     
         return user
     

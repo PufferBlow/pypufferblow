@@ -14,6 +14,7 @@ class OptionsModel:
         username: str | None = None,
         password: str | None = None,
     ) -> None:
+        """Initialize the instance."""
         self.host = host
         self.port = port
         self.username = username

@@ -50,6 +50,7 @@ class WebSocketMessage:
         status: str | None = None,
         error: str | None = None,
     ):
+        """Initialize the instance."""
         self.type = type
         self.channel_id = channel_id
         self.message_id = message_id
@@ -70,6 +71,7 @@ class WebSocketMessage:
         self.error = error
 
     def __repr__(self):
+        """Repr special method."""
         return (
             f"WebSocketMessage(type={self.type}, channel_id={self.channel_id}, message_id={self.message_id}, "
             f"sender_user_id={self.sender_user_id}, message={self.message})"
@@ -113,6 +115,7 @@ class MessageModel:
         sent_at : str | None = None,
         attachments: list[str] | None = None,
     ):
+        """Initialize the instance."""
         self.message_id = message_id
         self.message = message
         self.sender_user_id = sender_user_id
@@ -122,6 +125,7 @@ class MessageModel:
         self.attachments = attachments
     
     def __repr__(self):
+        """Repr special method."""
         return (
             f"MessageModel(message_id={self.message_id}, message={self.message}, sender_user_id={self.sender_user_id}, "
             f"channel_id={self.channel_id}, conversation_id={self.conversation_id}, sent_at={self.sent_at})"

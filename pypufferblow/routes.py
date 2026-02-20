@@ -7,6 +7,8 @@ __all__ = [
     "system_routes",
     "admin_routes",
     "decentralized_auth_routes",
+    "federation_routes",
+    "direct_messages_routes",
 ]
 
 base_route = "/api/v1"
@@ -78,4 +80,15 @@ decentralized_auth_routes: list[Route] = [
     Route(f"{decentralized_auth_base_route}/verify", methods=["POST"]),
     Route(f"{decentralized_auth_base_route}/introspect", methods=["POST"]),
     Route(f"{decentralized_auth_base_route}/revoke", methods=["POST"]),
+]
+
+federation_base_route = f"{base_route}/federation"
+federation_routes: list[Route] = [
+    Route(f"{federation_base_route}/follow", methods=["POST"]),
+]
+
+direct_messages_base_route = f"{base_route}/dms"
+direct_messages_routes: list[Route] = [
+    Route(f"{direct_messages_base_route}/send", methods=["POST"]),
+    Route(f"{direct_messages_base_route}/messages", methods=["GET"]),
 ]
