@@ -1,10 +1,17 @@
+from __future__ import annotations
+
 __all__ = [
     "System",
     "SystemOptions"
 ]
 
 import requests
-from loguru import logger
+try:
+    from loguru import logger
+except ImportError:  # pragma: no cover - fallback for minimal SDK installs
+    import logging
+
+    logger = logging.getLogger(__name__)
 
 # Routes
 from pypufferblow.routes import system_routes
@@ -22,21 +29,21 @@ from pypufferblow.models.options_model import OptionsModel
 
 class System:
     """
-    The System class for system monitoring, information, and administration operations.
+    The System class for home-instance monitoring, information, and administration operations.
 
     Attributes:
         API_ROUTES (list[Route]): The list of the API routes.
         LATEST_RELEASE_API_ROUTE (Route): The latest release API route.
-        SERVER_STATS_API_ROUTE (Route): The server stats API route.
-        SERVER_INFO_API_ROUTE (Route): The server info API route.
-        SERVER_USAGE_API_ROUTE (Route): The server usage API route.
-        SERVER_OVERVIEW_API_ROUTE (Route): The server overview API route.
+        SERVER_STATS_API_ROUTE (Route): The instance stats API route.
+        SERVER_INFO_API_ROUTE (Route): The instance info API route.
+        SERVER_USAGE_API_ROUTE (Route): The instance usage API route.
+        SERVER_OVERVIEW_API_ROUTE (Route): The instance overview API route.
         ACTIVITY_METRICS_API_ROUTE (Route): The activity metrics API route.
         RECENT_ACTIVITY_API_ROUTE (Route): The recent activity API route.
-        SERVER_LOGS_API_ROUTE (Route): The server logs API route.
-        UPLOAD_AVATAR_API_ROUTE (Route): The upload server avatar API route.
-        UPLOAD_BANNER_API_ROUTE (Route): The upload server banner API route.
-        UPDATE_SERVER_INFO_API_ROUTE (Route): The update server info API route.
+        SERVER_LOGS_API_ROUTE (Route): The instance logs API route.
+        UPLOAD_AVATAR_API_ROUTE (Route): The upload instance avatar API route.
+        UPLOAD_BANNER_API_ROUTE (Route): The upload instance banner API route.
+        UPDATE_SERVER_INFO_API_ROUTE (Route): The update instance info API route.
         USER_REGISTRATIONS_CHART_API_ROUTE (Route): The user registrations chart API route.
         MESSAGE_ACTIVITY_CHART_API_ROUTE (Route): The message activity chart API route.
         ONLINE_USERS_CHART_API_ROUTE (Route): The online users chart API route.
@@ -72,19 +79,21 @@ class System:
         self.options = options
         self.host = options.host
         self.port = options.port
+        self.instance = options.instance_url
+        self.instance_url = options.instance_url
         self.auth_token = options.auth_token
 
     def get_server_info(self) -> dict:
         """
-        Get comprehensive server configuration information.
+        Get comprehensive instance configuration information.
 
         Returns:
-            dict: Server information including settings and configuration.
+            dict: Instance information including settings and configuration.
 
         Example:
             .. code-block:: python
 
-                >>> server_info = client.system.get_server_info()
+                >>> instance_info = client.system.get_instance_info()
         """
         params = {"auth_token": self.auth_token}
 
@@ -96,22 +105,37 @@ class System:
         if response.status_code == 400:
             raise BadAuthToken("Invalid auth token")
         elif response.status_code != 200:
-            raise ServerError("Failed to fetch server information")
+            raise ServerError("Failed to fetch instance information")
 
         return response.json().get("server_info", {})
 
+    def get_instance_info(self) -> dict:
+        """
+        Preferred alias for `get_server_info()` when referring to the home instance.
+        """
+        return self.get_server_info()
+
     def update_server_info(self, **kwargs) -> None:
         """
-        Update server configuration settings. Server Owner only.
+        Update home-instance configuration settings. Server Owner only.
 
         Args:
-            **kwargs: Server settings to update (server_name, server_description, is_private, etc.)
+            **kwargs: Instance settings to update. The backend currently expects
+                `server_name` and `server_description`, but `instance_name` and
+                `instance_description` are accepted here as SDK aliases.
 
         Example:
             .. code-block:: python
 
-                >>> client.system.update_server_info(server_name="My Server", server_description="A great server")
+                >>> client.system.update_instance_info(
+                ...     server_name="My Instance",
+                ...     server_description="A great instance"
+                ... )
         """
+        field_aliases = {
+            "instance_name": "server_name",
+            "instance_description": "server_description",
+        }
         allowed_fields = [
             'server_name', 'server_description', 'is_private', 'max_users',
             'max_message_length', 'max_image_size', 'max_video_size',
@@ -120,6 +144,7 @@ class System:
 
         update_data = {}
         for field, value in kwargs.items():
+            field = field_aliases.get(field, field)
             if field in allowed_fields:
                 update_data[field] = value
 
@@ -136,40 +161,52 @@ class System:
         if response.status_code == 400:
             raise BadAuthToken("Invalid auth token")
         elif response.status_code == 403:
-            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can update server settings.")
+            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can update instance settings.")
         elif response.status_code != 200:
-            raise ServerError("Failed to update server information")
+            raise ServerError("Failed to update instance information")
+
+    def update_instance_info(self, **kwargs) -> None:
+        """
+        Preferred alias for `update_server_info()` when referring to the home instance.
+        """
+        self.update_server_info(**kwargs)
 
     def get_server_usage(self) -> dict:
         """
-        Get real-time server usage statistics (CPU, RAM, storage).
+        Get real-time instance usage statistics (CPU, RAM, storage).
 
         Returns:
-            dict: Server usage metrics.
+            dict: Instance usage metrics.
 
         Example:
             .. code-block:: python
 
-                >>> usage = client.system.get_server_usage()
+                >>> usage = client.system.get_instance_usage()
         """
         response = requests.post(self.SERVER_USAGE_API_ROUTE.api_route, json={})
 
         if response.status_code != 200:
-            raise ServerError("Failed to fetch server usage statistics")
+            raise ServerError("Failed to fetch instance usage statistics")
 
         return response.json().get("server_usage", {})
 
+    def get_instance_usage(self) -> dict:
+        """
+        Preferred alias for `get_server_usage()` when referring to the home instance.
+        """
+        return self.get_server_usage()
+
     def get_server_stats(self) -> dict:
         """
-        Get comprehensive server statistics.
+        Get comprehensive instance statistics.
 
         Returns:
-            dict: Server statistics including users, channels, messages.
+            dict: Instance statistics including users, channels, and messages.
 
         Example:
             .. code-block:: python
 
-                >>> stats = client.system.get_server_stats()
+                >>> stats = client.system.get_instance_stats()
         """
         params = {"auth_token": self.auth_token}
 
@@ -183,17 +220,23 @@ class System:
 
         return response.json().get("statistics", {})
 
+    def get_instance_stats(self) -> dict:
+        """
+        Preferred alias for `get_server_stats()` when referring to the home instance.
+        """
+        return self.get_server_stats()
+
     def get_server_overview(self) -> dict:
         """
-        Get comprehensive server overview data for control panel.
+        Get comprehensive home-instance overview data for the control panel.
 
         Returns:
-            dict: Server overview statistics.
+            dict: Instance overview statistics.
 
         Example:
             .. code-block:: python
 
-                >>> overview = client.system.get_server_overview()
+                >>> overview = client.system.get_instance_overview()
         """
         payload = {"auth_token": self.auth_token}
 
@@ -208,6 +251,12 @@ class System:
             raise NotAnAdminOrServerOwner("Access forbidden. Only administrators can access server overview.")
 
         return response.json().get("server_overview", {})
+
+    def get_instance_overview(self) -> dict:
+        """
+        Preferred alias for `get_server_overview()` when referring to the home instance.
+        """
+        return self.get_server_overview()
 
     def get_activity_metrics(self) -> dict:
         """
@@ -237,7 +286,7 @@ class System:
 
     def get_recent_activity(self, limit: int = 10) -> list[dict]:
         """
-        Get recent activity events from the server.
+        Get recent activity events from the home instance.
 
         Args:
             limit (int): Maximum number of activities to return.
@@ -267,7 +316,7 @@ class System:
 
     def get_server_logs(self, lines: int = 50, search: str = None, level: str = None) -> dict:
         """
-        Get server logs with filtering options. Server Owner only.
+        Get home-instance logs with filtering options. Server Owner only.
 
         Args:
             lines (int): Number of log lines to return (max 1000).
@@ -275,15 +324,15 @@ class System:
             level (str): Log level filter (DEBUG, INFO, WARNING, ERROR, CRITICAL).
 
         Returns:
-            dict: Server logs data.
+            dict: Instance logs data.
 
         Example:
             .. code-block:: python
 
-                >>> logs = client.system.get_server_logs(lines=100, level="ERROR")
+                >>> logs = client.system.get_instance_logs(lines=100, level="ERROR")
         """
         if not self._has_required_permissions():
-            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can access server logs.")
+            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can access instance logs.")
 
         payload = {
             "auth_token": self.auth_token,
@@ -303,11 +352,17 @@ class System:
         if response.status_code == 400:
             raise BadAuthToken("Invalid auth token")
         elif response.status_code == 403:
-            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can access server logs.")
+            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can access instance logs.")
         elif response.status_code != 200:
-            raise ServerError("Failed to fetch server logs")
+            raise ServerError("Failed to fetch instance logs")
 
         return response.json()
+
+    def get_instance_logs(self, lines: int = 50, search: str = None, level: str = None) -> dict:
+        """
+        Preferred alias for `get_server_logs()` when referring to the home instance.
+        """
+        return self.get_server_logs(lines=lines, search=search, level=level)
 
     def get_latest_release(self) -> dict:
         """
@@ -331,10 +386,10 @@ class System:
 
     def upload_server_avatar(self, avatar_file_path: str) -> str:
         """
-        Upload server's avatar image. Server Owner only.
+        Upload the home instance avatar image. Server Owner only.
 
         Args:
-            avatar_file_path (str): Path to the server avatar image file.
+            avatar_file_path (str): Path to the home instance avatar image file.
 
         Returns:
             str: The URL of the uploaded avatar.
@@ -342,13 +397,13 @@ class System:
         Example:
             .. code-block:: python
 
-                >>> avatar_url = client.system.upload_server_avatar("/path/to/avatar.jpg")
+                >>> avatar_url = client.system.upload_instance_avatar("/path/to/avatar.jpg")
         """
         logger.debug(f"System upload_server_avatar called with file_path='{avatar_file_path}'")
 
         if not self._has_required_permissions():
             logger.warning("System upload_server_avatar failed: insufficient permissions")
-            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can update server avatar.")
+            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can update the instance avatar.")
 
         try:
             with open(avatar_file_path, 'rb') as file:
@@ -373,21 +428,27 @@ class System:
             raise BadAuthToken("Invalid auth token")
         elif response.status_code == 403:
             logger.warning("System upload_server_avatar failed: forbidden access (403)")
-            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can update server avatar.")
+            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can update the instance avatar.")
         elif response.status_code != 201:
-            logger.error(f"System upload_server_avatar failed: server error ({response.status_code}) - Response: {response.text}")
+            logger.error(f"System upload_server_avatar failed: instance error ({response.status_code}) - Response: {response.text}")
             raise ServerError("Avatar upload failed")
 
         avatar_url = response.json().get("avatar_url")
         logger.info(f"System upload_server_avatar successful: avatar uploaded to {avatar_url}")
         return avatar_url
 
+    def upload_instance_avatar(self, avatar_file_path: str) -> str:
+        """
+        Preferred alias for `upload_server_avatar()` when referring to the home instance.
+        """
+        return self.upload_server_avatar(avatar_file_path)
+
     def upload_server_banner(self, banner_file_path: str) -> str:
         """
-        Upload server's banner image. Server Owner only.
+        Upload the home instance banner image. Server Owner only.
 
         Args:
-            banner_file_path (str): Path to the server banner image file.
+            banner_file_path (str): Path to the home instance banner image file.
 
         Returns:
             str: The URL of the uploaded banner.
@@ -395,10 +456,10 @@ class System:
         Example:
             .. code-block:: python
 
-                >>> banner_url = client.system.upload_server_banner("/path/to/banner.jpg")
+                >>> banner_url = client.system.upload_instance_banner("/path/to/banner.jpg")
         """
         if not self._has_required_permissions():
-            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can update server banner.")
+            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can update the instance banner.")
 
         with open(banner_file_path, 'rb') as file:
             files = {'banner': (file.name, file, 'image/jpeg')}
@@ -413,12 +474,18 @@ class System:
         if response.status_code == 400:
             raise BadAuthToken("Invalid auth token")
         elif response.status_code == 403:
-            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can update server banner.")
+            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can update the instance banner.")
         elif response.status_code != 201:
             raise ServerError("Banner upload failed")
 
         banner_url = response.json().get("banner_url")
         return banner_url
+
+    def upload_instance_banner(self, banner_file_path: str) -> str:
+        """
+        Preferred alias for `upload_server_banner()` when referring to the home instance.
+        """
+        return self.upload_server_banner(banner_file_path)
 
     # Chart methods
     def get_user_registration_chart(self, period: str = None) -> dict:

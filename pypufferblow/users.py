@@ -1,4 +1,6 @@
 
+from __future__ import annotations
+
 __all__ = [
     "Users",
     "UsersOptions",
@@ -7,7 +9,10 @@ __all__ = [
     "INVISIBLE_USER_STATUS"
 ]
 
+import asyncio
 import requests
+
+from pypufferblow.logging_utils import get_sdk_logger
 
 # Routes
 from pypufferblow.routes import users_routes
@@ -77,7 +82,8 @@ class Users:
         Initialize the Users object with the given options.
 
         Args:
-            options (UsersOptions): The options for the Users object, including host, port, username, and password.
+            options (UsersOptions): The options for the Users object, including
+                home instance targeting plus user credentials.
         
         Returns:
             None.
@@ -86,8 +92,11 @@ class Users:
         
         self.host = options.host
         self.port = options.port
+        self.instance = options.instance_url
+        self.instance_url = options.instance_url
         self.username = options.username
         self.password = options.password
+        self.logger = get_sdk_logger("users")
         
         self.user = UserModel()
 
@@ -103,6 +112,11 @@ class Users:
             
                 >>> client.users.sign_up()
         """
+        self.logger.info(
+            "Signing up username=%s on home instance=%s",
+            self.username,
+            self.instance_url,
+        )
         payload = {
             "username": self.username,
             "password": self.password
@@ -124,6 +138,10 @@ class Users:
         self.user.auth_token = response.json().get("auth_token")
         self.is_owner = self.user.is_owner
         self.is_admin = self.user.is_admin
+        self.logger.info("Signed up username=%s user_id=%s", self.user.username, self.user.user_id)
+
+    async def sign_up_async(self) -> None:
+        await asyncio.to_thread(self.sign_up)
         
     def sign_in(self) -> str:
         """
@@ -138,8 +156,14 @@ class Users:
                 >>> auth_token = client.users.sign_in()
         """
         if self.is_signed_in is not None and self.user.auth_token is not None:
+            self.logger.debug("Reusing existing auth token for username=%s", self.username)
             return self.user.auth_token
         
+        self.logger.info(
+            "Signing in username=%s on home instance=%s",
+            self.username,
+            self.instance_url,
+        )
         params = {
             "username": self.username,
             "password": self.password
@@ -159,12 +183,16 @@ class Users:
         self.is_signed_in = True
         self.user = self.get_user_profile()
         self.user.auth_token = response.json().get("auth_token")
+        self.logger.info("Signed in username=%s user_id=%s", self.user.username, self.user.user_id)
         
         return self.user.auth_token
+
+    async def sign_in_async(self) -> str:
+        return await asyncio.to_thread(self.sign_in)
     
     def get_user_profile(self, user_id: str | None = None) -> UserModel:
         """
-        Fetch the current user's profile or an other user on the server.
+        Fetch the current user's profile or another user on the home instance.
         
         Args:
             user_id (str, default: None): The user's user_id.
@@ -177,6 +205,11 @@ class Users:
             
                 >>> user: UserModel = client.users.get_user_profile()
         """
+        self.logger.debug(
+            "Fetching user profile target=%s instance=%s",
+            user_id or "self",
+            self.instance_url,
+        )
         payload = {
             "auth_token": self.user.auth_token
         }
@@ -197,8 +230,12 @@ class Users:
         user = UserModel()
         user.parse_json(data=profile_data)
         user.auth_token = self.user.auth_token
+        self.logger.debug("Fetched user profile username=%s user_id=%s", user.username, user.user_id)
     
         return user
+
+    async def get_user_profile_async(self, user_id: str | None = None) -> UserModel:
+        return await asyncio.to_thread(self.get_user_profile, user_id)
     
     def update_username(self, new_username: str) -> None:
         """
@@ -229,6 +266,9 @@ class Users:
             raise UsernameAlreadyExists(f"The provided username '{self.username}' already exists.") 
 
         self.user.username = new_username
+
+    async def update_username_async(self, new_username: str) -> None:
+        await asyncio.to_thread(self.update_username, new_username)
     
     def update_user_status(self, new_status: str) -> None:
         """
@@ -269,6 +309,9 @@ class Users:
             )
         
         self.user.status = new_status
+
+    async def update_user_status_async(self, new_status: str) -> None:
+        await asyncio.to_thread(self.update_user_status, new_status)
     
     def update_user_password(self, old_password: str, new_password: str) -> None:
         """
@@ -302,6 +345,9 @@ class Users:
         
         if response.status_code == 401:
             raise InvalidPassword("The provided password is incorrect.")
+
+    async def update_user_password_async(self, old_password: str, new_password: str) -> None:
+        await asyncio.to_thread(self.update_user_password, old_password, new_password)
     
     def reset_user_auth_token(self) -> None:
         """
@@ -333,6 +379,9 @@ class Users:
         self.user.auth_token = response.json().get("auth_token")
         self.user.auth_token_expire_time = response.json().get("auth_token_expire_time")
 
+    async def reset_user_auth_token_async(self) -> None:
+        await asyncio.to_thread(self.reset_user_auth_token)
+
     def update_user_about(self, new_about: str) -> None:
         """
         Update the user's about/bio field.
@@ -362,6 +411,9 @@ class Users:
             raise BadAuthToken(f"The provided auth-token '{self.user.auth_token}' is not correctly formatted")
 
         self.user.about = new_about
+
+    async def update_user_about_async(self, new_about: str) -> None:
+        await asyncio.to_thread(self.update_user_about, new_about)
 
     def upload_user_avatar(self, avatar_file_path: str) -> str:
         """
@@ -441,6 +493,7 @@ class Users:
         Returns:
             list[UserModel]: A list of UserModel objects.
         """
+        self.logger.debug("Listing users on home instance=%s", self.instance_url)
         params = {
             "auth_token": self.user.auth_token
         }
@@ -455,8 +508,12 @@ class Users:
 
         users = response.json().get("users")
         users = [UserModel().parse_json(data=user) for user in users]
+        self.logger.info("Listed %s users on home instance=%s", len(users), self.instance_url)
 
         return users
+
+    async def list_users_async(self) -> list[UserModel]:
+        return await asyncio.to_thread(self.list_users)
         
 class UsersOptions(OptionsModel):
     """

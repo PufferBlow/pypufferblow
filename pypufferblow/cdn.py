@@ -1,10 +1,17 @@
+from __future__ import annotations
+
 __all__ = [
     "CDN",
     "CDNOptions"
 ]
 
 import requests
-from loguru import logger
+try:
+    from loguru import logger
+except ImportError:  # pragma: no cover - fallback for minimal SDK installs
+    import logging
+
+    logger = logging.getLogger(__name__)
 
 # Routes
 from pypufferblow.routes import storage_routes
@@ -23,7 +30,8 @@ from pypufferblow.models.options_model import OptionsModel
 
 class CDN:
     """
-    The CDN class for managing file uploads, downloads, and management operations.
+    The CDN class for managing file uploads, downloads, and management operations
+    for the home instance.
 
     Attributes:
         API_ROUTES (list[Route]): The list of the API routes.
@@ -53,6 +61,8 @@ class CDN:
         self.options = options
         self.host = options.host
         self.port = options.port
+        self.instance = options.instance_url
+        self.instance_url = options.instance_url
         self.auth_token = options.auth_token
 
     def upload_file(self, file_path: str, directory: str = "uploads") -> str:

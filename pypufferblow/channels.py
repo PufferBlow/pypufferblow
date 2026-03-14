@@ -1,10 +1,15 @@
 
+from __future__ import annotations
+
 
 __all__ = [
     "Channels",
 ]
 
+import asyncio
 import requests
+
+from pypufferblow.logging_utils import get_sdk_logger
 
 # Routes
 from pypufferblow.routes import channels_routes, storage_routes
@@ -73,8 +78,11 @@ class Channels:
         """
         self.host = options.host
         self.port = options.port
+        self.instance = options.instance_url
+        self.instance_url = options.instance_url
         self.username = options.username
         self.password = options.password
+        self.logger = get_sdk_logger("channels")
         
         self.user = options.user
     
@@ -88,6 +96,7 @@ class Channels:
         Returns:
             list[ChannelModel]: A list of ChannelModel objects.
         """
+        self.logger.debug("Listing channels on home instance=%s", self.instance_url)
         payload = {
             "auth_token": self.user.auth_token
         }
@@ -102,8 +111,12 @@ class Channels:
         
         channels = response.json().get("channels")
         channels = [ChannelModel().parse_json(channel) for channel in channels]
+        self.logger.info("Listed %s channels on home instance=%s", len(channels), self.instance_url)
         
         return channels
+
+    async def list_channels_async(self) -> list[ChannelModel]:
+        return await asyncio.to_thread(self.list_channels)
     
     def get_channel_info(self, channel_id: str) -> ChannelModel:
         """
@@ -121,6 +134,11 @@ class Channels:
                 >>> channel_id = "6da0492c-631e-53f0-8f9f-2cbab5045351"
                 >>> channel = client.channels.get_channel_info(channel_id)
         """
+        self.logger.debug(
+            "Fetching channel info channel_id=%s instance=%s",
+            channel_id,
+            self.instance_url,
+        )
         payload = {
             "auth_token": self.user.auth_token
         }
@@ -139,9 +157,17 @@ class Channels:
         for channel_data in channels:
             channel = ChannelModel().parse_json(channel_data)
             if channel.channel_id == channel_id:
+                self.logger.debug(
+                    "Fetched channel info channel_id=%s channel_name=%s",
+                    channel.channel_id,
+                    channel.channel_name,
+                )
                 return channel
 
         raise ChannelNotFound(f"The provided channel id '{channel_id}' does not exist.")
+
+    async def get_channel_info_async(self, channel_id: str) -> ChannelModel:
+        return await asyncio.to_thread(self.get_channel_info, channel_id)
     
     def create_channel(self, channel_name: str, is_private: bool | None = False) -> ChannelModel:
         """
@@ -333,6 +359,11 @@ class Channels:
                 ...    channel_id=channel_id
                 ... )
         """
+        self.logger.debug(
+            "Loading messages channel_id=%s instance=%s",
+            channel_id,
+            self.instance_url,
+        )
         params = {
             "auth_token": self.user.auth_token
         }
@@ -352,8 +383,17 @@ class Channels:
         
         messages = response.json().get("messages")
         messages = [MessageModel().parse_json(message) for message in messages]
+        self.logger.info(
+            "Loaded %s messages channel_id=%s instance=%s",
+            len(messages),
+            channel_id,
+            self.instance_url,
+        )
 
         return messages
+
+    async def load_messages_async(self, channel_id: str) -> list[MessageModel]:
+        return await asyncio.to_thread(self.load_messages, channel_id)
 
     def upload_file(self, file_path: str | None = None, file_data: bytes | None = None, filename: str | None = None, directory: str = "uploads") -> str:
         """
@@ -450,6 +490,12 @@ class Channels:
                 ...    attachments=["image.png", "document.pdf"]
                 ... )
         """
+        self.logger.info(
+            "Sending message channel_id=%s instance=%s attachments=%s",
+            channel_id,
+            self.instance_url,
+            len(attachments or []),
+        )
         # Prepare data for the request
         data = {
             "auth_token": self.user.auth_token,
@@ -492,12 +538,26 @@ class Channels:
                     raise Exception(f"Failed to send message: {error_detail}")
                 except:
                     raise Exception(f"Failed to send message: HTTP {response.status_code}")
+            self.logger.debug(
+                "Sent message channel_id=%s instance=%s length=%s",
+                channel_id,
+                self.instance_url,
+                len(message),
+            )
 
         finally:
             # Close file handles
             for key, value in files.items():
                 if hasattr(value[1], 'close'):
                     value[1].close()
+
+    async def send_message_async(
+        self,
+        channel_id: str,
+        message: str,
+        attachments: list[str] | None = None,
+    ) -> None:
+        await asyncio.to_thread(self.send_message, channel_id, message, attachments)
         
     def mark_message_as_read(self, channel_id: str, message_id: str) -> None:
         """
@@ -520,6 +580,11 @@ class Channels:
                 ...    message_id=message_id
                 ... )
         """
+        self.logger.debug(
+            "Marking message as read channel_id=%s message_id=%s",
+            channel_id,
+            message_id,
+        )
         payload = {
             "message_id": message_id,
             "auth_token": self.user.auth_token
@@ -537,6 +602,14 @@ class Channels:
                 raise MessageNotFound(f"The provided message id '{message_id}' does not exists.")
             else:
                 raise ChannelNotFound(f"The provided channel id '{channel_id}' does not exists.")
+        self.logger.debug(
+            "Marked message as read channel_id=%s message_id=%s",
+            channel_id,
+            message_id,
+        )
+
+    async def mark_message_as_read_async(self, channel_id: str, message_id: str) -> None:
+        await asyncio.to_thread(self.mark_message_as_read, channel_id, message_id)
         
     def delete_message(self, channel_id: str, message_id: str):
         """

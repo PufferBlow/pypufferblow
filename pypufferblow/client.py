@@ -1,4 +1,6 @@
 
+from __future__ import annotations
+
 __all__ = [
     "Client",
     "ClientOptions"
@@ -69,6 +71,7 @@ from pypufferblow.routes import (
 
 # Models
 from pypufferblow.models.options_model import OptionsModel
+from pypufferblow.models.route_model import Route
 
 # Exceptions
 from pypufferblow.exceptions import (
@@ -87,7 +90,7 @@ class Client:
         users (Users): The Users object for managing users.
         channels (Channels): The Channels object for managing channels.
         cdn (CDN): The CDN object for file management operations.
-        system (System): The System object for monitoring and server information.
+        system (System): The System object for instance monitoring and community configuration.
         admin (Admin): The Admin object for administration operations.
         websocket (GlobalWebSocket): The global websocket for real-time messaging.
 
@@ -96,8 +99,7 @@ class Client:
 
             >>> from pypufferblow.client import Client, ClientOptions
             >>> client_options = ClientOptions(
-            ...    host="localhost",
-            ...    port=7575,
+            ...    instance="https://chat.example.org",
             ...    username="user1",
             ...    password="SUPER_SERCRET_PASSWORD"
             ... )
@@ -117,34 +119,41 @@ class Client:
         Initialize the Client object with the given options.
 
         Args:
-            options (ClientOptions): The options for the client, including host, port, username, and password.
+            options (ClientOptions): The options for the client, including the
+                home instance address plus user credentials.
         
         Returns:
             None.
         """
         self.options = options
+        self.scheme = options.scheme
         self.host = options.host
         self.port = options.port
+        self.instance = options.instance_url
+        self.instance_url = options.instance_url
+        self.api_base_url = options.api_base_url
+        self.ws_base_url = options.ws_base_url
         self.username = options.username
         self.password = options.password
-        
-        # Add the base api route to the routes
-        for route_list in [
-            users_routes,
-            channels_routes,
-            storage_routes,
-            system_routes,
-            admin_routes,
-            decentralized_auth_routes,
-            federation_routes,
-            direct_messages_routes,
-        ]:
-            for i in range(len(route_list)):
-                if self.host not in route_list[i].api_route:
-                    route_list[i].api_route = f"http://{self.host}:{self.port}" + route_list[i].api_route
-        
+
         # Create Users object
         self.users()
+
+    def _build_routes(self, route_list: list[Route]) -> list[Route]:
+        return [
+            Route(
+                api_route=f"{self.api_base_url}{route.api_route}",
+                methods=list(route.methods),
+                forward_to=route.forward_to,
+            )
+            for route in route_list
+        ]
+
+    @staticmethod
+    def _assign_routes(target: object, routes: list[Route], *attribute_names: str) -> None:
+        target.API_ROUTES = routes
+        for index, attribute_name in enumerate(attribute_names):
+            setattr(target, attribute_name, routes[index])
 
     
     def users(self) -> Users:
@@ -155,7 +164,18 @@ class Client:
             Users: The Users object for managing users.
         """
         self.users = Users(self.options.to_users_options())
-        self.users.API_ROUTES = users_routes
+        user_routes = self._build_routes(users_routes)
+        self._assign_routes(
+            self.users,
+            user_routes,
+            "SIGNIN_API_ROUTE",
+            "SIGNUP_API_ROUTE",
+            "PROFILE_API_ROUTE",
+            "RESET_AUTH_TOKEN_API_ROUTE",
+            "LIST_USERS_API_ROUTE",
+            "UPLOAD_AVATAR_API_ROUTE",
+            "UPLOAD_BANNER_API_ROUTE",
+        )
         
         return self.users
 
@@ -174,7 +194,23 @@ class Client:
             self.options.user = self.users.user
 
         self.channels = Channels(self.options.to_channels_options())
-        self.channels.API_ROUTES = channels_routes
+        channel_routes = self._build_routes(channels_routes)
+        storage_api_routes = self._build_routes(storage_routes)
+        self._assign_routes(
+            self.channels,
+            channel_routes,
+            "LIST_CHANNELS_API_ROUTE",
+            "CREATE_CHANNEL_API_ROUTE",
+            "DELETE_CHANNEL_API_ROUTE",
+            "ADD_USER_TO_CHANNEL_API_ROUTE",
+            "REMOVE_USER_FROM_CHANNEL_API_ROUTE",
+            "LOAD_MESSAGES_API_ROUTE",
+            "SEND_MESSAGE_API_ROUTE",
+            "MARK_MESSAGE_AS_READ_API_ROUTE",
+            "DELETE_MESSAGE_API_ROUTE",
+        )
+        self.channels.STORAGE_API_ROUTES = storage_api_routes
+        self.channels.STORAGE_UPLOAD_API_ROUTE = storage_api_routes[0]
 
         return self.channels
 
@@ -199,17 +235,27 @@ class Client:
             raise Exception("CDN operations require user authentication. Please call users().sign_in() or users().sign_up() first.")
 
         cdn_options = CDNOptions(
-            host=self.host,
-            port=self.port,
+            instance=self.instance_url,
             auth_token=self.users.user.auth_token
         )
         self.cdn = CDN(cdn_options)
+        storage_api_routes = self._build_routes(storage_routes)
+        self._assign_routes(
+            self.cdn,
+            storage_api_routes,
+            "UPLOAD_API_ROUTE",
+            "LIST_FILES_API_ROUTE",
+            "DELETE_FILE_API_ROUTE",
+            "FILE_INFO_API_ROUTE",
+            "CLEANUP_ORPHANED_API_ROUTE",
+            "SERVE_FILE_API_ROUTE",
+        )
 
         return self.cdn
 
     def system(self) -> System:
         """
-        Create a System object for system monitoring and information operations.
+        Create a System object for home-instance monitoring and configuration operations.
 
         The System operations may require user authentication for certain methods, so make sure to call users().sign_in() or users().sign_up() first.
 
@@ -222,7 +268,7 @@ class Client:
                 >>> # First authenticate
                 >>> client.users.sign_in()
                 >>> system = client.system()
-                >>> stats = system.get_server_stats()
+                >>> stats = system.get_instance_stats()
         """
         if self.users and self.users.is_signed_in:
             auth_token = self.users.user.auth_token
@@ -230,11 +276,31 @@ class Client:
             auth_token = None
 
         system_options = SystemOptions(
-            host=self.host,
-            port=self.port,
+            instance=self.instance_url,
             auth_token=auth_token
         )
         self.system = System(system_options)
+        system_api_routes = self._build_routes(system_routes)
+        self._assign_routes(
+            self.system,
+            system_api_routes,
+            "LATEST_RELEASE_API_ROUTE",
+            "SERVER_STATS_API_ROUTE",
+            "SERVER_INFO_API_ROUTE",
+            "SERVER_USAGE_API_ROUTE",
+            "SERVER_OVERVIEW_API_ROUTE",
+            "ACTIVITY_METRICS_API_ROUTE",
+            "RECENT_ACTIVITY_API_ROUTE",
+            "SERVER_LOGS_API_ROUTE",
+            "UPLOAD_AVATAR_API_ROUTE",
+            "UPLOAD_BANNER_API_ROUTE",
+            "USER_REGISTRATIONS_CHART_API_ROUTE",
+            "MESSAGE_ACTIVITY_CHART_API_ROUTE",
+            "ONLINE_USERS_CHART_API_ROUTE",
+            "CHANNEL_CREATION_CHART_API_ROUTE",
+            "USER_STATUS_CHART_API_ROUTE",
+        )
+        self.system.UPDATE_SERVER_INFO_API_ROUTE = system_api_routes[2]
 
         return self.system
 
@@ -242,7 +308,8 @@ class Client:
         """
         Create an Admin object for administration operations.
 
-        The Admin operations require elevated permissions, so make sure to be an admin/server owner and call users().sign_in() or users().sign_up() first.
+        The Admin operations require elevated permissions on the home instance,
+        so make sure to be an admin or server owner and call users().sign_in() or users().sign_up() first.
 
         Returns:
             Admin: The Admin object for administration operations.
@@ -259,11 +326,20 @@ class Client:
             raise Exception("Admin operations require user authentication. Please call users().sign_in() or users().sign_up() first.")
 
         admin_options = AdminOptions(
-            host=self.host,
-            port=self.port,
+            instance=self.instance_url,
             auth_token=self.users.user.auth_token
         )
         self.admin = Admin(admin_options)
+        admin_api_routes = self._build_routes(admin_routes)
+        self._assign_routes(
+            self.admin,
+            admin_api_routes,
+            "LIST_BLOCKED_IPS_API_ROUTE",
+            "BLOCK_IP_API_ROUTE",
+            "UNBLOCK_IP_API_ROUTE",
+            "BACKGROUND_TASKS_STATUS_API_ROUTE",
+            "BACKGROUND_TASKS_RUN_API_ROUTE",
+        )
 
         return self.admin
 
@@ -292,7 +368,7 @@ class Client:
 
         self.websocket = create_global_websocket(
             auth_token=self.users.user.auth_token,
-            host_port=f"{self.host}:{self.port}"
+            instance=self.instance_url,
         )
 
         return self.websocket
@@ -307,11 +383,19 @@ class Client:
             )
 
         options = DecentralizedAuthOptions(
-            host=self.host,
-            port=self.port,
+            instance=self.instance_url,
             auth_token=self.users.user.auth_token,
         )
         self.decentralized_auth = DecentralizedAuth(options)
+        decentralized_auth_api_routes = self._build_routes(decentralized_auth_routes)
+        self._assign_routes(
+            self.decentralized_auth,
+            decentralized_auth_api_routes,
+            "CHALLENGE_API_ROUTE",
+            "VERIFY_API_ROUTE",
+            "INTROSPECT_API_ROUTE",
+            "REVOKE_API_ROUTE",
+        )
         return self.decentralized_auth
 
     def federation(self) -> Federation:
@@ -324,11 +408,16 @@ class Client:
             )
 
         options = FederationOptions(
-            host=self.host,
-            port=self.port,
+            instance=self.instance_url,
             auth_token=self.users.user.auth_token,
         )
         self.federation = Federation(options)
+        federation_api_routes = self._build_routes(federation_routes)
+        direct_message_api_routes = self._build_routes(direct_messages_routes)
+        self.federation.API_ROUTES = [*federation_api_routes, *direct_message_api_routes]
+        self.federation.FOLLOW_REMOTE_API_ROUTE = federation_api_routes[0]
+        self.federation.SEND_DIRECT_MESSAGE_API_ROUTE = direct_message_api_routes[0]
+        self.federation.LOAD_DIRECT_MESSAGES_API_ROUTE = direct_message_api_routes[1]
         return self.federation
 
     def create_channel_websocket(self, channel_id: str) -> ChannelWebSocket:
@@ -356,13 +445,16 @@ class Client:
 
         return create_channel_websocket(
             auth_token=self.users.user.auth_token,
-            host_port=f"{self.host}:{self.port}",
+            instance=self.instance_url,
             channel_id=channel_id
         )
 
 class ClientOptions(OptionsModel):
     """
     ClientOptions class used for managing the Client object options.
+
+    Prefer `instance="https://chat.example.org"` for federated/home-instance
+    deployments. `host` and `port` remain available for compatibility.
     """
     
     def __init__(self, user: UserModel | None = None, **kwargs):
@@ -378,8 +470,7 @@ class ClientOptions(OptionsModel):
             UserOptions: The UserOptions object.
         """
         return UsersOptions(
-            host=self.host,
-            port=self.port,
+            instance=self.instance_url,
             username=self.username,
             password=self.password
         )
@@ -392,8 +483,7 @@ class ClientOptions(OptionsModel):
             ChannelsOptions: The ChannelsOptions object.
         """
         return ChannelsOptions(
-            host=self.host,
-            port=self.port,
+            instance=self.instance_url,
             username=self.username,
             password=self.password,
             user=self.user

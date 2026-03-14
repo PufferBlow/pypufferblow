@@ -6,14 +6,13 @@ __all__ = [
     "GlobalWebSocket",
     "ChannelWebSocket",
     "create_global_websocket",
+    "create_channel_websocket",
 ]
 
 import asyncio
 import json
 import threading
-import time
 from typing import Callable, Optional
-from urllib.parse import urljoin, urlparse
 
 try:
     import websockets
@@ -23,15 +22,17 @@ except ImportError:
     ConnectionClosedError = WebSocketException = Exception
 
 from pypufferblow.models.message_model import WebSocketMessage
+from pypufferblow.models.options_model import http_to_websocket_base, normalize_instance
 
 
 class WebSocketBase:
     """Base class for WebSocket connections"""
 
-    def __init__(self, auth_token: str, host_port: str):
+    def __init__(self, auth_token: str, instance: str):
         """Initialize the instance."""
         self.auth_token = auth_token
-        self.host_port = host_port
+        self.instance = instance
+        self.ws_base_url = http_to_websocket_base(instance)
         self.websocket = None
         self.is_connected = False
         self.reconnect_attempts = 0
@@ -172,27 +173,26 @@ class GlobalWebSocket(WebSocketBase):
 
     def _get_ws_url(self) -> str:
         """Get global WebSocket URL"""
-        protocol = "ws" if not self.host_port.startswith(("localhost", "127.0.0.1")) else "ws"
-        return f"{protocol}://{self.host_port}/ws?auth_token={self.auth_token}"
+        return f"{self.ws_base_url}/ws?auth_token={self.auth_token}"
 
 
 class ChannelWebSocket(WebSocketBase):
     """WebSocket client for specific channel"""
 
-    def __init__(self, channel_id: str, auth_token: str, host_port: str):
+    def __init__(self, channel_id: str, auth_token: str, instance: str):
         """Initialize the instance."""
-        super().__init__(auth_token, host_port)
+        super().__init__(auth_token, instance)
         self.channel_id = channel_id
 
     def _get_ws_url(self) -> str:
         """Get channel-specific WebSocket URL"""
-        protocol = "ws" if not self.host_port.startswith(("localhost", "127.0.0.1")) else "ws"
-        return f"{protocol}://{self.host_port}/ws/channels/{self.channel_id}?auth_token={self.auth_token}"
+        return f"{self.ws_base_url}/ws/channels/{self.channel_id}?auth_token={self.auth_token}"
 
 
 def create_global_websocket(
     auth_token: str,
-    host_port: str,
+    instance: str | None = None,
+    host_port: str | None = None,
     on_message: Optional[Callable[[WebSocketMessage], None]] = None,
     on_connected: Optional[Callable[[], None]] = None,
     on_disconnected: Optional[Callable[[str], None]] = None,
@@ -203,7 +203,9 @@ def create_global_websocket(
 
     Args:
         auth_token: User authentication token
-        host_port: Host and port (e.g., 'localhost:7575')
+        instance: Instance URL or authority (for example `https://chat.example.org`
+            or `localhost:7575`). Preferred for federated deployments.
+        host_port: Deprecated compatibility alias for `instance`.
         on_message: Callback for incoming messages
         on_connected: Callback when connected
         on_disconnected: Callback when disconnected
@@ -212,7 +214,8 @@ def create_global_websocket(
     Returns:
         GlobalWebSocket instance
     """
-    ws = GlobalWebSocket(auth_token, host_port)
+    _, _, _, instance_url = normalize_instance(instance=instance or host_port)
+    ws = GlobalWebSocket(auth_token, instance_url)
     ws.on_message = on_message
     ws.on_connected = on_connected
     ws.on_disconnected = on_disconnected
@@ -223,7 +226,8 @@ def create_global_websocket(
 def create_channel_websocket(
     channel_id: str,
     auth_token: str,
-    host_port: str,
+    instance: str | None = None,
+    host_port: str | None = None,
     on_message: Optional[Callable[[WebSocketMessage], None]] = None,
     on_connected: Optional[Callable[[], None]] = None,
     on_disconnected: Optional[Callable[[str], None]] = None,
@@ -235,7 +239,8 @@ def create_channel_websocket(
     Args:
         channel_id: Channel ID to connect to
         auth_token: User authentication token
-        host_port: Host and port (e.g., 'localhost:7575')
+        instance: Instance URL or authority. Preferred for federated deployments.
+        host_port: Deprecated compatibility alias for `instance`.
         on_message: Callback for incoming messages
         on_connected: Callback when connected
         on_disconnected: Callback when disconnected
@@ -244,7 +249,8 @@ def create_channel_websocket(
     Returns:
         ChannelWebSocket instance
     """
-    ws = ChannelWebSocket(channel_id, auth_token, host_port)
+    _, _, _, instance_url = normalize_instance(instance=instance or host_port)
+    ws = ChannelWebSocket(channel_id, auth_token, instance_url)
     ws.on_message = on_message
     ws.on_connected = on_connected
     ws.on_disconnected = on_disconnected

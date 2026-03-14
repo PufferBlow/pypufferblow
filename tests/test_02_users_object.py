@@ -1,329 +1,225 @@
+from __future__ import annotations
+
+import asyncio
+import logging
 import random
+
 import pytest
 
-# Client model
 from pypufferblow.client import Client, ClientOptions
-
-# User status values
-from pypufferblow.users import USER_STATUS
-
-# Models
-from pypufferblow.models.user_model import UserModel
-
-# exceptions
 from pypufferblow.exceptions import (
-    UsernameAlreadyExists,
-    UsernameNotFound,
+    BadAuthToken,
     InvalidPassword,
     InvalidStatusValue,
-    BadAuthToken
+    UsernameAlreadyExists,
+    UsernameNotFound,
 )
+from pypufferblow.models.user_model import UserModel
+from pypufferblow.users import USER_STATUS
 
-# Value storage
-from tests.conftest import value_storage
 
-def test_users_model_sign_up():
-    """
-    Test the Users object sign-up functionality.
-
-    This test verifies that a new user can successfully sign up using the Users object.
-    It initializes the Users with the provided username and password, and then calls
-    the sign-up method. The authentication token is stored in ValueStorage for further use.
-    """
-    client_options = ClientOptions(
-        username=value_storage.username,
-        password=value_storage.password
+def create_client(username: str, password: str) -> Client:
+    return Client(
+        ClientOptions(
+            instance="https://chat.example.org",
+            username=username,
+            password=password,
+        )
     )
-    
-    client= Client(client_options)
+
+
+def test_users_model_sign_up(mock_sdk_backend) -> None:
+    client = create_client("user1", "12345678")
 
     client.users.sign_up()
-    
-    value_storage.auth_token = client.users.user.auth_token
-    
-def test_users_model_sign_up_username_already_exists():
-    """
-    Test the Users object sign-up functionality when the username already exists.
 
-    This test verifies that an exception is raised when trying to sign up with a username
-    that already exists in the system.
-    """
-    client_options = ClientOptions(
-        username=value_storage.username,
-        password=value_storage.password
-    )
-    
-    client= Client(client_options)
+    assert client.users.user.auth_token.startswith("token-user1-")
+    assert client.users.user.username == "user1"
 
-    try:
+
+def test_users_model_sign_up_username_already_exists(mock_sdk_backend) -> None:
+    mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+
+    with pytest.raises(UsernameAlreadyExists):
         client.users.sign_up()
-    except Exception as e:
-        assert True
 
-def test_users_model_sign_in() -> None:
-    """
-    Test the Users object sign-in functionality.
 
-    This test verifies that an existing user can successfully sign in using the Users object.
-    It initializes the Users with the provided username and password, and then calls
-    the sign-in method. The authentication token is stored in ValueStorage for further use.
-    """
-    client_options = ClientOptions(
-        username=value_storage.username,
-        password=value_storage.password
-    )
-    
-    client = Client(client_options)
-    
-    client.users.sign_in()
-    
-    value_storage.auth_token = client.users.user.auth_token
-    
-def test_users_model_sign_in_username_not_found() -> None:
-    """
-    Test the Users object sign-in functionality when the username is not found.
+def test_users_model_sign_in(mock_sdk_backend) -> None:
+    mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
 
-    This test verifies that an exception is raised when trying to sign in with a username
-    that does not exist in the system.
-    """
-    client_options = ClientOptions(
-        username=value_storage.new_username,
-        password=value_storage.password
-    )
-    
-    client= Client(client_options)
-    
-    try:
+    auth_token = client.users.sign_in()
+
+    assert auth_token == client.users.user.auth_token
+    assert client.users.user.username == "user1"
+
+
+def test_users_model_sign_in_username_not_found(mock_sdk_backend) -> None:
+    client = create_client("missing-user", "12345678")
+
+    with pytest.raises(UsernameNotFound):
         client.users.sign_in()
-    except UsernameNotFound as e:
-        assert True
 
-def test_users_model_sign_in_invalid_password() -> None:
-    """
-    Test the Users object sign-in functionality with an invalid password.
 
-    This test verifies that an exception is raised when trying to sign in with an invalid password.
-    """
-    client_options = ClientOptions(
-        username=value_storage.username,
-        password=value_storage.new_password
-    )
-    
-    client= Client(client_options)
-    
-    try:
+def test_users_model_sign_in_invalid_password(mock_sdk_backend) -> None:
+    mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "wrong-password")
+
+    with pytest.raises(InvalidPassword):
         client.users.sign_in()
-    except InvalidPassword as e:
-        assert True
 
-def test_users_model_update_username() -> None:
-    """
-    Test the Users object update username functionality.
 
-    This test verifies that an existing user can successfully update their username using the Users object.
-    It initializes the Users with the provided username and password, sets the authentication token,
-    and then calls the update username method.
-    """
-    client_options = ClientOptions(
-        username=value_storage.username,
-        password=value_storage.password
-    )
-    
-    client= Client(client_options)
-    client.users.user.auth_token = value_storage.auth_token
-    
-    
-    client.users.update_username(new_username=value_storage.new_username)
-    
-def test_users_model_update_username_already_exists() -> None:
-    """
-    Test the Users object update username functionality when the new username already exists.
+def test_users_model_update_username(mock_sdk_backend) -> None:
+    auth_token = mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+    client.users.user.auth_token = auth_token
 
-    This test verifies that an exception is raised when trying to update the username to one that already exists.
-    """
-    client_options = ClientOptions(
-        username=value_storage.new_username,
-        password=value_storage.password
-    )
-    
-    client= Client(client_options)
-    client.users.user.auth_token = value_storage.auth_token
-    
-    try:
-        client.users.update_username(new_username=value_storage.new_username)
-    except UsernameAlreadyExists as e:
-        assert True
+    client.users.update_username(new_username="new_user1")
 
-def test_users_model_update_user_status() -> None:
-    """
-    Test the Users object update user status functionality.
+    assert client.users.user.username == "new_user1"
+    assert "new_user1" in mock_sdk_backend.users_by_username
 
-    This test verifies that an existing user can successfully update their status using the Users object.
-    It initializes the Users with the provided username and password, sets the authentication token,
-    and then calls the update user status method with a random valid status.
-    """
-    client_options = ClientOptions(
-        username=value_storage.new_username,
-        password=value_storage.password
-    )
-    
-    client= Client(client_options)
-    client.users.user.auth_token = value_storage.auth_token
-    
-    client.users.update_user_status(new_status=USER_STATUS[random.choice([i for i in range(len(USER_STATUS))])])    
 
-def test_users_model_update_user_status_invalid_status_value() -> None:
-    """
-    Test the Users object update user status functionality with an invalid status value.
+def test_users_model_update_username_already_exists(mock_sdk_backend) -> None:
+    auth_token = mock_sdk_backend.seed_user(username="user1", password="12345678")
+    mock_sdk_backend.seed_user(username="new_user1", password="abcdefgh")
+    client = create_client("user1", "12345678")
+    client.users.user.auth_token = auth_token
 
-    This test verifies that an exception is raised when trying to update the user status to an invalid value.
-    """
-    client_options = ClientOptions(
-        username=value_storage.new_username,
-        password=value_storage.password
-    )
-    
-    client= Client(client_options)
-    client.users.user.auth_token = value_storage.auth_token
-    
-    try:
+    with pytest.raises(UsernameAlreadyExists):
+        client.users.update_username(new_username="new_user1")
+
+
+def test_users_model_update_user_status(mock_sdk_backend) -> None:
+    auth_token = mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+    client.users.user.auth_token = auth_token
+
+    new_status = random.choice(USER_STATUS)
+    client.users.update_user_status(new_status=new_status)
+
+    assert client.users.user.status == new_status
+
+
+def test_users_model_update_user_status_invalid_status_value(mock_sdk_backend) -> None:
+    auth_token = mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+    client.users.user.auth_token = auth_token
+
+    with pytest.raises(InvalidStatusValue):
         client.users.update_user_status(new_status="NOT_VALID_STATUS")
-    except InvalidStatusValue as e:
-        assert True
 
-def test_users_model_update_user_password() -> None:
-    """
-    Test the Users object update user password functionality.
 
-    This test verifies that an existing user can successfully update their password using the Users object.
-    It initializes the Users with the provided username and password, sets the authentication token,
-    and then calls the update user password method with the old and new passwords.
-    """
-    client_options = ClientOptions(
-        username=value_storage.new_username,
-        password=value_storage.password
-    )
-    
-    client= Client(client_options)
-    client.users.user.auth_token = value_storage.auth_token
+def test_users_model_update_user_password(mock_sdk_backend) -> None:
+    auth_token = mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+    client.users.user.auth_token = auth_token
 
     client.users.update_user_password(
-        old_password=value_storage.password,
-        new_password=value_storage.new_password
+        old_password="12345678",
+        new_password="123456789",
     )
-    
-def test_users_model_update_user_password_invalid_password() -> None:
-    """
-    Test the Users object update user password functionality with an invalid password.
 
-    This test verifies that an exception is raised when trying to update the user password with an invalid old password.
-    """
-    client_options = ClientOptions(
-        username=value_storage.new_username,
-        password=value_storage.password
-    )
-    
-    client= Client(client_options)
-    client.users.user.auth_token = value_storage.auth_token
-    
-    try:
+    assert mock_sdk_backend.users_by_username["user1"]["password"] == "123456789"
+
+
+def test_users_model_update_user_password_invalid_password(mock_sdk_backend) -> None:
+    auth_token = mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+    client.users.user.auth_token = auth_token
+
+    with pytest.raises(InvalidPassword):
         client.users.update_user_password(
-            old_password=value_storage.password,
-            new_password=value_storage.new_password
+            old_password="wrong-old-password",
+            new_password="123456789",
         )
-    except InvalidPassword as e:
-        assert True
 
-def test_users_model_reset_user_auth_token() -> None:
-    """
-    Test the Users object reset user authentication token functionality.
 
-    This test verifies that an existing user can successfully reset their authentication token using the Users object.
-    It initializes the Users with the provided username and password, sets the authentication token,
-    and then calls the reset user authentication token method.
-    """
-    client_options = ClientOptions(
-        username=value_storage.new_username,
-        password=value_storage.new_password
-    )
-    
-    client= Client(client_options)
-    client.users.user.auth_token = value_storage.auth_token
-    
+def test_users_model_reset_user_auth_token(mock_sdk_backend) -> None:
+    auth_token = mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+    client.users.user.auth_token = auth_token
+
     client.users.reset_user_auth_token()
 
-def test_users_model_reset_user_auth_token_invalid_password() -> None:
-    """
-    Test the Users object reset user authentication token functionality with an invalid password.
+    assert client.users.user.auth_token != auth_token
+    assert client.users.user.auth_token_expire_time == "2026-03-14T00:00:00Z"
 
-    This test verifies that an exception is raised when trying to reset the authentication token with an invalid password.
-    """
-    client_options = ClientOptions(
-        username=value_storage.new_username,
-        password=value_storage.password
-    )
-    
-    client= Client(client_options)
-    client.users.user.auth_token = value_storage.auth_token
-    
-    try:
+
+def test_users_model_reset_user_auth_token_invalid_password(mock_sdk_backend) -> None:
+    auth_token = mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "wrong-password")
+    client.users.user.auth_token = auth_token
+
+    with pytest.raises(InvalidPassword):
         client.users.reset_user_auth_token()
-    except InvalidPassword as e:
-        assert True
 
-def test_users_model_reset_user_auth_token_bad_auth_token() -> None:
-    """
-    Test the Users object reset user authentication token functionality with a bad authentication token.
 
-    This test verifies that an exception is raised when trying to reset the authentication token with a bad token format.
-    """
-    client_options = ClientOptions(
-        username=value_storage.new_username,
-        password=value_storage.new_password
-    )
-    
-    client= Client(client_options)
-    client.users.user.auth_token = value_storage.bad_formated_auth_token
-    
-    try:
+def test_users_model_reset_user_auth_token_bad_auth_token(mock_sdk_backend) -> None:
+    mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+    client.users.user.auth_token = "bad-auth-token"
+
+    with pytest.raises(BadAuthToken):
         client.users.reset_user_auth_token()
-    except BadAuthToken as e:
-        assert True
 
-def test_users_list_users() -> None:
-    """
-    Test Users object list users functionality.
-    
-    This test verifies that the list users method returns a list of users.
-    """
-    client_options = ClientOptions(
-        username=value_storage.new_username,
-        password=value_storage.new_password
-    )
-    
-    client= Client(client_options)
-    client.users.user.auth_token = value_storage.auth_token
-    
+
+def test_users_list_users(mock_sdk_backend) -> None:
+    auth_token = mock_sdk_backend.seed_user(username="user1", password="12345678")
+    mock_sdk_backend.seed_user(username="user2", password="abcdefgh")
+    client = create_client("user1", "12345678")
+    client.users.user.auth_token = auth_token
+
     users = client.users.list_users()
-    
-    assert type(users) == list
 
-def test_users_list_users_bad_auth_token() -> None:
-    """
-    Test Users object list users functionality with a bad authentication token.
-    
-    This test verifies that an exception is raised when trying to list users with a bad auth token.
-    """
-    client_options = ClientOptions(
-        username=value_storage.new_username,
-        password=value_storage.new_password
-    )
-    
-    client= Client(client_options)
-    client.users.user.auth_token = value_storage.bad_formated_auth_token
-    
-    try:
+    assert isinstance(users, list)
+    assert all(isinstance(user, UserModel) for user in users)
+    assert {user.username for user in users} == {"user1", "user2"}
+
+
+def test_users_list_users_bad_auth_token(mock_sdk_backend) -> None:
+    mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+    client.users.user.auth_token = "bad-auth-token"
+
+    with pytest.raises(BadAuthToken):
         client.users.list_users()
-    except BadAuthToken as e:
-        assert True
-    
+
+
+def test_users_async_wrappers(mock_sdk_backend) -> None:
+    mock_sdk_backend.seed_user(username="user1", password="12345678")
+    mock_sdk_backend.seed_user(username="user2", password="abcdefgh")
+    client = create_client("user1", "12345678")
+
+    async def runner() -> tuple[str, list[UserModel]]:
+        auth_token = await client.users.sign_in_async()
+        users = await client.users.list_users_async()
+        return auth_token, users
+
+    auth_token, users = asyncio.run(runner())
+
+    assert auth_token == client.users.user.auth_token
+    assert {user.username for user in users} == {"user1", "user2"}
+
+
+def test_users_verbose_logging_emits_readable_auth_and_list_messages(mock_sdk_backend, caplog) -> None:
+    mock_sdk_backend.seed_user(username="user1", password="12345678")
+    mock_sdk_backend.seed_user(username="user2", password="abcdefgh")
+    client = Client(
+        ClientOptions(
+            instance="https://chat.example.org",
+            username="user1",
+            password="12345678",
+            verbose=True,
+        )
+    )
+    caplog.set_level(logging.DEBUG, logger="pypufferblow")
+
+    client.users.sign_in()
+    client.users.list_users()
+
+    log_messages = [record.getMessage() for record in caplog.records if record.name.startswith("pypufferblow")]
+    assert any("Signing in username=user1 on home instance=https://chat.example.org" in message for message in log_messages)
+    assert any("Signed in username=user1" in message for message in log_messages)
+    assert any("Listed 2 users on home instance=https://chat.example.org" in message for message in log_messages)

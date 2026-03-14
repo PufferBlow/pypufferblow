@@ -1,10 +1,17 @@
+from __future__ import annotations
+
 __all__ = [
     "Admin",
     "AdminOptions"
 ]
 
 import requests
-from loguru import logger
+try:
+    from loguru import logger
+except ImportError:  # pragma: no cover - fallback for minimal SDK installs
+    import logging
+
+    logger = logging.getLogger(__name__)
 
 # Routes
 from pypufferblow.routes import admin_routes
@@ -22,7 +29,8 @@ from pypufferblow.models.options_model import OptionsModel
 
 class Admin:
     """
-    The Admin class for administration operations requiring elevated permissions.
+    The Admin class for administration operations requiring elevated permissions
+    on the home instance.
 
     Attributes:
         API_ROUTES (list[Route]): The list of the API routes.
@@ -50,11 +58,13 @@ class Admin:
         self.options = options
         self.host = options.host
         self.port = options.port
+        self.instance = options.instance_url
+        self.instance_url = options.instance_url
         self.auth_token = options.auth_token
 
     def list_blocked_ips(self) -> list[dict]:
         """
-        List all blocked IPs with details. Server Owner only.
+        List all blocked IPs with details for the home instance. Server Owner only.
 
         Returns:
             list[dict]: List of blocked IP information.
@@ -85,7 +95,7 @@ class Admin:
 
     def block_ip(self, ip: str, reason: str) -> None:
         """
-        Add an IP address to the blocked list. Server Owner only.
+        Add an IP address to the home-instance blocked list. Server Owner only.
 
         Args:
             ip (str): IP address to block (IPv4 or IPv6).
@@ -123,7 +133,7 @@ class Admin:
 
     def unblock_ip(self, ip: str) -> None:
         """
-        Remove an IP address from the blocked list. Server Owner only.
+        Remove an IP address from the home-instance blocked list. Server Owner only.
 
         Args:
             ip (str): IP address to unblock.
@@ -157,7 +167,7 @@ class Admin:
 
     def get_background_tasks_status(self) -> dict:
         """
-        Get status of all background tasks. Server Owner only.
+        Get status of all home-instance background tasks. Server Owner only.
 
         Returns:
             dict: Background tasks status information.
@@ -186,7 +196,7 @@ class Admin:
 
     def run_background_task(self, task_id: str) -> dict:
         """
-        Execute a background task on-demand. Server Owner only.
+        Execute a home-instance background task on-demand. Server Owner only.
 
         Args:
             task_id (str): ID of the background task to run.

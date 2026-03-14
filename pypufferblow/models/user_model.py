@@ -103,3 +103,47 @@ class UserModel:
         for attr in data:
             self.__setattr__(attr, data[attr])
         return self
+
+    @property
+    def is_server_owner(self) -> bool:
+        """
+        Compatibility alias used by older SDK call sites.
+        """
+        return bool(self.is_owner)
+
+    @is_server_owner.setter
+    def is_server_owner(self, value: bool) -> None:
+        self.is_owner = bool(value)
+
+    @property
+    def is_instance_owner(self) -> bool:
+        """
+        Preferred alias for `is_owner` when referring to the home instance.
+        """
+        return bool(self.is_owner)
+
+    @is_instance_owner.setter
+    def is_instance_owner(self, value: bool) -> None:
+        self.is_owner = bool(value)
+
+    @property
+    def joined_communities_ids(self) -> list[str] | None:
+        """
+        Preferred alias for `joined_servers_ids`.
+        """
+        return self.joined_servers_ids
+
+    @joined_communities_ids.setter
+    def joined_communities_ids(self, value: list[str] | None) -> None:
+        self.joined_servers_ids = value
+
+    @property
+    def origin_instance(self) -> str | None:
+        """
+        Preferred alias for `origin_server`.
+        """
+        return self.origin_server
+
+    @origin_instance.setter
+    def origin_instance(self, value: str | None) -> None:
+        self.origin_server = value
