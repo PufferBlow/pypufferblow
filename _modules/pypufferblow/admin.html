@@ -1,0 +1,666 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pypufferblow.admin &#8212; pypufferblow 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=a1637f0b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pypufferblow/admin';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pypufferblow 0.1.0 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to pypufferblow’s documentation!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../client.html">Client Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../users.html">Users Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../channels.html">Channels Module</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tests/tests.html">Tests</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_client.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_users.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_channels.html">Test Client Module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exceptions.html">Exceptions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow/issues/new?title=Issue%20on%20page%20%2F_modules/pypufferblow/admin.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for pypufferblow.admin</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Admin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;AdminOptions&quot;</span>
+<span class="p">]</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">loguru</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pragma: no cover - fallback for minimal SDK installs</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Routes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.routes</span><span class="w"> </span><span class="kn">import</span> <span class="n">admin_routes</span>
+
+<span class="c1"># Exceptions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BadAuthToken</span><span class="p">,</span>
+    <span class="n">NotAnAdminOrServerOwner</span><span class="p">,</span>
+    <span class="n">IPSecurityError</span>
+<span class="p">)</span>
+
+<span class="c1"># Models</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.models.route_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Route</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.models.options_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptionsModel</span>
+
+<div class="viewcode-block" id="Admin">
+<a class="viewcode-back" href="../../pypufferblow.admin.html#pypufferblow.admin.Admin">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Admin</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The Admin class for administration operations requiring elevated permissions</span>
+<span class="sd">    on the home instance.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        API_ROUTES (list[Route]): The list of the API routes.</span>
+<span class="sd">        LIST_BLOCKED_IPS_API_ROUTE (Route): The list blocked IPs route.</span>
+<span class="sd">        BLOCK_IP_API_ROUTE (Route): The block IP route.</span>
+<span class="sd">        UNBLOCK_IP_API_ROUTE (Route): The unblock IP route.</span>
+<span class="sd">        BACKGROUND_TASKS_STATUS_API_ROUTE (Route): The background tasks status route.</span>
+<span class="sd">        BACKGROUND_TASKS_RUN_API_ROUTE (Route): The background tasks run route.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">API_ROUTES</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Route</span><span class="p">]</span> <span class="o">=</span> <span class="n">admin_routes</span>
+
+    <span class="n">LIST_BLOCKED_IPS_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">admin_routes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">BLOCK_IP_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">admin_routes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">UNBLOCK_IP_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">admin_routes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">BACKGROUND_TASKS_STATUS_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">admin_routes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">BACKGROUND_TASKS_RUN_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">admin_routes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">AdminOptions</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the Admin object with the given options.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            options (AdminOptions): The options for the Admin object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">options</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">host</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">instance_url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance_url</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">instance_url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">auth_token</span>
+
+<div class="viewcode-block" id="Admin.list_blocked_ips">
+<a class="viewcode-back" href="../../pypufferblow.admin.html#pypufferblow.admin.Admin.list_blocked_ips">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">list_blocked_ips</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        List all blocked IPs with details for the home instance. Server Owner only.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[dict]: List of blocked IP information.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; blocked_ips = client.admin.list_blocked_ips()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_required_permissions</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can manage blocked IPs.&quot;</span><span class="p">)</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">LIST_BLOCKED_IPS_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can manage blocked IPs.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">IPSecurityError</span><span class="p">(</span><span class="s2">&quot;Failed to list blocked IPs&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;blocked_ips&quot;</span><span class="p">,</span> <span class="p">[])</span></div>
+
+
+<div class="viewcode-block" id="Admin.block_ip">
+<a class="viewcode-back" href="../../pypufferblow.admin.html#pypufferblow.admin.Admin.block_ip">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">block_ip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">reason</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add an IP address to the home-instance blocked list. Server Owner only.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ip (str): IP address to block (IPv4 or IPv6).</span>
+<span class="sd">            reason (str): Reason for blocking the IP.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; client.admin.block_ip(&quot;192.168.1.100&quot;, &quot;Suspicious activity&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_required_permissions</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can manage blocked IPs.&quot;</span><span class="p">)</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">,</span>
+            <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="n">ip</span><span class="p">,</span>
+            <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="n">reason</span>
+        <span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">BLOCK_IP_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;already blocked&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="n">IPSecurityError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IP </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s2"> is already blocked&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s2">&quot;format&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid IP address format: </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can manage blocked IPs.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">201</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">IPSecurityError</span><span class="p">(</span><span class="s2">&quot;Failed to block IP address&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Admin.unblock_ip">
+<a class="viewcode-back" href="../../pypufferblow.admin.html#pypufferblow.admin.Admin.unblock_ip">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unblock_ip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ip</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove an IP address from the home-instance blocked list. Server Owner only.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            ip (str): IP address to unblock.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; client.admin.unblock_ip(&quot;192.168.1.100&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_required_permissions</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can manage blocked IPs.&quot;</span><span class="p">)</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">,</span>
+            <span class="s2">&quot;ip&quot;</span><span class="p">:</span> <span class="n">ip</span>
+        <span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">UNBLOCK_IP_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;not blocked&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="n">IPSecurityError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;IP </span><span class="si">{</span><span class="n">ip</span><span class="si">}</span><span class="s2"> is not currently blocked&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can manage blocked IPs.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">IPSecurityError</span><span class="p">(</span><span class="s2">&quot;Failed to unblock IP address&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Admin.get_background_tasks_status">
+<a class="viewcode-back" href="../../pypufferblow.admin.html#pypufferblow.admin.Admin.get_background_tasks_status">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_background_tasks_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get status of all home-instance background tasks. Server Owner only.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Background tasks status information.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; status = client.admin.get_background_tasks_status()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_required_permissions</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can manage background tasks.&quot;</span><span class="p">)</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">BACKGROUND_TASKS_STATUS_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can manage background tasks.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;tasks&quot;</span><span class="p">,</span> <span class="p">{})</span></div>
+
+
+<div class="viewcode-block" id="Admin.run_background_task">
+<a class="viewcode-back" href="../../pypufferblow.admin.html#pypufferblow.admin.Admin.run_background_task">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_background_task</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">task_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Execute a home-instance background task on-demand. Server Owner only.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            task_id (str): ID of the background task to run.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Task execution result.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; result = client.admin.run_background_task(&quot;cleanup_old_logs&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_required_permissions</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can manage background tasks.&quot;</span><span class="p">)</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">,</span>
+            <span class="s2">&quot;task_id&quot;</span><span class="p">:</span> <span class="n">task_id</span>
+        <span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">BACKGROUND_TASKS_RUN_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">if</span> <span class="s2">&quot;not found&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">or</span> <span class="n">task_id</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Background task &#39;</span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2">&#39; not found&quot;</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="s2">&quot;not initialized&quot;</span> <span class="ow">in</span> <span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="n">IPSecurityError</span><span class="p">(</span><span class="s2">&quot;Background tasks manager not initialized&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can manage background tasks.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">IPSecurityError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to execute background task: </span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;task_id&quot;</span><span class="p">:</span> <span class="n">task_id</span><span class="p">,</span>
+            <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;executed&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Background task &#39;</span><span class="si">{</span><span class="n">task_id</span><span class="si">}</span><span class="s2">&#39; executed successfully&quot;</span>
+        <span class="p">}</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_has_required_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if the current user has required permissions for admin operations.</span>
+<span class="sd">        This is a basic check - the server will do the actual validation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+
+<div class="viewcode-block" id="AdminOptions">
+<a class="viewcode-back" href="../../pypufferblow.admin.html#pypufferblow.admin.AdminOptions">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">AdminOptions</span><span class="p">(</span><span class="n">OptionsModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Admin options for configuring admin operations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auth_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the instance.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span> <span class="o">=</span> <span class="n">auth_token</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ramsy0dev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, ramsy0dev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

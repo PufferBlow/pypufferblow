@@ -1,0 +1,902 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>pypufferblow package &#8212; pypufferblow 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=a1637f0b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pypufferblow';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pypufferblow 0.1.0 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Welcome to pypufferblow’s documentation!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="client.html">Client Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">Users Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="channels.html">Channels Module</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tests/tests.html">Tests</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/test_client.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/test_users.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/test_channels.html">Test Client Module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow/edit/main/docs/pypufferblow.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow/issues/new?title=Issue%20on%20page%20%2Fpypufferblow.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/pypufferblow.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>pypufferblow package</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pypufferblow">Module contents</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="pypufferblow-package">
+<h1>pypufferblow package<a class="headerlink" href="#pypufferblow-package" title="Link to this heading">#</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pypufferblow.admin.html">pypufferblow.admin module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.admin.html#pypufferblow.admin.Admin"><code class="docutils literal notranslate"><span class="pre">Admin</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#pypufferblow.admin.Admin.API_ROUTES"><code class="docutils literal notranslate"><span class="pre">Admin.API_ROUTES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#pypufferblow.admin.Admin.LIST_BLOCKED_IPS_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Admin.LIST_BLOCKED_IPS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#pypufferblow.admin.Admin.BLOCK_IP_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Admin.BLOCK_IP_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#pypufferblow.admin.Admin.UNBLOCK_IP_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Admin.UNBLOCK_IP_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#pypufferblow.admin.Admin.BACKGROUND_TASKS_STATUS_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Admin.BACKGROUND_TASKS_STATUS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#pypufferblow.admin.Admin.BACKGROUND_TASKS_RUN_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Admin.BACKGROUND_TASKS_RUN_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#id0"><code class="docutils literal notranslate"><span class="pre">Admin.API_ROUTES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#id1"><code class="docutils literal notranslate"><span class="pre">Admin.BACKGROUND_TASKS_RUN_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#id2"><code class="docutils literal notranslate"><span class="pre">Admin.BACKGROUND_TASKS_STATUS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#id3"><code class="docutils literal notranslate"><span class="pre">Admin.BLOCK_IP_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#id4"><code class="docutils literal notranslate"><span class="pre">Admin.LIST_BLOCKED_IPS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#id5"><code class="docutils literal notranslate"><span class="pre">Admin.UNBLOCK_IP_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#pypufferblow.admin.Admin.block_ip"><code class="docutils literal notranslate"><span class="pre">Admin.block_ip()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#pypufferblow.admin.Admin.get_background_tasks_status"><code class="docutils literal notranslate"><span class="pre">Admin.get_background_tasks_status()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#pypufferblow.admin.Admin.list_blocked_ips"><code class="docutils literal notranslate"><span class="pre">Admin.list_blocked_ips()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#pypufferblow.admin.Admin.run_background_task"><code class="docutils literal notranslate"><span class="pre">Admin.run_background_task()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.admin.html#pypufferblow.admin.Admin.unblock_ip"><code class="docutils literal notranslate"><span class="pre">Admin.unblock_ip()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.admin.html#pypufferblow.admin.AdminOptions"><code class="docutils literal notranslate"><span class="pre">AdminOptions</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pypufferblow.bot.html">pypufferblow.bot module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot"><code class="docutils literal notranslate"><span class="pre">Bot</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.add_check"><code class="docutils literal notranslate"><span class="pre">Bot.add_check()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.after_command"><code class="docutils literal notranslate"><span class="pre">Bot.after_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.authenticate"><code class="docutils literal notranslate"><span class="pre">Bot.authenticate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.authenticate_async"><code class="docutils literal notranslate"><span class="pre">Bot.authenticate_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.before_command"><code class="docutils literal notranslate"><span class="pre">Bot.before_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.check"><code class="docutils literal notranslate"><span class="pre">Bot.check()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.command"><code class="docutils literal notranslate"><span class="pre">Bot.command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.connect"><code class="docutils literal notranslate"><span class="pre">Bot.connect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.cooldown"><code class="docutils literal notranslate"><span class="pre">Bot.cooldown()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.disconnect"><code class="docutils literal notranslate"><span class="pre">Bot.disconnect()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.error"><code class="docutils literal notranslate"><span class="pre">Bot.error()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.event"><code class="docutils literal notranslate"><span class="pre">Bot.event()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.format_help"><code class="docutils literal notranslate"><span class="pre">Bot.format_help()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.get_channel_websocket"><code class="docutils literal notranslate"><span class="pre">Bot.get_channel_websocket()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.get_channels_api"><code class="docutils literal notranslate"><span class="pre">Bot.get_channels_api()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.get_command"><code class="docutils literal notranslate"><span class="pre">Bot.get_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.get_commands"><code class="docutils literal notranslate"><span class="pre">Bot.get_commands()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.get_global_websocket"><code class="docutils literal notranslate"><span class="pre">Bot.get_global_websocket()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.get_users_api"><code class="docutils literal notranslate"><span class="pre">Bot.get_users_api()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.group"><code class="docutils literal notranslate"><span class="pre">Bot.group()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.install_help_command"><code class="docutils literal notranslate"><span class="pre">Bot.install_help_command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.lifecycle"><code class="docutils literal notranslate"><span class="pre">Bot.lifecycle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.listen"><code class="docutils literal notranslate"><span class="pre">Bot.listen()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.loop"><code class="docutils literal notranslate"><span class="pre">Bot.loop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.mark_message_as_read"><code class="docutils literal notranslate"><span class="pre">Bot.mark_message_as_read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.mark_message_as_read_async"><code class="docutils literal notranslate"><span class="pre">Bot.mark_message_as_read_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.message"><code class="docutils literal notranslate"><span class="pre">Bot.message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.on_event"><code class="docutils literal notranslate"><span class="pre">Bot.on_event()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.on_message"><code class="docutils literal notranslate"><span class="pre">Bot.on_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.once"><code class="docutils literal notranslate"><span class="pre">Bot.once()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.process_websocket_message"><code class="docutils literal notranslate"><span class="pre">Bot.process_websocket_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.ready"><code class="docutils literal notranslate"><span class="pre">Bot.ready()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.reset_command_cooldown"><code class="docutils literal notranslate"><span class="pre">Bot.reset_command_cooldown()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.run"><code class="docutils literal notranslate"><span class="pre">Bot.run()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.run_async"><code class="docutils literal notranslate"><span class="pre">Bot.run_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.send_message"><code class="docutils literal notranslate"><span class="pre">Bot.send_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.send_message_async"><code class="docutils literal notranslate"><span class="pre">Bot.send_message_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.shutdown"><code class="docutils literal notranslate"><span class="pre">Bot.shutdown()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.start"><code class="docutils literal notranslate"><span class="pre">Bot.start()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.start_async"><code class="docutils literal notranslate"><span class="pre">Bot.start_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.started"><code class="docutils literal notranslate"><span class="pre">Bot.started()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.startup"><code class="docutils literal notranslate"><span class="pre">Bot.startup()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.stop"><code class="docutils literal notranslate"><span class="pre">Bot.stop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.stop_async"><code class="docutils literal notranslate"><span class="pre">Bot.stop_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.stopped"><code class="docutils literal notranslate"><span class="pre">Bot.stopped()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.wait_for"><code class="docutils literal notranslate"><span class="pre">Bot.wait_for()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.wait_for_lifecycle"><code class="docutils literal notranslate"><span class="pre">Bot.wait_for_lifecycle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.wait_until_ready"><code class="docutils literal notranslate"><span class="pre">Bot.wait_until_ready()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot.when"><code class="docutils literal notranslate"><span class="pre">Bot.when()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotCheckFailure"><code class="docutils literal notranslate"><span class="pre">BotCheckFailure</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext"><code class="docutils literal notranslate"><span class="pre">BotContext</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.author_id"><code class="docutils literal notranslate"><span class="pre">BotContext.author_id</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.author_name"><code class="docutils literal notranslate"><span class="pre">BotContext.author_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.channel_id"><code class="docutils literal notranslate"><span class="pre">BotContext.channel_id</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.channels"><code class="docutils literal notranslate"><span class="pre">BotContext.channels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.command_text"><code class="docutils literal notranslate"><span class="pre">BotContext.command_text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.content"><code class="docutils literal notranslate"><span class="pre">BotContext.content</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.mark_as_read"><code class="docutils literal notranslate"><span class="pre">BotContext.mark_as_read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.mark_read"><code class="docutils literal notranslate"><span class="pre">BotContext.mark_read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.mark_read_async"><code class="docutils literal notranslate"><span class="pre">BotContext.mark_read_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.reply"><code class="docutils literal notranslate"><span class="pre">BotContext.reply()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.reply_async"><code class="docutils literal notranslate"><span class="pre">BotContext.reply_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.send"><code class="docutils literal notranslate"><span class="pre">BotContext.send()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.send_async"><code class="docutils literal notranslate"><span class="pre">BotContext.send_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotContext.users"><code class="docutils literal notranslate"><span class="pre">BotContext.users</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.BotOptions"><code class="docutils literal notranslate"><span class="pre">BotOptions</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandGroup"><code class="docutils literal notranslate"><span class="pre">CommandGroup</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandGroup.command"><code class="docutils literal notranslate"><span class="pre">CommandGroup.command()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandGroup.group"><code class="docutils literal notranslate"><span class="pre">CommandGroup.group()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandOnCooldown"><code class="docutils literal notranslate"><span class="pre">CommandOnCooldown</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandRegistration"><code class="docutils literal notranslate"><span class="pre">CommandRegistration</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandRegistration.aliases"><code class="docutils literal notranslate"><span class="pre">CommandRegistration.aliases</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandRegistration.case_sensitive"><code class="docutils literal notranslate"><span class="pre">CommandRegistration.case_sensitive</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandRegistration.cooldown"><code class="docutils literal notranslate"><span class="pre">CommandRegistration.cooldown</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandRegistration.description"><code class="docutils literal notranslate"><span class="pre">CommandRegistration.description</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandRegistration.handler"><code class="docutils literal notranslate"><span class="pre">CommandRegistration.handler</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandRegistration.hidden"><code class="docutils literal notranslate"><span class="pre">CommandRegistration.hidden</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandRegistration.name"><code class="docutils literal notranslate"><span class="pre">CommandRegistration.name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandRegistration.prefix"><code class="docutils literal notranslate"><span class="pre">CommandRegistration.prefix</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.CommandRegistration.usage"><code class="docutils literal notranslate"><span class="pre">CommandRegistration.usage</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.ConditionalEventRegistration"><code class="docutils literal notranslate"><span class="pre">ConditionalEventRegistration</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.ConditionalEventRegistration.check"><code class="docutils literal notranslate"><span class="pre">ConditionalEventRegistration.check</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.ConditionalEventRegistration.event_name"><code class="docutils literal notranslate"><span class="pre">ConditionalEventRegistration.event_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.ConditionalEventRegistration.handler"><code class="docutils literal notranslate"><span class="pre">ConditionalEventRegistration.handler</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.ConditionalEventRegistration.once"><code class="docutils literal notranslate"><span class="pre">ConditionalEventRegistration.once</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.LoopTask"><code class="docutils literal notranslate"><span class="pre">LoopTask</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.LoopTask.after_loop"><code class="docutils literal notranslate"><span class="pre">LoopTask.after_loop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.LoopTask.before_loop"><code class="docutils literal notranslate"><span class="pre">LoopTask.before_loop()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.LoopTask.current_loop"><code class="docutils literal notranslate"><span class="pre">LoopTask.current_loop</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.LoopTask.is_running"><code class="docutils literal notranslate"><span class="pre">LoopTask.is_running</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.LoopTask.on_error"><code class="docutils literal notranslate"><span class="pre">LoopTask.on_error()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.LoopTask.restart"><code class="docutils literal notranslate"><span class="pre">LoopTask.restart()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.LoopTask.run_once"><code class="docutils literal notranslate"><span class="pre">LoopTask.run_once()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.LoopTask.start"><code class="docutils literal notranslate"><span class="pre">LoopTask.start()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.LoopTask.stop"><code class="docutils literal notranslate"><span class="pre">LoopTask.stop()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.MessageRegistration"><code class="docutils literal notranslate"><span class="pre">MessageRegistration</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.MessageRegistration.channel_id"><code class="docutils literal notranslate"><span class="pre">MessageRegistration.channel_id</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.MessageRegistration.contains"><code class="docutils literal notranslate"><span class="pre">MessageRegistration.contains</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.MessageRegistration.handler"><code class="docutils literal notranslate"><span class="pre">MessageRegistration.handler</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.MessageRegistration.ignore_bots"><code class="docutils literal notranslate"><span class="pre">MessageRegistration.ignore_bots</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.MessageRegistration.startswith"><code class="docutils literal notranslate"><span class="pre">MessageRegistration.startswith</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pypufferblow.channels.html">pypufferblow.channels module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels"><code class="docutils literal notranslate"><span class="pre">Channels</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.API_ROUTES"><code class="docutils literal notranslate"><span class="pre">Channels.API_ROUTES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.LIST_CHANNELS_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Channels.LIST_CHANNELS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.CREATE_CHANNEL_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Channels.CREATE_CHANNEL_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.DELETE_CHANNEL_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Channels.DELETE_CHANNEL_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.ADD_USER_TO_CHANNEL_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Channels.ADD_USER_TO_CHANNEL_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.REMOVE_USER_FROM_CHANNEL_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Channels.REMOVE_USER_FROM_CHANNEL_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.LOAD_MESSAGES_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Channels.LOAD_MESSAGES_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.SEND_MESSAGE_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Channels.SEND_MESSAGE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.MARK_MESSAGE_AS_READ_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Channels.MARK_MESSAGE_AS_READ_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.DELETE_MESSAGE_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Channels.DELETE_MESSAGE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#id0"><code class="docutils literal notranslate"><span class="pre">Channels.ADD_USER_TO_CHANNEL_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#id1"><code class="docutils literal notranslate"><span class="pre">Channels.API_ROUTES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#id2"><code class="docutils literal notranslate"><span class="pre">Channels.CREATE_CHANNEL_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#id3"><code class="docutils literal notranslate"><span class="pre">Channels.DELETE_CHANNEL_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#id4"><code class="docutils literal notranslate"><span class="pre">Channels.DELETE_MESSAGE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#id5"><code class="docutils literal notranslate"><span class="pre">Channels.LIST_CHANNELS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#id6"><code class="docutils literal notranslate"><span class="pre">Channels.LOAD_MESSAGES_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#id7"><code class="docutils literal notranslate"><span class="pre">Channels.MARK_MESSAGE_AS_READ_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#id8"><code class="docutils literal notranslate"><span class="pre">Channels.REMOVE_USER_FROM_CHANNEL_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#id9"><code class="docutils literal notranslate"><span class="pre">Channels.SEND_MESSAGE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.STORAGE_API_ROUTES"><code class="docutils literal notranslate"><span class="pre">Channels.STORAGE_API_ROUTES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.STORAGE_UPLOAD_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Channels.STORAGE_UPLOAD_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.add_user"><code class="docutils literal notranslate"><span class="pre">Channels.add_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.create_channel"><code class="docutils literal notranslate"><span class="pre">Channels.create_channel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.delete_channel"><code class="docutils literal notranslate"><span class="pre">Channels.delete_channel()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.delete_message"><code class="docutils literal notranslate"><span class="pre">Channels.delete_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.get_channel_info"><code class="docutils literal notranslate"><span class="pre">Channels.get_channel_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.get_channel_info_async"><code class="docutils literal notranslate"><span class="pre">Channels.get_channel_info_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.list_channels"><code class="docutils literal notranslate"><span class="pre">Channels.list_channels()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.list_channels_async"><code class="docutils literal notranslate"><span class="pre">Channels.list_channels_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.load_messages"><code class="docutils literal notranslate"><span class="pre">Channels.load_messages()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.load_messages_async"><code class="docutils literal notranslate"><span class="pre">Channels.load_messages_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.mark_message_as_read"><code class="docutils literal notranslate"><span class="pre">Channels.mark_message_as_read()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.mark_message_as_read_async"><code class="docutils literal notranslate"><span class="pre">Channels.mark_message_as_read_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.remove_user"><code class="docutils literal notranslate"><span class="pre">Channels.remove_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.send_message"><code class="docutils literal notranslate"><span class="pre">Channels.send_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.send_message_async"><code class="docutils literal notranslate"><span class="pre">Channels.send_message_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.channels.html#pypufferblow.channels.Channels.upload_file"><code class="docutils literal notranslate"><span class="pre">Channels.upload_file()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pypufferblow.client.html">pypufferblow.client module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.client.html#pypufferblow.client.Client"><code class="docutils literal notranslate"><span class="pre">Client</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#pypufferblow.client.Client.users"><code class="docutils literal notranslate"><span class="pre">Client.users</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#pypufferblow.client.Client.channels"><code class="docutils literal notranslate"><span class="pre">Client.channels</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#pypufferblow.client.Client.storage"><code class="docutils literal notranslate"><span class="pre">Client.storage</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#pypufferblow.client.Client.system"><code class="docutils literal notranslate"><span class="pre">Client.system</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#pypufferblow.client.Client.admin"><code class="docutils literal notranslate"><span class="pre">Client.admin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#pypufferblow.client.Client.websocket"><code class="docutils literal notranslate"><span class="pre">Client.websocket</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#id0"><code class="docutils literal notranslate"><span class="pre">Client.admin()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#id1"><code class="docutils literal notranslate"><span class="pre">Client.channels()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#pypufferblow.client.Client.create_channel_websocket"><code class="docutils literal notranslate"><span class="pre">Client.create_channel_websocket()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#pypufferblow.client.Client.decentralized_auth"><code class="docutils literal notranslate"><span class="pre">Client.decentralized_auth()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#pypufferblow.client.Client.federation"><code class="docutils literal notranslate"><span class="pre">Client.federation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#id2"><code class="docutils literal notranslate"><span class="pre">Client.storage()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#id3"><code class="docutils literal notranslate"><span class="pre">Client.system()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#id4"><code class="docutils literal notranslate"><span class="pre">Client.users()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#id5"><code class="docutils literal notranslate"><span class="pre">Client.websocket()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.client.html#pypufferblow.client.ClientOptions"><code class="docutils literal notranslate"><span class="pre">ClientOptions</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#pypufferblow.client.ClientOptions.to_channels_options"><code class="docutils literal notranslate"><span class="pre">ClientOptions.to_channels_options()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.client.html#pypufferblow.client.ClientOptions.to_users_options"><code class="docutils literal notranslate"><span class="pre">ClientOptions.to_users_options()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pypufferblow.decentralized_auth.html">pypufferblow.decentralized_auth module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.decentralized_auth.html#pypufferblow.decentralized_auth.DecentralizedAuth"><code class="docutils literal notranslate"><span class="pre">DecentralizedAuth</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.decentralized_auth.html#pypufferblow.decentralized_auth.DecentralizedAuth.API_ROUTES"><code class="docutils literal notranslate"><span class="pre">DecentralizedAuth.API_ROUTES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.decentralized_auth.html#pypufferblow.decentralized_auth.DecentralizedAuth.CHALLENGE_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">DecentralizedAuth.CHALLENGE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.decentralized_auth.html#pypufferblow.decentralized_auth.DecentralizedAuth.INTROSPECT_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">DecentralizedAuth.INTROSPECT_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.decentralized_auth.html#pypufferblow.decentralized_auth.DecentralizedAuth.REVOKE_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">DecentralizedAuth.REVOKE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.decentralized_auth.html#pypufferblow.decentralized_auth.DecentralizedAuth.VERIFY_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">DecentralizedAuth.VERIFY_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.decentralized_auth.html#pypufferblow.decentralized_auth.DecentralizedAuth.introspect_session"><code class="docutils literal notranslate"><span class="pre">DecentralizedAuth.introspect_session()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.decentralized_auth.html#pypufferblow.decentralized_auth.DecentralizedAuth.issue_challenge"><code class="docutils literal notranslate"><span class="pre">DecentralizedAuth.issue_challenge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.decentralized_auth.html#pypufferblow.decentralized_auth.DecentralizedAuth.revoke_session"><code class="docutils literal notranslate"><span class="pre">DecentralizedAuth.revoke_session()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.decentralized_auth.html#pypufferblow.decentralized_auth.DecentralizedAuth.verify_challenge"><code class="docutils literal notranslate"><span class="pre">DecentralizedAuth.verify_challenge()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.decentralized_auth.html#pypufferblow.decentralized_auth.DecentralizedAuthOptions"><code class="docutils literal notranslate"><span class="pre">DecentralizedAuthOptions</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pypufferblow.exceptions.html">pypufferblow.exceptions module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.BadAuthToken"><code class="docutils literal notranslate"><span class="pre">BadAuthToken</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.ChannelNameAlreadyExists"><code class="docutils literal notranslate"><span class="pre">ChannelNameAlreadyExists</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.ChannelNotFound"><code class="docutils literal notranslate"><span class="pre">ChannelNotFound</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.ExceededMaxMessagesPerPage"><code class="docutils literal notranslate"><span class="pre">ExceededMaxMessagesPerPage</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.FaildToInitChannels"><code class="docutils literal notranslate"><span class="pre">FaildToInitChannels</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.FaildToRemoveUserFromChannelUserIsAdmin"><code class="docutils literal notranslate"><span class="pre">FaildToRemoveUserFromChannelUserIsAdmin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.FileNotFound"><code class="docutils literal notranslate"><span class="pre">FileNotFound</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.IPSecurityError"><code class="docutils literal notranslate"><span class="pre">IPSecurityError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.InvalidPassword"><code class="docutils literal notranslate"><span class="pre">InvalidPassword</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.InvalidStatusValue"><code class="docutils literal notranslate"><span class="pre">InvalidStatusValue</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.MessageIsTooLong"><code class="docutils literal notranslate"><span class="pre">MessageIsTooLong</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.MessageNotFound"><code class="docutils literal notranslate"><span class="pre">MessageNotFound</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.NotAnAdminOrServerOwner"><code class="docutils literal notranslate"><span class="pre">NotAnAdminOrServerOwner</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.ServerError"><code class="docutils literal notranslate"><span class="pre">ServerError</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.UnsupportedFileType"><code class="docutils literal notranslate"><span class="pre">UnsupportedFileType</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.UserNotFound"><code class="docutils literal notranslate"><span class="pre">UserNotFound</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.UsernameAlreadyExists"><code class="docutils literal notranslate"><span class="pre">UsernameAlreadyExists</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.UsernameNotFound"><code class="docutils literal notranslate"><span class="pre">UsernameNotFound</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pypufferblow.federation.html">pypufferblow.federation module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.federation.html#pypufferblow.federation.Federation"><code class="docutils literal notranslate"><span class="pre">Federation</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.federation.html#pypufferblow.federation.Federation.API_ROUTES"><code class="docutils literal notranslate"><span class="pre">Federation.API_ROUTES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.federation.html#pypufferblow.federation.Federation.FOLLOW_REMOTE_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Federation.FOLLOW_REMOTE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.federation.html#pypufferblow.federation.Federation.LOAD_DIRECT_MESSAGES_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Federation.LOAD_DIRECT_MESSAGES_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.federation.html#pypufferblow.federation.Federation.SEND_DIRECT_MESSAGE_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Federation.SEND_DIRECT_MESSAGE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.federation.html#pypufferblow.federation.Federation.follow_remote_account"><code class="docutils literal notranslate"><span class="pre">Federation.follow_remote_account()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.federation.html#pypufferblow.federation.Federation.follow_remote_account_async"><code class="docutils literal notranslate"><span class="pre">Federation.follow_remote_account_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.federation.html#pypufferblow.federation.Federation.load_direct_messages"><code class="docutils literal notranslate"><span class="pre">Federation.load_direct_messages()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.federation.html#pypufferblow.federation.Federation.load_direct_messages_async"><code class="docutils literal notranslate"><span class="pre">Federation.load_direct_messages_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.federation.html#pypufferblow.federation.Federation.send_direct_message"><code class="docutils literal notranslate"><span class="pre">Federation.send_direct_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.federation.html#pypufferblow.federation.Federation.send_direct_message_async"><code class="docutils literal notranslate"><span class="pre">Federation.send_direct_message_async()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.federation.html#pypufferblow.federation.FederationOptions"><code class="docutils literal notranslate"><span class="pre">FederationOptions</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pypufferblow.logging_utils.html">pypufferblow.logging_utils module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.logging_utils.html#pypufferblow.logging_utils.configure_sdk_logging"><code class="docutils literal notranslate"><span class="pre">configure_sdk_logging()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.logging_utils.html#pypufferblow.logging_utils.get_sdk_logger"><code class="docutils literal notranslate"><span class="pre">get_sdk_logger()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pypufferblow.routes.html">pypufferblow.routes module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pypufferblow.storage.html">pypufferblow.storage module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage"><code class="docutils literal notranslate"><span class="pre">Storage</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage.API_ROUTES"><code class="docutils literal notranslate"><span class="pre">Storage.API_ROUTES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage.CLEANUP_ORPHANED_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Storage.CLEANUP_ORPHANED_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage.DELETE_FILE_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Storage.DELETE_FILE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage.FILE_INFO_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Storage.FILE_INFO_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage.LIST_FILES_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Storage.LIST_FILES_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage.SERVE_FILE_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Storage.SERVE_FILE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage.UPLOAD_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Storage.UPLOAD_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage.cleanup_orphaned_files"><code class="docutils literal notranslate"><span class="pre">Storage.cleanup_orphaned_files()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage.delete_file"><code class="docutils literal notranslate"><span class="pre">Storage.delete_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage.get_file_info"><code class="docutils literal notranslate"><span class="pre">Storage.get_file_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage.list_files"><code class="docutils literal notranslate"><span class="pre">Storage.list_files()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage.serve_file"><code class="docutils literal notranslate"><span class="pre">Storage.serve_file()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.Storage.upload_file"><code class="docutils literal notranslate"><span class="pre">Storage.upload_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.storage.html#pypufferblow.storage.StorageOptions"><code class="docutils literal notranslate"><span class="pre">StorageOptions</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pypufferblow.system.html">pypufferblow.system module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System"><code class="docutils literal notranslate"><span class="pre">System</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.API_ROUTES"><code class="docutils literal notranslate"><span class="pre">System.API_ROUTES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.LATEST_RELEASE_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.LATEST_RELEASE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.SERVER_STATS_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.SERVER_STATS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.SERVER_INFO_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.SERVER_INFO_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.SERVER_USAGE_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.SERVER_USAGE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.SERVER_OVERVIEW_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.SERVER_OVERVIEW_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.ACTIVITY_METRICS_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.ACTIVITY_METRICS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.RECENT_ACTIVITY_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.RECENT_ACTIVITY_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.SERVER_LOGS_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.SERVER_LOGS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.UPLOAD_AVATAR_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.UPLOAD_AVATAR_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.UPLOAD_BANNER_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.UPLOAD_BANNER_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.UPDATE_SERVER_INFO_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.UPDATE_SERVER_INFO_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.USER_REGISTRATIONS_CHART_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.USER_REGISTRATIONS_CHART_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.MESSAGE_ACTIVITY_CHART_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.MESSAGE_ACTIVITY_CHART_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.ONLINE_USERS_CHART_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.ONLINE_USERS_CHART_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.CHANNEL_CREATION_CHART_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.CHANNEL_CREATION_CHART_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.USER_STATUS_CHART_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">System.USER_STATUS_CHART_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id0"><code class="docutils literal notranslate"><span class="pre">System.ACTIVITY_METRICS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id1"><code class="docutils literal notranslate"><span class="pre">System.API_ROUTES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id2"><code class="docutils literal notranslate"><span class="pre">System.CHANNEL_CREATION_CHART_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id3"><code class="docutils literal notranslate"><span class="pre">System.LATEST_RELEASE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id4"><code class="docutils literal notranslate"><span class="pre">System.MESSAGE_ACTIVITY_CHART_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id5"><code class="docutils literal notranslate"><span class="pre">System.ONLINE_USERS_CHART_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id6"><code class="docutils literal notranslate"><span class="pre">System.RECENT_ACTIVITY_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id7"><code class="docutils literal notranslate"><span class="pre">System.SERVER_INFO_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id8"><code class="docutils literal notranslate"><span class="pre">System.SERVER_LOGS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id9"><code class="docutils literal notranslate"><span class="pre">System.SERVER_OVERVIEW_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id10"><code class="docutils literal notranslate"><span class="pre">System.SERVER_STATS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id11"><code class="docutils literal notranslate"><span class="pre">System.SERVER_USAGE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id12"><code class="docutils literal notranslate"><span class="pre">System.UPDATE_SERVER_INFO_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id13"><code class="docutils literal notranslate"><span class="pre">System.UPLOAD_AVATAR_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id14"><code class="docutils literal notranslate"><span class="pre">System.UPLOAD_BANNER_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id15"><code class="docutils literal notranslate"><span class="pre">System.USER_REGISTRATIONS_CHART_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#id16"><code class="docutils literal notranslate"><span class="pre">System.USER_STATUS_CHART_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_activity_metrics"><code class="docutils literal notranslate"><span class="pre">System.get_activity_metrics()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_channel_creation_chart"><code class="docutils literal notranslate"><span class="pre">System.get_channel_creation_chart()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_instance_info"><code class="docutils literal notranslate"><span class="pre">System.get_instance_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_instance_logs"><code class="docutils literal notranslate"><span class="pre">System.get_instance_logs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_instance_overview"><code class="docutils literal notranslate"><span class="pre">System.get_instance_overview()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_instance_stats"><code class="docutils literal notranslate"><span class="pre">System.get_instance_stats()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_instance_usage"><code class="docutils literal notranslate"><span class="pre">System.get_instance_usage()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_latest_release"><code class="docutils literal notranslate"><span class="pre">System.get_latest_release()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_message_activity_chart"><code class="docutils literal notranslate"><span class="pre">System.get_message_activity_chart()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_online_users_chart"><code class="docutils literal notranslate"><span class="pre">System.get_online_users_chart()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_recent_activity"><code class="docutils literal notranslate"><span class="pre">System.get_recent_activity()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_server_info"><code class="docutils literal notranslate"><span class="pre">System.get_server_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_server_logs"><code class="docutils literal notranslate"><span class="pre">System.get_server_logs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_server_overview"><code class="docutils literal notranslate"><span class="pre">System.get_server_overview()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_server_stats"><code class="docutils literal notranslate"><span class="pre">System.get_server_stats()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_server_usage"><code class="docutils literal notranslate"><span class="pre">System.get_server_usage()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_user_registration_chart"><code class="docutils literal notranslate"><span class="pre">System.get_user_registration_chart()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.get_user_status_chart"><code class="docutils literal notranslate"><span class="pre">System.get_user_status_chart()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.update_instance_info"><code class="docutils literal notranslate"><span class="pre">System.update_instance_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.update_server_info"><code class="docutils literal notranslate"><span class="pre">System.update_server_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.upload_instance_avatar"><code class="docutils literal notranslate"><span class="pre">System.upload_instance_avatar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.upload_instance_banner"><code class="docutils literal notranslate"><span class="pre">System.upload_instance_banner()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.upload_server_avatar"><code class="docutils literal notranslate"><span class="pre">System.upload_server_avatar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.System.upload_server_banner"><code class="docutils literal notranslate"><span class="pre">System.upload_server_banner()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.system.html#pypufferblow.system.SystemOptions"><code class="docutils literal notranslate"><span class="pre">SystemOptions</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pypufferblow.users.html">pypufferblow.users module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users"><code class="docutils literal notranslate"><span class="pre">Users</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.user"><code class="docutils literal notranslate"><span class="pre">Users.user</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.API_ROUTES"><code class="docutils literal notranslate"><span class="pre">Users.API_ROUTES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.SIGNIN_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Users.SIGNIN_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.SIGNUP_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Users.SIGNUP_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.PROFILE_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Users.PROFILE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.RESET_AUTH_TOKEN_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Users.RESET_AUTH_TOKEN_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.LIST_USERS_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Users.LIST_USERS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#id0"><code class="docutils literal notranslate"><span class="pre">Users.API_ROUTES</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#id1"><code class="docutils literal notranslate"><span class="pre">Users.LIST_USERS_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#id2"><code class="docutils literal notranslate"><span class="pre">Users.PROFILE_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#id3"><code class="docutils literal notranslate"><span class="pre">Users.RESET_AUTH_TOKEN_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#id4"><code class="docutils literal notranslate"><span class="pre">Users.SIGNIN_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#id5"><code class="docutils literal notranslate"><span class="pre">Users.SIGNUP_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.UPLOAD_AVATAR_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Users.UPLOAD_AVATAR_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.UPLOAD_BANNER_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Users.UPLOAD_BANNER_API_ROUTE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.get_user_profile"><code class="docutils literal notranslate"><span class="pre">Users.get_user_profile()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.get_user_profile_async"><code class="docutils literal notranslate"><span class="pre">Users.get_user_profile_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.is_admin"><code class="docutils literal notranslate"><span class="pre">Users.is_admin</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.is_owner"><code class="docutils literal notranslate"><span class="pre">Users.is_owner</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.is_signed_in"><code class="docutils literal notranslate"><span class="pre">Users.is_signed_in</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.list_users"><code class="docutils literal notranslate"><span class="pre">Users.list_users()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.list_users_async"><code class="docutils literal notranslate"><span class="pre">Users.list_users_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.reset_user_auth_token"><code class="docutils literal notranslate"><span class="pre">Users.reset_user_auth_token()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.reset_user_auth_token_async"><code class="docutils literal notranslate"><span class="pre">Users.reset_user_auth_token_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.sign_in"><code class="docutils literal notranslate"><span class="pre">Users.sign_in()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.sign_in_async"><code class="docutils literal notranslate"><span class="pre">Users.sign_in_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.sign_up"><code class="docutils literal notranslate"><span class="pre">Users.sign_up()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.sign_up_async"><code class="docutils literal notranslate"><span class="pre">Users.sign_up_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.update_user_about"><code class="docutils literal notranslate"><span class="pre">Users.update_user_about()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.update_user_about_async"><code class="docutils literal notranslate"><span class="pre">Users.update_user_about_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.update_user_password"><code class="docutils literal notranslate"><span class="pre">Users.update_user_password()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.update_user_password_async"><code class="docutils literal notranslate"><span class="pre">Users.update_user_password_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.update_user_status"><code class="docutils literal notranslate"><span class="pre">Users.update_user_status()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.update_user_status_async"><code class="docutils literal notranslate"><span class="pre">Users.update_user_status_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.update_username"><code class="docutils literal notranslate"><span class="pre">Users.update_username()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.update_username_async"><code class="docutils literal notranslate"><span class="pre">Users.update_username_async()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.upload_user_avatar"><code class="docutils literal notranslate"><span class="pre">Users.upload_user_avatar()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.Users.upload_user_banner"><code class="docutils literal notranslate"><span class="pre">Users.upload_user_banner()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="pypufferblow.users.html#id6"><code class="docutils literal notranslate"><span class="pre">Users.user</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.users.html#pypufferblow.users.UsersOptions"><code class="docutils literal notranslate"><span class="pre">UsersOptions</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pypufferblow.websocket.html">pypufferblow.websocket module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.websocket.html#pypufferblow.websocket.ChannelWebSocket"><code class="docutils literal notranslate"><span class="pre">ChannelWebSocket</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.websocket.html#pypufferblow.websocket.GlobalWebSocket"><code class="docutils literal notranslate"><span class="pre">GlobalWebSocket</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.websocket.html#pypufferblow.websocket.create_channel_websocket"><code class="docutils literal notranslate"><span class="pre">create_channel_websocket()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="pypufferblow.websocket.html#pypufferblow.websocket.create_global_websocket"><code class="docutils literal notranslate"><span class="pre">create_global_websocket()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-pypufferblow">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pypufferblow" title="Link to this heading">#</a></h2>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pypufferblow">Module contents</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ramsy0dev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, ramsy0dev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

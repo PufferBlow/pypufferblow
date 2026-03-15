@@ -1,0 +1,1092 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pypufferblow.system &#8212; pypufferblow 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=a1637f0b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pypufferblow/system';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pypufferblow 0.1.0 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to pypufferblow’s documentation!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../client.html">Client Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../users.html">Users Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../channels.html">Channels Module</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tests/tests.html">Tests</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_client.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_users.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_channels.html">Test Client Module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exceptions.html">Exceptions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow/issues/new?title=Issue%20on%20page%20%2F_modules/pypufferblow/system.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for pypufferblow.system</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;System&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;SystemOptions&quot;</span>
+<span class="p">]</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">requests</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">loguru</span><span class="w"> </span><span class="kn">import</span> <span class="n">logger</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pragma: no cover - fallback for minimal SDK installs</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Routes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.routes</span><span class="w"> </span><span class="kn">import</span> <span class="n">system_routes</span>
+
+<span class="c1"># Exceptions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BadAuthToken</span><span class="p">,</span>
+    <span class="n">NotAnAdminOrServerOwner</span><span class="p">,</span>
+    <span class="n">ServerError</span>
+<span class="p">)</span>
+
+<span class="c1"># Models</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.models.route_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Route</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.models.options_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptionsModel</span>
+
+<div class="viewcode-block" id="System">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">System</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The System class for home-instance monitoring, information, and administration operations.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        API_ROUTES (list[Route]): The list of the API routes.</span>
+<span class="sd">        LATEST_RELEASE_API_ROUTE (Route): The latest release API route.</span>
+<span class="sd">        SERVER_STATS_API_ROUTE (Route): The instance stats API route.</span>
+<span class="sd">        SERVER_INFO_API_ROUTE (Route): The instance info API route.</span>
+<span class="sd">        SERVER_USAGE_API_ROUTE (Route): The instance usage API route.</span>
+<span class="sd">        SERVER_OVERVIEW_API_ROUTE (Route): The instance overview API route.</span>
+<span class="sd">        ACTIVITY_METRICS_API_ROUTE (Route): The activity metrics API route.</span>
+<span class="sd">        RECENT_ACTIVITY_API_ROUTE (Route): The recent activity API route.</span>
+<span class="sd">        SERVER_LOGS_API_ROUTE (Route): The instance logs API route.</span>
+<span class="sd">        UPLOAD_AVATAR_API_ROUTE (Route): The upload instance avatar API route.</span>
+<span class="sd">        UPLOAD_BANNER_API_ROUTE (Route): The upload instance banner API route.</span>
+<span class="sd">        UPDATE_SERVER_INFO_API_ROUTE (Route): The update instance info API route.</span>
+<span class="sd">        USER_REGISTRATIONS_CHART_API_ROUTE (Route): The user registrations chart API route.</span>
+<span class="sd">        MESSAGE_ACTIVITY_CHART_API_ROUTE (Route): The message activity chart API route.</span>
+<span class="sd">        ONLINE_USERS_CHART_API_ROUTE (Route): The online users chart API route.</span>
+<span class="sd">        CHANNEL_CREATION_CHART_API_ROUTE (Route): The channel creation chart API route.</span>
+<span class="sd">        USER_STATUS_CHART_API_ROUTE (Route): The user status chart API route.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">API_ROUTES</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Route</span><span class="p">]</span> <span class="o">=</span> <span class="n">system_routes</span>
+
+    <span class="n">LATEST_RELEASE_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">SERVER_STATS_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">SERVER_INFO_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">SERVER_USAGE_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    <span class="n">SERVER_OVERVIEW_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+    <span class="n">ACTIVITY_METRICS_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+    <span class="n">RECENT_ACTIVITY_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
+    <span class="n">SERVER_LOGS_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+    <span class="n">UPLOAD_AVATAR_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+    <span class="n">UPLOAD_BANNER_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span>
+    <span class="n">UPDATE_SERVER_INFO_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">USER_REGISTRATIONS_CHART_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">MESSAGE_ACTIVITY_CHART_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span>
+    <span class="n">ONLINE_USERS_CHART_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">12</span><span class="p">]</span>
+    <span class="n">CHANNEL_CREATION_CHART_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">13</span><span class="p">]</span>
+    <span class="n">USER_STATUS_CHART_API_ROUTE</span><span class="p">:</span> <span class="n">Route</span> <span class="o">=</span> <span class="n">system_routes</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">SystemOptions</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the System object with the given options.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            options (SystemOptions): The options for the System object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">options</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">host</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">instance_url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance_url</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">instance_url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">auth_token</span>
+
+<div class="viewcode-block" id="System.get_server_info">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_server_info">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_server_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get comprehensive instance configuration information.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Instance information including settings and configuration.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; instance_info = client.system.get_instance_info()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SERVER_INFO_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ServerError</span><span class="p">(</span><span class="s2">&quot;Failed to fetch instance information&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;server_info&quot;</span><span class="p">,</span> <span class="p">{})</span></div>
+
+
+<div class="viewcode-block" id="System.get_instance_info">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_instance_info">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_instance_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preferred alias for `get_server_info()` when referring to the home instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_server_info</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="System.update_server_info">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.update_server_info">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_server_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Update home-instance configuration settings. Server Owner only.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            **kwargs: Instance settings to update. The backend currently expects</span>
+<span class="sd">                `server_name` and `server_description`, but `instance_name` and</span>
+<span class="sd">                `instance_description` are accepted here as SDK aliases.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; client.system.update_instance_info(</span>
+<span class="sd">                ...     server_name=&quot;My Instance&quot;,</span>
+<span class="sd">                ...     server_description=&quot;A great instance&quot;</span>
+<span class="sd">                ... )</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">field_aliases</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;instance_name&quot;</span><span class="p">:</span> <span class="s2">&quot;server_name&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;instance_description&quot;</span><span class="p">:</span> <span class="s2">&quot;server_description&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">allowed_fields</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s1">&#39;server_name&#39;</span><span class="p">,</span> <span class="s1">&#39;server_description&#39;</span><span class="p">,</span> <span class="s1">&#39;is_private&#39;</span><span class="p">,</span> <span class="s1">&#39;max_users&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;max_message_length&#39;</span><span class="p">,</span> <span class="s1">&#39;max_image_size&#39;</span><span class="p">,</span> <span class="s1">&#39;max_video_size&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;max_sticker_size&#39;</span><span class="p">,</span> <span class="s1">&#39;max_gif_size&#39;</span>
+        <span class="p">]</span>
+
+        <span class="n">update_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">field</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">field</span> <span class="o">=</span> <span class="n">field_aliases</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">allowed_fields</span><span class="p">:</span>
+                <span class="n">update_data</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">update_data</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No valid fields provided. Allowed: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">allowed_fields</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">,</span> <span class="o">**</span><span class="n">update_data</span><span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">UPDATE_SERVER_INFO_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can update instance settings.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ServerError</span><span class="p">(</span><span class="s2">&quot;Failed to update instance information&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="System.update_instance_info">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.update_instance_info">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_instance_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preferred alias for `update_server_info()` when referring to the home instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_server_info</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="System.get_server_usage">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_server_usage">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_server_usage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get real-time instance usage statistics (CPU, RAM, storage).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Instance usage metrics.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; usage = client.system.get_instance_usage()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">SERVER_USAGE_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{})</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ServerError</span><span class="p">(</span><span class="s2">&quot;Failed to fetch instance usage statistics&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;server_usage&quot;</span><span class="p">,</span> <span class="p">{})</span></div>
+
+
+<div class="viewcode-block" id="System.get_instance_usage">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_instance_usage">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_instance_usage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preferred alias for `get_server_usage()` when referring to the home instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_server_usage</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="System.get_server_stats">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_server_stats">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_server_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get comprehensive instance statistics.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Instance statistics including users, channels, and messages.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; stats = client.system.get_instance_stats()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SERVER_STATS_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;statistics&quot;</span><span class="p">,</span> <span class="p">{})</span></div>
+
+
+<div class="viewcode-block" id="System.get_instance_stats">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_instance_stats">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_instance_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preferred alias for `get_server_stats()` when referring to the home instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_server_stats</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="System.get_server_overview">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_server_overview">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_server_overview</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get comprehensive home-instance overview data for the control panel.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Instance overview statistics.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; overview = client.system.get_instance_overview()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SERVER_OVERVIEW_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only administrators can access server overview.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;server_overview&quot;</span><span class="p">,</span> <span class="p">{})</span></div>
+
+
+<div class="viewcode-block" id="System.get_instance_overview">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_instance_overview">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_instance_overview</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preferred alias for `get_server_overview()` when referring to the home instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_server_overview</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="System.get_activity_metrics">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_activity_metrics">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_activity_metrics</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get current activity metrics for the control panel dashboard.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Activity metrics data.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; metrics = client.system.get_activity_metrics()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ACTIVITY_METRICS_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only administrators can access activity metrics.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;activity_metrics&quot;</span><span class="p">,</span> <span class="p">{})</span></div>
+
+
+<div class="viewcode-block" id="System.get_recent_activity">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_recent_activity">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_recent_activity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get recent activity events from the home instance.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            limit (int): Maximum number of activities to return.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list[dict]: List of recent activities.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; activities = client.system.get_recent_activity(limit=20)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">,</span>
+            <span class="s2">&quot;limit&quot;</span><span class="p">:</span> <span class="n">limit</span>
+        <span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">RECENT_ACTIVITY_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;activities&quot;</span><span class="p">,</span> <span class="p">[])</span></div>
+
+
+<div class="viewcode-block" id="System.get_server_logs">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_server_logs">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_server_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lines</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">search</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get home-instance logs with filtering options. Server Owner only.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            lines (int): Number of log lines to return (max 1000).</span>
+<span class="sd">            search (str): Search filter for log content.</span>
+<span class="sd">            level (str): Log level filter (DEBUG, INFO, WARNING, ERROR, CRITICAL).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Instance logs data.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; logs = client.system.get_instance_logs(lines=100, level=&quot;ERROR&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_required_permissions</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can access instance logs.&quot;</span><span class="p">)</span>
+
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">,</span>
+            <span class="s2">&quot;lines&quot;</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="n">search</span><span class="p">:</span>
+            <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;search&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">search</span>
+        <span class="k">if</span> <span class="n">level</span><span class="p">:</span>
+            <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;level&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">level</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">SERVER_LOGS_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can access instance logs.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ServerError</span><span class="p">(</span><span class="s2">&quot;Failed to fetch instance logs&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="System.get_instance_logs">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_instance_logs">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_instance_logs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lines</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">50</span><span class="p">,</span> <span class="n">search</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preferred alias for `get_server_logs()` when referring to the home instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_server_logs</span><span class="p">(</span><span class="n">lines</span><span class="o">=</span><span class="n">lines</span><span class="p">,</span> <span class="n">search</span><span class="o">=</span><span class="n">search</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="System.get_latest_release">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_latest_release">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_latest_release</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get information about the latest PufferBlow release.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Latest release information.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; release = client.system.get_latest_release()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">LATEST_RELEASE_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;release&quot;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Return fallback message if release info not available</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="s2">&quot;Release information not yet available&quot;</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="System.upload_server_avatar">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.upload_server_avatar">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">upload_server_avatar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">avatar_file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Upload the home instance avatar image. Server Owner only.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            avatar_file_path (str): Path to the home instance avatar image file.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The URL of the uploaded avatar.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; avatar_url = client.system.upload_instance_avatar(&quot;/path/to/avatar.jpg&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;System upload_server_avatar called with file_path=&#39;</span><span class="si">{</span><span class="n">avatar_file_path</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_required_permissions</span><span class="p">():</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;System upload_server_avatar failed: insufficient permissions&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can update the instance avatar.&quot;</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">avatar_file_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+                <span class="n">files</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;avatar&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="s1">&#39;image/jpeg&#39;</span><span class="p">)}</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;auth_token&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">}</span>
+
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Making POST request to: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">UPLOAD_AVATAR_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">UPLOAD_AVATAR_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+                    <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span>
+                    <span class="n">data</span><span class="o">=</span><span class="n">data</span>
+                <span class="p">)</span>
+
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Avatar upload response status: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">IOError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;System upload_server_avatar failed: could not open file &#39;</span><span class="si">{</span><span class="n">avatar_file_path</span><span class="si">}</span><span class="s2">&#39;: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Could not open file: </span><span class="si">{</span><span class="n">avatar_file_path</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;System upload_server_avatar failed: invalid auth token (400)&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;System upload_server_avatar failed: forbidden access (403)&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can update the instance avatar.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">201</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;System upload_server_avatar failed: instance error (</span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="si">}</span><span class="s2">) - Response: </span><span class="si">{</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">ServerError</span><span class="p">(</span><span class="s2">&quot;Avatar upload failed&quot;</span><span class="p">)</span>
+
+        <span class="n">avatar_url</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;avatar_url&quot;</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;System upload_server_avatar successful: avatar uploaded to </span><span class="si">{</span><span class="n">avatar_url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">avatar_url</span></div>
+
+
+<div class="viewcode-block" id="System.upload_instance_avatar">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.upload_instance_avatar">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">upload_instance_avatar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">avatar_file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preferred alias for `upload_server_avatar()` when referring to the home instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">upload_server_avatar</span><span class="p">(</span><span class="n">avatar_file_path</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="System.upload_server_banner">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.upload_server_banner">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">upload_server_banner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">banner_file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Upload the home instance banner image. Server Owner only.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            banner_file_path (str): Path to the home instance banner image file.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            str: The URL of the uploaded banner.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; banner_url = client.system.upload_instance_banner(&quot;/path/to/banner.jpg&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_has_required_permissions</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can update the instance banner.&quot;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">banner_file_path</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">files</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;banner&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">file</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="s1">&#39;image/jpeg&#39;</span><span class="p">)}</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;auth_token&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">}</span>
+
+            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">UPLOAD_BANNER_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+                <span class="n">files</span><span class="o">=</span><span class="n">files</span><span class="p">,</span>
+                <span class="n">data</span><span class="o">=</span><span class="n">data</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">403</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">NotAnAdminOrServerOwner</span><span class="p">(</span><span class="s2">&quot;Access forbidden. Only server owners can update the instance banner.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">201</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ServerError</span><span class="p">(</span><span class="s2">&quot;Banner upload failed&quot;</span><span class="p">)</span>
+
+        <span class="n">banner_url</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;banner_url&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">banner_url</span></div>
+
+
+<div class="viewcode-block" id="System.upload_instance_banner">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.upload_instance_banner">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">upload_instance_banner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">banner_file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Preferred alias for `upload_server_banner()` when referring to the home instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">upload_server_banner</span><span class="p">(</span><span class="n">banner_file_path</span><span class="p">)</span></div>
+
+
+    <span class="c1"># Chart methods</span>
+<div class="viewcode-block" id="System.get_user_registration_chart">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_user_registration_chart">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_user_registration_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get user registration chart data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            period (str): Time period (daily, weekly, monthly, 24h, 7d).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Chart data for user registrations.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; chart = client.system.get_user_registration_chart(&quot;weekly&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">period</span><span class="p">:</span>
+            <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;period&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">period</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">USER_REGISTRATIONS_CHART_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;chart_data&quot;</span><span class="p">,</span> <span class="p">{})</span></div>
+
+
+<div class="viewcode-block" id="System.get_message_activity_chart">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_message_activity_chart">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_message_activity_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get message activity chart data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            period (str): Time period.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Chart data for message activity.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">period</span><span class="p">:</span>
+            <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;period&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">period</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">MESSAGE_ACTIVITY_CHART_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;chart_data&quot;</span><span class="p">,</span> <span class="p">{})</span></div>
+
+
+<div class="viewcode-block" id="System.get_online_users_chart">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_online_users_chart">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_online_users_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get online users chart data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            period (str): Time period.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Chart data for online users.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">period</span><span class="p">:</span>
+            <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;period&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">period</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ONLINE_USERS_CHART_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;chart_data&quot;</span><span class="p">,</span> <span class="p">{})</span></div>
+
+
+<div class="viewcode-block" id="System.get_channel_creation_chart">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_channel_creation_chart">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_channel_creation_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">period</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get channel creation chart data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            period (str): Time period.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Chart data for channel creation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">period</span><span class="p">:</span>
+            <span class="n">payload</span><span class="p">[</span><span class="s2">&quot;period&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">period</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">CHANNEL_CREATION_CHART_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;chart_data&quot;</span><span class="p">,</span> <span class="p">{})</span></div>
+
+
+<div class="viewcode-block" id="System.get_user_status_chart">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.System.get_user_status_chart">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_user_status_chart</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get user status distribution chart data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            dict: Chart data for user status distribution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">payload</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;auth_token&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span><span class="p">}</span>
+
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">USER_STATUS_CHART_API_ROUTE</span><span class="o">.</span><span class="n">api_route</span><span class="p">,</span>
+            <span class="n">json</span><span class="o">=</span><span class="n">payload</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">400</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">BadAuthToken</span><span class="p">(</span><span class="s2">&quot;Invalid auth token&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;chart_data&quot;</span><span class="p">,</span> <span class="p">{})</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_has_required_permissions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if the current user has required permissions for admin operations.</span>
+<span class="sd">        This is a basic check - the server will do the actual validation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+
+
+<div class="viewcode-block" id="SystemOptions">
+<a class="viewcode-back" href="../../pypufferblow.system.html#pypufferblow.system.SystemOptions">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">SystemOptions</span><span class="p">(</span><span class="n">OptionsModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    System options for configuring system operations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">auth_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the instance.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span> <span class="o">=</span> <span class="n">auth_token</span></div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ramsy0dev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, ramsy0dev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

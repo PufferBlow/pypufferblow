@@ -1,0 +1,917 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pypufferblow.client &#8212; pypufferblow 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=a1637f0b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pypufferblow/client';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pypufferblow 0.1.0 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to pypufferblow’s documentation!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../client.html">Client Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../users.html">Users Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../channels.html">Channels Module</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tests/tests.html">Tests</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_client.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_users.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_channels.html">Test Client Module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exceptions.html">Exceptions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow/issues/new?title=Issue%20on%20page%20%2F_modules/pypufferblow/client.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for pypufferblow.client</h1><div class="highlight"><pre>
+<span></span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;Client&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ClientOptions&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># Channels class</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.channels</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Channels</span><span class="p">,</span>
+    <span class="n">ChannelsOptions</span>
+<span class="p">)</span>
+
+<span class="c1"># WebSocket class</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.websocket</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GlobalWebSocket</span><span class="p">,</span>
+    <span class="n">ChannelWebSocket</span><span class="p">,</span>
+    <span class="n">create_global_websocket</span><span class="p">,</span>
+    <span class="n">create_channel_websocket</span>
+<span class="p">)</span>
+
+<span class="c1"># User class</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.users</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Users</span><span class="p">,</span>
+    <span class="n">UsersOptions</span>
+<span class="p">)</span>
+
+<span class="c1"># Storage class</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.storage</span><span class="w"> </span><span class="kn">import</span> <span class="n">Storage</span><span class="p">,</span> <span class="n">StorageOptions</span>
+
+<span class="c1"># System class</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.system</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">System</span><span class="p">,</span>
+    <span class="n">SystemOptions</span>
+<span class="p">)</span>
+
+<span class="c1"># Admin class</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.admin</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Admin</span><span class="p">,</span>
+    <span class="n">AdminOptions</span>
+<span class="p">)</span>
+<span class="c1"># Decentralized auth class</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.decentralized_auth</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DecentralizedAuth</span><span class="p">,</span>
+    <span class="n">DecentralizedAuthOptions</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># Federation class</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.federation</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Federation</span><span class="p">,</span>
+    <span class="n">FederationOptions</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Models</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.models.user_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">UserModel</span>
+
+<span class="c1"># Routes</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.routes</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">users_routes</span><span class="p">,</span>
+    <span class="n">channels_routes</span><span class="p">,</span>
+    <span class="n">storage_routes</span><span class="p">,</span>
+    <span class="n">system_routes</span><span class="p">,</span>
+    <span class="n">admin_routes</span><span class="p">,</span>
+    <span class="n">decentralized_auth_routes</span><span class="p">,</span>
+    <span class="n">federation_routes</span><span class="p">,</span>
+    <span class="n">direct_messages_routes</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Models</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.models.options_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">OptionsModel</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.models.route_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">Route</span>
+
+<span class="c1"># Exceptions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">UsernameNotFound</span><span class="p">,</span>
+    <span class="n">InvalidPassword</span><span class="p">,</span>
+    <span class="n">FaildToInitChannels</span>
+<span class="p">)</span>
+
+<div class="viewcode-block" id="Client">
+<a class="viewcode-back" href="../../pypufferblow.client.html#pypufferblow.client.Client">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">Client</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The pufferblow client object.</span>
+
+<span class="sd">    This class provides methods to interact with the pufferblow API, including user and channel management.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        users (Users): The Users object for managing users.</span>
+<span class="sd">        channels (Channels): The Channels object for managing channels.</span>
+<span class="sd">        storage (Storage): The storage object for file management operations.</span>
+<span class="sd">        system (System): The System object for instance monitoring and community configuration.</span>
+<span class="sd">        admin (Admin): The Admin object for administration operations.</span>
+<span class="sd">        websocket (GlobalWebSocket): The global websocket for real-time messaging.</span>
+
+<span class="sd">    Example:</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            &gt;&gt;&gt; from pypufferblow.client import Client, ClientOptions</span>
+<span class="sd">            &gt;&gt;&gt; client_options = ClientOptions(</span>
+<span class="sd">            ...    instance=&quot;https://chat.example.org&quot;,</span>
+<span class="sd">            ...    username=&quot;user1&quot;,</span>
+<span class="sd">            ...    password=&quot;SUPER_SERCRET_PASSWORD&quot;</span>
+<span class="sd">            ... )</span>
+<span class="sd">            &gt;&gt;&gt; client = Client(client_options)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">users</span><span class="p">:</span> <span class="n">Users</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">channels</span><span class="p">:</span> <span class="n">Channels</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">storage</span><span class="p">:</span> <span class="n">Storage</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">system</span><span class="p">:</span> <span class="n">System</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">admin</span><span class="p">:</span> <span class="n">Admin</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">decentralized_auth</span><span class="p">:</span> <span class="n">DecentralizedAuth</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">federation</span><span class="p">:</span> <span class="n">Federation</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">websocket</span><span class="p">:</span> <span class="n">GlobalWebSocket</span> <span class="o">=</span> <span class="kc">None</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="n">ClientOptions</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initialize the Client object with the given options.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            options (ClientOptions): The options for the client, including the</span>
+<span class="sd">                home instance address plus user credentials.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            None.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options</span> <span class="o">=</span> <span class="n">options</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scheme</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">scheme</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">host</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">host</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">port</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">instance_url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instance_url</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">instance_url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">api_base_url</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">api_base_url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ws_base_url</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">ws_base_url</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">username</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">options</span><span class="o">.</span><span class="n">password</span>
+
+        <span class="c1"># Create Users object</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_build_routes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">route_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Route</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Route</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="n">Route</span><span class="p">(</span>
+                <span class="n">api_route</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">api_base_url</span><span class="si">}{</span><span class="n">route</span><span class="o">.</span><span class="n">api_route</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">methods</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">route</span><span class="o">.</span><span class="n">methods</span><span class="p">),</span>
+                <span class="n">forward_to</span><span class="o">=</span><span class="n">route</span><span class="o">.</span><span class="n">forward_to</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">route</span> <span class="ow">in</span> <span class="n">route_list</span>
+        <span class="p">]</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_assign_routes</span><span class="p">(</span><span class="n">target</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">routes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Route</span><span class="p">],</span> <span class="o">*</span><span class="n">attribute_names</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">target</span><span class="o">.</span><span class="n">API_ROUTES</span> <span class="o">=</span> <span class="n">routes</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">attribute_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">attribute_names</span><span class="p">):</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">attribute_name</span><span class="p">,</span> <span class="n">routes</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
+
+    
+<div class="viewcode-block" id="Client.users">
+<a class="viewcode-back" href="../../pypufferblow.client.html#pypufferblow.client.Client.users">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">users</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Users</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a Users object for communicating with the users routes.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Users: The Users object for managing users.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">users</span> <span class="o">=</span> <span class="n">Users</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">to_users_options</span><span class="p">())</span>
+        <span class="n">user_routes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_routes</span><span class="p">(</span><span class="n">users_routes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assign_routes</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="p">,</span>
+            <span class="n">user_routes</span><span class="p">,</span>
+            <span class="s2">&quot;SIGNIN_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SIGNUP_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;PROFILE_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;RESET_AUTH_TOKEN_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;LIST_USERS_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;UPLOAD_AVATAR_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;UPLOAD_BANNER_API_ROUTE&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span></div>
+
+
+<div class="viewcode-block" id="Client.channels">
+<a class="viewcode-back" href="../../pypufferblow.client.html#pypufferblow.client.Client.channels">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">channels</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Channels</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a Channels object for communicating with the channels routes.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Channels: The Channels object for managing channels.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">user</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">FaildToInitChannels</span><span class="p">(</span><span class="s2">&quot;Failed to initialize the Channels object.&quot;</span>
+                                        <span class="s2">&quot;Make sure the call on the &#39;Users.sign_in&#39; or &#39;Users.sign_up&#39; method to create a user model object.&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">user</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">channels</span> <span class="o">=</span> <span class="n">Channels</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">to_channels_options</span><span class="p">())</span>
+        <span class="n">channel_routes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_routes</span><span class="p">(</span><span class="n">channels_routes</span><span class="p">)</span>
+        <span class="n">storage_api_routes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_routes</span><span class="p">(</span><span class="n">storage_routes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assign_routes</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="p">,</span>
+            <span class="n">channel_routes</span><span class="p">,</span>
+            <span class="s2">&quot;LIST_CHANNELS_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;CREATE_CHANNEL_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;DELETE_CHANNEL_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ADD_USER_TO_CHANNEL_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;REMOVE_USER_FROM_CHANNEL_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;LOAD_MESSAGES_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SEND_MESSAGE_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;MARK_MESSAGE_AS_READ_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;DELETE_MESSAGE_API_ROUTE&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">STORAGE_API_ROUTES</span> <span class="o">=</span> <span class="n">storage_api_routes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">channels</span><span class="o">.</span><span class="n">STORAGE_UPLOAD_API_ROUTE</span> <span class="o">=</span> <span class="n">storage_api_routes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">channels</span></div>
+
+
+<div class="viewcode-block" id="Client.storage">
+<a class="viewcode-back" href="../../pypufferblow.client.html#pypufferblow.client.Client.storage">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">storage</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Storage</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a storage object for file management operations.</span>
+
+<span class="sd">        Storage operations require user authentication, so make sure to call</span>
+<span class="sd">        users().sign_in() or users().sign_up() first.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Storage: The storage object for file operations.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; # First authenticate</span>
+<span class="sd">                &gt;&gt;&gt; client.users.sign_in()</span>
+<span class="sd">                &gt;&gt;&gt; storage = client.storage()</span>
+<span class="sd">                &gt;&gt;&gt; files = storage.list_files(&quot;avatars&quot;)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">is_signed_in</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;Storage operations require user authentication. &quot;</span>
+                <span class="s2">&quot;Please call users().sign_in() or users().sign_up() first.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">storage_options</span> <span class="o">=</span> <span class="n">StorageOptions</span><span class="p">(</span>
+            <span class="n">instance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_url</span><span class="p">,</span>
+            <span class="n">auth_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">storage</span> <span class="o">=</span> <span class="n">Storage</span><span class="p">(</span><span class="n">storage_options</span><span class="p">)</span>
+        <span class="n">storage_api_routes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_routes</span><span class="p">(</span><span class="n">storage_routes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assign_routes</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">storage</span><span class="p">,</span>
+            <span class="n">storage_api_routes</span><span class="p">,</span>
+            <span class="s2">&quot;UPLOAD_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;LIST_FILES_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;DELETE_FILE_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;FILE_INFO_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;CLEANUP_ORPHANED_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SERVE_FILE_API_ROUTE&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">storage</span></div>
+
+<div class="viewcode-block" id="Client.system">
+<a class="viewcode-back" href="../../pypufferblow.client.html#pypufferblow.client.Client.system">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">system</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">System</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a System object for home-instance monitoring and configuration operations.</span>
+
+<span class="sd">        The System operations may require user authentication for certain methods, so make sure to call users().sign_in() or users().sign_up() first.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            System: The System object for monitoring operations.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; # First authenticate</span>
+<span class="sd">                &gt;&gt;&gt; client.users.sign_in()</span>
+<span class="sd">                &gt;&gt;&gt; system = client.system()</span>
+<span class="sd">                &gt;&gt;&gt; stats = system.get_instance_stats()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">is_signed_in</span><span class="p">:</span>
+            <span class="n">auth_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">auth_token</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="n">system_options</span> <span class="o">=</span> <span class="n">SystemOptions</span><span class="p">(</span>
+            <span class="n">instance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_url</span><span class="p">,</span>
+            <span class="n">auth_token</span><span class="o">=</span><span class="n">auth_token</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system</span> <span class="o">=</span> <span class="n">System</span><span class="p">(</span><span class="n">system_options</span><span class="p">)</span>
+        <span class="n">system_api_routes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_routes</span><span class="p">(</span><span class="n">system_routes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assign_routes</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="p">,</span>
+            <span class="n">system_api_routes</span><span class="p">,</span>
+            <span class="s2">&quot;LATEST_RELEASE_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SERVER_STATS_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SERVER_INFO_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SERVER_USAGE_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SERVER_OVERVIEW_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ACTIVITY_METRICS_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;RECENT_ACTIVITY_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;SERVER_LOGS_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;UPLOAD_AVATAR_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;UPLOAD_BANNER_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;USER_REGISTRATIONS_CHART_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;MESSAGE_ACTIVITY_CHART_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ONLINE_USERS_CHART_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;CHANNEL_CREATION_CHART_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;USER_STATUS_CHART_API_ROUTE&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">UPDATE_SERVER_INFO_API_ROUTE</span> <span class="o">=</span> <span class="n">system_api_routes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">system</span></div>
+
+
+<div class="viewcode-block" id="Client.admin">
+<a class="viewcode-back" href="../../pypufferblow.client.html#pypufferblow.client.Client.admin">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">admin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Admin</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create an Admin object for administration operations.</span>
+
+<span class="sd">        The Admin operations require elevated permissions on the home instance,</span>
+<span class="sd">        so make sure to be an admin or server owner and call users().sign_in() or users().sign_up() first.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Admin: The Admin object for administration operations.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; # First authenticate as admin</span>
+<span class="sd">                &gt;&gt;&gt; client.users.sign_in()</span>
+<span class="sd">                &gt;&gt;&gt; admin = client.admin()</span>
+<span class="sd">                &gt;&gt;&gt; tasks = admin.get_background_tasks_status()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">is_signed_in</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Admin operations require user authentication. Please call users().sign_in() or users().sign_up() first.&quot;</span><span class="p">)</span>
+
+        <span class="n">admin_options</span> <span class="o">=</span> <span class="n">AdminOptions</span><span class="p">(</span>
+            <span class="n">instance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_url</span><span class="p">,</span>
+            <span class="n">auth_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">admin</span> <span class="o">=</span> <span class="n">Admin</span><span class="p">(</span><span class="n">admin_options</span><span class="p">)</span>
+        <span class="n">admin_api_routes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_routes</span><span class="p">(</span><span class="n">admin_routes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assign_routes</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">admin</span><span class="p">,</span>
+            <span class="n">admin_api_routes</span><span class="p">,</span>
+            <span class="s2">&quot;LIST_BLOCKED_IPS_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;BLOCK_IP_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;UNBLOCK_IP_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;BACKGROUND_TASKS_STATUS_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;BACKGROUND_TASKS_RUN_API_ROUTE&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">admin</span></div>
+
+
+<div class="viewcode-block" id="Client.websocket">
+<a class="viewcode-back" href="../../pypufferblow.client.html#pypufferblow.client.Client.websocket">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">websocket</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GlobalWebSocket</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a GlobalWebSocket object for real-time messaging.</span>
+
+<span class="sd">        The websocket requires user authentication, so make sure to call users().sign_in() or users().sign_up() first.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            GlobalWebSocket: The GlobalWebSocket object for real-time updates.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; # First authenticate</span>
+<span class="sd">                &gt;&gt;&gt; client.users.sign_in()</span>
+<span class="sd">                &gt;&gt;&gt; ws = client.websocket()</span>
+<span class="sd">                &gt;&gt;&gt; def on_message(msg):</span>
+<span class="sd">                ...     print(f&quot;Received: {msg.message}&quot;)</span>
+<span class="sd">                &gt;&gt;&gt; ws.on_message = on_message</span>
+<span class="sd">                &gt;&gt;&gt; ws.connect()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">is_signed_in</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;WebSocket requires user authentication. Please call users().sign_in() or users().sign_up() first.&quot;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">websocket</span> <span class="o">=</span> <span class="n">create_global_websocket</span><span class="p">(</span>
+            <span class="n">auth_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="p">,</span>
+            <span class="n">instance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_url</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">websocket</span></div>
+
+
+<div class="viewcode-block" id="Client.decentralized_auth">
+<a class="viewcode-back" href="../../pypufferblow.client.html#pypufferblow.client.Client.decentralized_auth">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decentralized_auth</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DecentralizedAuth</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a DecentralizedAuth object for node-aware auth flow.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">is_signed_in</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;Decentralized auth requires user authentication. Please call users().sign_in() first.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">options</span> <span class="o">=</span> <span class="n">DecentralizedAuthOptions</span><span class="p">(</span>
+            <span class="n">instance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_url</span><span class="p">,</span>
+            <span class="n">auth_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decentralized_auth</span> <span class="o">=</span> <span class="n">DecentralizedAuth</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+        <span class="n">decentralized_auth_api_routes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_routes</span><span class="p">(</span><span class="n">decentralized_auth_routes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_assign_routes</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">decentralized_auth</span><span class="p">,</span>
+            <span class="n">decentralized_auth_api_routes</span><span class="p">,</span>
+            <span class="s2">&quot;CHALLENGE_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;VERIFY_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;INTROSPECT_API_ROUTE&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;REVOKE_API_ROUTE&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">decentralized_auth</span></div>
+
+
+<div class="viewcode-block" id="Client.federation">
+<a class="viewcode-back" href="../../pypufferblow.client.html#pypufferblow.client.Client.federation">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">federation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Federation</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a Federation object for ActivityPub and cross-instance DM operations.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">is_signed_in</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
+                <span class="s2">&quot;Federation operations require user authentication. Please call users().sign_in() first.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">options</span> <span class="o">=</span> <span class="n">FederationOptions</span><span class="p">(</span>
+            <span class="n">instance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_url</span><span class="p">,</span>
+            <span class="n">auth_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">federation</span> <span class="o">=</span> <span class="n">Federation</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+        <span class="n">federation_api_routes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_routes</span><span class="p">(</span><span class="n">federation_routes</span><span class="p">)</span>
+        <span class="n">direct_message_api_routes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_routes</span><span class="p">(</span><span class="n">direct_messages_routes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">federation</span><span class="o">.</span><span class="n">API_ROUTES</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">federation_api_routes</span><span class="p">,</span> <span class="o">*</span><span class="n">direct_message_api_routes</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">federation</span><span class="o">.</span><span class="n">FOLLOW_REMOTE_API_ROUTE</span> <span class="o">=</span> <span class="n">federation_api_routes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">federation</span><span class="o">.</span><span class="n">SEND_DIRECT_MESSAGE_API_ROUTE</span> <span class="o">=</span> <span class="n">direct_message_api_routes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">federation</span><span class="o">.</span><span class="n">LOAD_DIRECT_MESSAGES_API_ROUTE</span> <span class="o">=</span> <span class="n">direct_message_api_routes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">federation</span></div>
+
+
+<div class="viewcode-block" id="Client.create_channel_websocket">
+<a class="viewcode-back" href="../../pypufferblow.client.html#pypufferblow.client.Client.create_channel_websocket">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_channel_websocket</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChannelWebSocket</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a ChannelWebSocket object for a specific channel&#39;s real-time messaging.</span>
+
+<span class="sd">        The websocket requires user authentication.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            channel_id (str): The channel ID to connect to.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ChannelWebSocket: The ChannelWebSocket object for the specific channel.</span>
+
+<span class="sd">        Example:</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                &gt;&gt;&gt; # First authenticate</span>
+<span class="sd">                &gt;&gt;&gt; client.users.sign_in()</span>
+<span class="sd">                &gt;&gt;&gt; ws = client.create_channel_websocket(&quot;channel_id&quot;)</span>
+<span class="sd">                &gt;&gt;&gt; ws.connect()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">is_signed_in</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;WebSocket requires user authentication. Please call users().sign_in() or users().sign_up() first.&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">create_channel_websocket</span><span class="p">(</span>
+            <span class="n">auth_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">users</span><span class="o">.</span><span class="n">user</span><span class="o">.</span><span class="n">auth_token</span><span class="p">,</span>
+            <span class="n">instance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_url</span><span class="p">,</span>
+            <span class="n">channel_id</span><span class="o">=</span><span class="n">channel_id</span>
+        <span class="p">)</span></div>
+</div>
+
+
+<div class="viewcode-block" id="ClientOptions">
+<a class="viewcode-back" href="../../pypufferblow.client.html#pypufferblow.client.ClientOptions">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ClientOptions</span><span class="p">(</span><span class="n">OptionsModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ClientOptions class used for managing the Client object options.</span>
+
+<span class="sd">    Prefer `instance=&quot;https://chat.example.org&quot;` for federated/home-instance</span>
+<span class="sd">    deployments. `host` and `port` remain available for compatibility.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">:</span> <span class="n">UserModel</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize the instance.&quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span>
+        
+<div class="viewcode-block" id="ClientOptions.to_users_options">
+<a class="viewcode-back" href="../../pypufferblow.client.html#pypufferblow.client.ClientOptions.to_users_options">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_users_options</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">UsersOptions</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert to a UsersOptions object.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            UserOptions: The UserOptions object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">UsersOptions</span><span class="p">(</span>
+            <span class="n">instance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_url</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">password</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ClientOptions.to_channels_options">
+<a class="viewcode-back" href="../../pypufferblow.client.html#pypufferblow.client.ClientOptions.to_channels_options">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_channels_options</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChannelsOptions</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert to ChannelsOptions object.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            ChannelsOptions: The ChannelsOptions object.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">ChannelsOptions</span><span class="p">(</span>
+            <span class="n">instance</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">instance_url</span><span class="p">,</span>
+            <span class="n">username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">username</span><span class="p">,</span>
+            <span class="n">password</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">,</span>
+            <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span>
+        <span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ramsy0dev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, ramsy0dev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
