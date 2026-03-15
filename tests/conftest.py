@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 from urllib.parse import urlparse
 from uuid import uuid4
 
@@ -29,6 +30,7 @@ class MockResponse:
     status_code: int
     payload: dict | None = None
     text: str = ""
+    content: bytes = b""
 
     def json(self) -> dict:
         return self.payload or {}
@@ -38,6 +40,7 @@ class MockSDKBackend:
     def __init__(self) -> None:
         self.users_by_username: dict[str, dict] = {}
         self.tokens: dict[str, str] = {}
+        self.storage_files: dict[str, dict] = {}
         self.channels: list[dict] = [
             {
                 "channel_id": "general",
@@ -109,6 +112,16 @@ class MockSDKBackend:
             users = [self._public_user_payload(user) for user in self.users_by_username.values()]
             return MockResponse(200, {"users": users})
 
+        if "/api/v1/storage/file/" in path:
+            if params and params.get("auth_token") and self._authenticate(params.get("auth_token")) is None:
+                return MockResponse(403, text="forbidden")
+
+            suffix = path.split("/api/v1/storage/file/", 1)[1].lstrip("/")
+            for record in self.storage_files.values():
+                if record["filename"] == Path(suffix).name:
+                    return MockResponse(200, content=record["content"])
+            return MockResponse(404, text="not found")
+
         raise AssertionError(f"Unhandled GET request in tests: {url}")
 
     def post(self, url, json=None, data=None, files=None, **kwargs):
@@ -163,6 +176,87 @@ class MockSDKBackend:
             if auth_username is None:
                 return MockResponse(400, {"detail": "bad auth token"})
             return MockResponse(200, {"channels": list(self.channels)})
+
+        if path.endswith("/api/v1/storage/upload"):
+            auth_username = self._authenticate((data or {}).get("auth_token"))
+            if auth_username is None:
+                return MockResponse(400, {"detail": "bad auth token"})
+
+            file_tuple = (files or {}).get("file")
+            if not file_tuple:
+                return MockResponse(400, {"detail": "missing file"})
+
+            filename, file_obj = file_tuple[0], file_tuple[1]
+            file_obj.seek(0)
+            content = file_obj.read()
+            file_hash = f"{uuid4().hex}{uuid4().hex}"
+            file_url = f"/storage/{file_hash}"
+            directory = (data or {}).get("directory", "files")
+            self.storage_files[file_url] = {
+                "url": file_url,
+                "filename": Path(filename).name,
+                "size": len(content),
+                "type": "application/octet-stream",
+                "subdirectory": directory,
+                "content": content,
+            }
+            return MockResponse(201, {"url": file_url, "is_duplicate": False})
+
+        if path.endswith("/api/v1/storage/files"):
+            auth_username = self._authenticate((json or {}).get("auth_token"))
+            if auth_username is None:
+                return MockResponse(400, {"detail": "bad auth token"})
+
+            directory = (json or {}).get("directory", "all")
+            files_payload = [
+                {
+                    key: value
+                    for key, value in record.items()
+                    if key != "content"
+                }
+                for record in self.storage_files.values()
+                if directory == "all" or record["subdirectory"] == directory
+            ]
+            return MockResponse(200, {"files": files_payload})
+
+        if path.endswith("/api/v1/storage/file-info"):
+            auth_username = self._authenticate((json or {}).get("auth_token"))
+            if auth_username is None:
+                return MockResponse(400, {"detail": "bad auth token"})
+
+            file_url = (json or {}).get("file_url")
+            record = self.storage_files.get(file_url)
+            if record is None:
+                return MockResponse(404, {"detail": "file not found"})
+
+            return MockResponse(
+                200,
+                {
+                    "file_info": {
+                        key: value
+                        for key, value in record.items()
+                        if key != "content"
+                    }
+                },
+            )
+
+        if path.endswith("/api/v1/storage/delete-file"):
+            auth_username = self._authenticate((json or {}).get("auth_token"))
+            if auth_username is None:
+                return MockResponse(400, {"detail": "bad auth token"})
+
+            file_url = (json or {}).get("file_url")
+            if file_url not in self.storage_files:
+                return MockResponse(404, {"detail": "file not found"})
+
+            self.storage_files.pop(file_url, None)
+            return MockResponse(200, {"detail": "deleted"})
+
+        if path.endswith("/api/v1/storage/cleanup-orphaned"):
+            auth_username = self._authenticate((json or {}).get("auth_token"))
+            if auth_username is None:
+                return MockResponse(400, {"detail": "bad auth token"})
+            return MockResponse(200, {"deleted_count": 0})
 
         raise AssertionError(f"Unhandled POST request in tests: {url}")
 

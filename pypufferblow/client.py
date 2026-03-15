@@ -26,11 +26,8 @@ from pypufferblow.users import (
     UsersOptions
 )
 
-# CDN class
-from pypufferblow.cdn import (
-    CDN,
-    CDNOptions
-)
+# Storage class
+from pypufferblow.storage import Storage, StorageOptions
 
 # System class
 from pypufferblow.system import (
@@ -89,7 +86,7 @@ class Client:
     Attributes:
         users (Users): The Users object for managing users.
         channels (Channels): The Channels object for managing channels.
-        cdn (CDN): The CDN object for file management operations.
+        storage (Storage): The storage object for file management operations.
         system (System): The System object for instance monitoring and community configuration.
         admin (Admin): The Admin object for administration operations.
         websocket (GlobalWebSocket): The global websocket for real-time messaging.
@@ -107,7 +104,7 @@ class Client:
     """
     users: Users = None
     channels: Channels = None
-    cdn: CDN = None
+    storage: Storage = None
     system: System = None
     admin: Admin = None
     decentralized_auth: DecentralizedAuth = None
@@ -214,34 +211,38 @@ class Client:
 
         return self.channels
 
-    def cdn(self) -> CDN:
+    def storage(self) -> Storage:
         """
-        Create a CDN object for file management operations.
+        Create a storage object for file management operations.
 
-        The CDN operations require user authentication, so make sure to call users().sign_in() or users().sign_up() first.
+        Storage operations require user authentication, so make sure to call
+        users().sign_in() or users().sign_up() first.
 
         Returns:
-            CDN: The CDN object for file operations.
+            Storage: The storage object for file operations.
 
         Example:
             .. code-block:: python
 
                 >>> # First authenticate
                 >>> client.users.sign_in()
-                >>> cdn = client.cdn()
-                >>> files = cdn.list_files("avatars")
+                >>> storage = client.storage()
+                >>> files = storage.list_files("avatars")
         """
         if not self.users.is_signed_in:
-            raise Exception("CDN operations require user authentication. Please call users().sign_in() or users().sign_up() first.")
+            raise Exception(
+                "Storage operations require user authentication. "
+                "Please call users().sign_in() or users().sign_up() first."
+            )
 
-        cdn_options = CDNOptions(
+        storage_options = StorageOptions(
             instance=self.instance_url,
-            auth_token=self.users.user.auth_token
+            auth_token=self.users.user.auth_token,
         )
-        self.cdn = CDN(cdn_options)
+        self.storage = Storage(storage_options)
         storage_api_routes = self._build_routes(storage_routes)
         self._assign_routes(
-            self.cdn,
+            self.storage,
             storage_api_routes,
             "UPLOAD_API_ROUTE",
             "LIST_FILES_API_ROUTE",
@@ -251,8 +252,7 @@ class Client:
             "SERVE_FILE_API_ROUTE",
         )
 
-        return self.cdn
-
+        return self.storage
     def system(self) -> System:
         """
         Create a System object for home-instance monitoring and configuration operations.
