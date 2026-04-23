@@ -21,7 +21,6 @@ from pypufferblow.exceptions import (
     BadAuthToken,
     NotAnAdminOrServerOwner,
     FileNotFound,
-    UnsupportedFileType
 )
 
 # Models
@@ -67,14 +66,15 @@ class CDN:
 
     def upload_file(self, file_path: str, directory: str = "uploads") -> str:
         """
-        Upload a file to the CDN.
+        Upload a file to storage.
 
         Args:
             file_path (str): Path to the file to upload.
-            directory (str): Target directory (uploads, avatars, banners, attachments, stickers, gifs).
+            directory (str): Target directory. Allowed: uploads, avatars, banners, attachments,
+                stickers, gifs, images, videos, audio, documents, files, config.
 
         Returns:
-            str: The URL of the uploaded file.
+            str: The hash-based URL of the uploaded file (/storage/{hash}).
 
         Example:
             .. code-block:: python
@@ -87,7 +87,10 @@ class CDN:
             logger.warning("CDN upload_file failed: insufficient permissions")
             raise NotAnAdminOrServerOwner("CDN file operations require admin or server owner privileges.")
 
-        allowed_dirs = ['uploads', 'avatars', 'banners', 'attachments', 'stickers', 'gifs']
+        allowed_dirs = [
+            'uploads', 'avatars', 'banners', 'attachments', 'stickers',
+            'gifs', 'images', 'videos', 'audio', 'documents', 'files', 'config',
+        ]
         if directory not in allowed_dirs:
             logger.error(f"CDN upload_file failed: invalid directory '{directory}'")
             raise ValueError(f"Invalid directory. Allowed: {', '.join(allowed_dirs)}")
@@ -267,35 +270,6 @@ class CDN:
             raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can perform cleanup operations.")
         elif response.status_code == 500:
             raise Exception("Cleanup operation failed")
-
-    def serve_file(self, file_path: str) -> bytes:
-        """
-        Serve a file directly from CDN (for authenticated access).
-
-        Args:
-            file_path (str): Relative path of the file.
-
-        Returns:
-            bytes: File content.
-
-        Example:
-            .. code-block:: python
-
-                >>> content = client.cdn.serve_file("uploads/file.jpg")
-        """
-        params = {"auth_token": self.auth_token} if self.auth_token else {}
-
-        response = requests.get(
-            f"{self.SERVE_FILE_API_ROUTE.api_route.rstrip('{file_path:path}')}{file_path}",
-            params=params
-        )
-
-        if response.status_code == 403:
-            raise Exception("Access forbidden")
-        elif response.status_code == 404:
-            raise FileNotFound(f"File not found: {file_path}")
-
-        return response.content
 
     def _has_required_permissions(self) -> bool:
         """
