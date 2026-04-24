@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "pypufferblow"
 version = "0.1.0"
-description = "The official SDK for pufferblow"
+description = "Official Python SDK and bot framework for Pufferblow"
 authors = ["ramsy0dev <ramsy0dev@gmail.com>"]
 license = "GNU 3.0"
 readme = "README.md"
