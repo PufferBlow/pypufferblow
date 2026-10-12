@@ -20,6 +20,9 @@ from pypufferblow.websocket import (
     create_channel_websocket
 )
 
+# Protocol client
+from pypufferblow.realtime import ProtocolClient
+
 # User class
 from pypufferblow.users import (
     Users,
@@ -342,11 +345,15 @@ class Client:
 
         return self.admin
 
-    def websocket(self) -> GlobalWebSocket:
+    def websocket(self, protocol: bool = False) -> GlobalWebSocket:
         """
         Create a GlobalWebSocket object for real-time messaging.
 
         The websocket requires user authentication, so make sure to call users().sign_in() or users().sign_up() first.
+
+        Args:
+            protocol: Use the command/event protocol (v1). Events still reach ``on_message`` as
+                ``WebSocketMessage``; see :meth:`realtime` for sending commands.
 
         Returns:
             GlobalWebSocket: The GlobalWebSocket object for real-time updates.
@@ -368,9 +375,27 @@ class Client:
         self.websocket = create_global_websocket(
             auth_token=self.users.user.auth_token,
             instance=self.instance_url,
+            protocol=protocol,
         )
 
         return self.websocket
+
+    def realtime(self, **kwargs) -> ProtocolClient:
+        """
+        Create an async :class:`~pypufferblow.realtime.ProtocolClient` (command/event protocol v1).
+
+        Requires user authentication. Extra keyword arguments go to ``ProtocolClient``.
+
+        Example:
+            .. code-block:: python
+
+                >>> client.users.sign_in()
+                >>> async with client.realtime() as live:
+                ...     await live.create_message(channel_id, "hello")
+        """
+        if not self.users.is_signed_in:
+            raise Exception("Realtime requires user authentication. Please call users().sign_in() or users().sign_up() first.")
+        return ProtocolClient(self.users.user.auth_token, self.instance_url, **kwargs)
 
     def decentralized_auth(self) -> DecentralizedAuth:
         """

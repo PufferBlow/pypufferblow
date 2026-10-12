@@ -112,6 +112,47 @@ ws = client.create_channel_websocket(channel_id="general")
 ws.connect()
 ```
 
+### Commands and events (protocol v1)
+
+The server speaks a command/event protocol on `/ws?protocol=1`: you send commands and get an
+acknowledgment once the work is committed; the server pushes events. `ProtocolClient` is the async
+client for it. It matches acks to commands, drops duplicate events, retries safely and catches up
+after a gap or a reconnect.
+
+```python
+import asyncio
+
+async def main():
+    client.users.sign_in()
+    async with client.realtime() as live:          # or ProtocolClient(token, "https://chat.example.org")
+        live.watch(channel_id)                      # catch this channel up after a reconnect
+        await live.create_message(channel_id, "hello")   # retried with the same nonce, never posted twice
+
+        async for event in live.events():
+            if event.name == "message.created" and event.data["content"] == "!ping":
+                await live.create_message(event.channel_id, "pong")
+
+asyncio.run(main())
+```
+
+Commands: `create_message`, `edit_message`, `delete_message`, `add_reaction`, `remove_reaction`,
+`subscribe`, `unsubscribe`, `resync`. Refusals raise `ProtocolError` with a `code`
+(`PERMISSION_DENIED`, `RATE_LIMITED`, ...), `retryable` and `retry_after`; `NOT_CONNECTED`,
+`DISCONNECTED` and `TIMEOUT` are raised locally. Events are `EventFrame` objects (`name`, `data`,
+`channel_id`, `seq`, `epoch`).
+
+Code written for the older callback API keeps working over the new protocol:
+
+```python
+ws = client.websocket(protocol=True)       # events still arrive as WebSocketMessage
+ws.on_message = on_message
+ws.connect()
+
+bot = Bot(BotOptions(..., use_protocol=True), client=client)
+```
+
+A bot account's token works as `auth_token` for `ProtocolClient`; the server limits it to its owner's privileges and its scopes, and it cannot react to messages yet.
+
 ### Federation
 
 ```python

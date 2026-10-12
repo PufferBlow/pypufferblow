@@ -3,6 +3,8 @@ from .client import *
 from .channels import *
 from .users import *
 from .websocket import *
+from .protocol import *
+from .realtime import *
 from .storage import *
 from .system import *
 from .admin import *

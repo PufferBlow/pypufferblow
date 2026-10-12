@@ -8,5 +8,6 @@ Welcome to pypufferblow's documentation!
    client
    users
    channels
+   realtime
    tests/tests
    exceptions
