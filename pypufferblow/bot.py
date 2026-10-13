@@ -337,10 +337,13 @@ class BotOptions(ClientOptions):
         self,
         *,
         command_prefix: str = "!",
+        use_protocol: bool = False,
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self.command_prefix = command_prefix
+        #: Receive events over the command/event protocol (v1) instead of the legacy frames.
+        self.use_protocol = use_protocol
 
 
 class BotContext:
@@ -799,7 +802,11 @@ class Bot:
 
     def get_global_websocket(self):
         websocket_api = getattr(self.client, "websocket", None)
-        return websocket_api() if callable(websocket_api) else websocket_api
+        if not callable(websocket_api):
+            return websocket_api
+        if getattr(self.options, "use_protocol", False):
+            return websocket_api(protocol=True)
+        return websocket_api()
 
     def get_channel_websocket(self, channel_id: str):
         factory = getattr(self.client, "create_channel_websocket", None)
