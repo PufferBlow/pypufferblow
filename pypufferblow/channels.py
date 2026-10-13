@@ -52,7 +52,6 @@ class Channels:
         LOAD_MESSAGES_API_ROUTE (Route): The load messages API route.
         SEND_MESSAGE_API_ROUTE (Route): The send message API route.
         MARK_MESSAGE_AS_READ_API_ROUTE (Route): The mark message as read API route.
-        DELETE_MESSAGE_API_ROUTE (Route): The delete message API route.
     """
     API_ROUTES: list[Route] = channels_routes
     STORAGE_API_ROUTES: list[Route] = storage_routes
@@ -65,7 +64,6 @@ class Channels:
     LOAD_MESSAGES_API_ROUTE: Route = channels_routes[5]
     SEND_MESSAGE_API_ROUTE: Route = channels_routes[6]
     MARK_MESSAGE_AS_READ_API_ROUTE: Route = channels_routes[7]
-    DELETE_MESSAGE_API_ROUTE: Route = channels_routes[8]
 
     STORAGE_UPLOAD_API_ROUTE: Route = storage_routes[0]
     
@@ -610,48 +608,8 @@ class Channels:
 
     async def mark_message_as_read_async(self, channel_id: str, message_id: str) -> None:
         await asyncio.to_thread(self.mark_message_as_read, channel_id, message_id)
-        
-    def delete_message(self, channel_id: str, message_id: str):
-        """
-        Delete a message in a channel.
-        
-        Args:
-            channel_id (str): The channel's id.
-            message_id (str): The message's id.
-            
-        Returns:
-            None.
-        
-        Example:
-            .. code-block:: python
 
-                >>> channel_id = "6da0492c-631e-53f0-8f9f-2cbab5045351"
-                >>> message_id = "9ad0dc2f-536v-43f5-x6g4-2dfbh564234"
-                >>> client.channels.delete_message(
-                ...    channel_id=channel_id,
-                ...    message_id=message_id
-                ... )
-        """
-        params = {
-            "message_id": message_id,
-            "auth_token": self.user.auth_token
-        }
-        
-        response = requests.delete(
-            self.DELETE_MESSAGE_API_ROUTE.api_route.format(channel_id=channel_id),
-            params=params
-        )
-        
-        if response.status_code == 400:
-            raise BadAuthToken(f"The provided auth-token '{self.user.auth_token}' is not correctly formated")
-        elif response.status_code == 401:
-            raise NotAnAdminOrServerOwner("Operation not permitted.")
-        elif response.status_code == 404:
-            if "message_id" in response.json().get("detail"):
-                raise MessageNotFound(f"The provided message id '{message_id}' does not exists.")
-            else:
-                raise ChannelNotFound(f"The provided channel id '{channel_id}' does not exists.")
-        
+
 class ChannelsOptions(OptionsModel):
     """
     Channels options

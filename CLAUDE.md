@@ -41,7 +41,7 @@ Tests use `pytest` with `monkeypatch` to stub out `requests.get/post/put/delete`
 
 ### Sync + async dual API
 
-Nearly every network-calling method has a sync version (using `requests`) and an `..._async` sibling. The async version is almost always a thin wrapper: `async def X_async(self): return await asyncio.to_thread(self.X)`. When adding a new SDK method, follow this pattern rather than writing a separate async implementation — only deviate here if streaming/websocket behavior requires true async (see `websocket.py`, which uses the `websockets` library directly for `GlobalWebSocket`/`ChannelWebSocket`).
+Nearly every network-calling method has a sync version (using `requests`) and an `..._async` sibling. The async version is almost always a thin wrapper: `async def X_async(self): return await asyncio.to_thread(self.X)`. When adding a new SDK method, follow this pattern rather than writing a separate async implementation — only deviate here if streaming/websocket behavior requires true async (see `websocket.py`, which uses the `websockets` library directly for `GlobalWebSocket`).
 
 ### Exceptions map to server failure modes
 

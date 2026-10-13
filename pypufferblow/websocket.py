@@ -4,9 +4,7 @@ WebSocket client for real-time messaging
 
 __all__ = [
     "GlobalWebSocket",
-    "ChannelWebSocket",
     "create_global_websocket",
-    "create_channel_websocket",
 ]
 
 import asyncio
@@ -194,12 +192,12 @@ class WebSocketBase:
 class GlobalWebSocket(WebSocketBase):
     """WebSocket client for global channel updates.
 
-    With ``protocol=True`` the connection uses the command/event protocol (v1); incoming events
-    are still delivered to ``on_message`` as :class:`WebSocketMessage`. For sending commands and
-    for gap recovery use :class:`pypufferblow.realtime.ProtocolClient`.
+    The connection uses the command/event protocol (v1); incoming events are delivered to
+    ``on_message`` as :class:`WebSocketMessage`. For sending commands and for gap recovery use
+    :class:`pypufferblow.realtime.ProtocolClient`. ``protocol=False`` is refused by the server.
     """
 
-    def __init__(self, auth_token: str, instance: str, protocol: bool = False):
+    def __init__(self, auth_token: str, instance: str, protocol: bool = True):
         """Initialize the instance."""
         super().__init__(auth_token, instance)
         self.protocol = protocol
@@ -210,19 +208,6 @@ class GlobalWebSocket(WebSocketBase):
         return f"{url}&protocol=1" if self.protocol else url
 
 
-class ChannelWebSocket(WebSocketBase):
-    """WebSocket client for specific channel"""
-
-    def __init__(self, channel_id: str, auth_token: str, instance: str):
-        """Initialize the instance."""
-        super().__init__(auth_token, instance)
-        self.channel_id = channel_id
-
-    def _get_ws_url(self) -> str:
-        """Get channel-specific WebSocket URL"""
-        return f"{self.ws_base_url}/ws/channels/{self.channel_id}?auth_token={self.auth_token}"
-
-
 def create_global_websocket(
     auth_token: str,
     instance: str | None = None,
@@ -231,7 +216,7 @@ def create_global_websocket(
     on_connected: Optional[Callable[[], None]] = None,
     on_disconnected: Optional[Callable[[str], None]] = None,
     on_error: Optional[Callable[[Exception], None]] = None,
-    protocol: bool = False,
+    protocol: bool = True,
 ) -> GlobalWebSocket:
     """
     Create a global WebSocket connection
@@ -259,36 +244,3 @@ def create_global_websocket(
     return ws
 
 
-def create_channel_websocket(
-    channel_id: str,
-    auth_token: str,
-    instance: str | None = None,
-    host_port: str | None = None,
-    on_message: Optional[Callable[[WebSocketMessage], None]] = None,
-    on_connected: Optional[Callable[[], None]] = None,
-    on_disconnected: Optional[Callable[[str], None]] = None,
-    on_error: Optional[Callable[[Exception], None]] = None,
-) -> ChannelWebSocket:
-    """
-    Create a channel-specific WebSocket connection
-
-    Args:
-        channel_id: Channel ID to connect to
-        auth_token: User authentication token
-        instance: Instance URL or authority. Preferred for federated deployments.
-        host_port: Deprecated compatibility alias for `instance`.
-        on_message: Callback for incoming messages
-        on_connected: Callback when connected
-        on_disconnected: Callback when disconnected
-        on_error: Callback for errors
-
-    Returns:
-        ChannelWebSocket instance
-    """
-    _, _, _, instance_url = normalize_instance(instance=instance or host_port)
-    ws = ChannelWebSocket(channel_id, auth_token, instance_url)
-    ws.on_message = on_message
-    ws.on_connected = on_connected
-    ws.on_disconnected = on_disconnected
-    ws.on_error = on_error
-    return ws

@@ -337,12 +337,12 @@ class BotOptions(ClientOptions):
         self,
         *,
         command_prefix: str = "!",
-        use_protocol: bool = False,
+        use_protocol: bool = True,
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self.command_prefix = command_prefix
-        #: Receive events over the command/event protocol (v1) instead of the legacy frames.
+        #: Receive events over the command/event protocol (v1); the server no longer speaks the legacy frames.
         self.use_protocol = use_protocol
 
 
@@ -804,15 +804,9 @@ class Bot:
         websocket_api = getattr(self.client, "websocket", None)
         if not callable(websocket_api):
             return websocket_api
-        if getattr(self.options, "use_protocol", False):
+        if getattr(self.options, "use_protocol", True):
             return websocket_api(protocol=True)
         return websocket_api()
-
-    def get_channel_websocket(self, channel_id: str):
-        factory = getattr(self.client, "create_channel_websocket", None)
-        if factory is None:
-            raise RuntimeError("Client does not support channel-specific websockets")
-        return factory(channel_id)
 
     def authenticate(self, *, sign_up: bool = False) -> str:
         users_api = self.get_users_api()
@@ -863,11 +857,8 @@ class Bot:
         self._running = True
         self._dispatch_lifecycle_event("startup")
 
-        self.websocket = (
-            self.get_channel_websocket(channel_id)
-            if channel_id
-            else self.get_global_websocket()
-        )
+        # One socket carries every channel; ``channel_id`` is no longer a connection scope.
+        self.websocket = self.get_global_websocket()
         if self.websocket is None:
             raise RuntimeError("Client did not return a websocket instance")
 

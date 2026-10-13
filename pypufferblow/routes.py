@@ -34,7 +34,6 @@ channels_routes: list[Route] = [
     Route(f"{channels_base_route}/{{channel_id}}/load_messages", methods=["GET"]),
     Route(f"{channels_base_route}/{{channel_id}}/send_message", methods=["POST"]),
     Route(f"{channels_base_route}/{{channel_id}}/mark_message_as_read", methods=["PUT"]),
-    Route(f"{channels_base_route}/{{channel_id}}/delete_message", methods=["DELETE"]),
 ]
 
 storage_base_route = f"{base_route}/storage"

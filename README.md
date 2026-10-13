@@ -105,12 +105,8 @@ ws.on_message = on_message
 ws.connect()   # listens on all accessible channels
 ```
 
-For a single channel:
-
-```python
-ws = client.create_channel_websocket(channel_id="general")
-ws.connect()
-```
+There is one socket: it carries every channel you can read, and the old per-channel socket
+(`create_channel_websocket`) was removed with the legacy `/ws` frames.
 
 ### Commands and events (protocol v1)
 

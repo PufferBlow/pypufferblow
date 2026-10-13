@@ -15,9 +15,7 @@ from pypufferblow.channels import (
 # WebSocket class
 from pypufferblow.websocket import (
     GlobalWebSocket,
-    ChannelWebSocket,
     create_global_websocket,
-    create_channel_websocket
 )
 
 # Protocol client
@@ -207,7 +205,6 @@ class Client:
             "LOAD_MESSAGES_API_ROUTE",
             "SEND_MESSAGE_API_ROUTE",
             "MARK_MESSAGE_AS_READ_API_ROUTE",
-            "DELETE_MESSAGE_API_ROUTE",
         )
         self.channels.STORAGE_API_ROUTES = storage_api_routes
         self.channels.STORAGE_UPLOAD_API_ROUTE = storage_api_routes[0]
@@ -345,14 +342,14 @@ class Client:
 
         return self.admin
 
-    def websocket(self, protocol: bool = False) -> GlobalWebSocket:
+    def websocket(self, protocol: bool = True) -> GlobalWebSocket:
         """
         Create a GlobalWebSocket object for real-time messaging.
 
         The websocket requires user authentication, so make sure to call users().sign_in() or users().sign_up() first.
 
         Args:
-            protocol: Use the command/event protocol (v1). Events still reach ``on_message`` as
+            protocol: Use the command/event protocol (v1), the only one the server speaks. Events still reach ``on_message`` as
                 ``WebSocketMessage``; see :meth:`realtime` for sending commands.
 
         Returns:
@@ -443,35 +440,6 @@ class Client:
         self.federation.SEND_DIRECT_MESSAGE_API_ROUTE = direct_message_api_routes[0]
         self.federation.LOAD_DIRECT_MESSAGES_API_ROUTE = direct_message_api_routes[1]
         return self.federation
-
-    def create_channel_websocket(self, channel_id: str) -> ChannelWebSocket:
-        """
-        Create a ChannelWebSocket object for a specific channel's real-time messaging.
-
-        The websocket requires user authentication.
-
-        Args:
-            channel_id (str): The channel ID to connect to.
-
-        Returns:
-            ChannelWebSocket: The ChannelWebSocket object for the specific channel.
-
-        Example:
-            .. code-block:: python
-
-                >>> # First authenticate
-                >>> client.users.sign_in()
-                >>> ws = client.create_channel_websocket("channel_id")
-                >>> ws.connect()
-        """
-        if not self.users.is_signed_in:
-            raise Exception("WebSocket requires user authentication. Please call users().sign_in() or users().sign_up() first.")
-
-        return create_channel_websocket(
-            auth_token=self.users.user.auth_token,
-            instance=self.instance_url,
-            channel_id=channel_id
-        )
 
 class ClientOptions(OptionsModel):
     """

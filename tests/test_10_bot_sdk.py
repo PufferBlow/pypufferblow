@@ -80,10 +80,7 @@ class FakeClient:
     def channels(self) -> FakeChannels:
         return self._channels
 
-    def websocket(self) -> FakeWebSocket:
-        return self._websocket
-
-    def create_channel_websocket(self, channel_id: str) -> FakeWebSocket:
+    def websocket(self, protocol: bool = True) -> FakeWebSocket:
         return self._websocket
 
 

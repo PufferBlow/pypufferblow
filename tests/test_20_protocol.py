@@ -228,11 +228,11 @@ def test_events_without_a_legacy_form_are_not_forwarded():
 # ── GlobalWebSocket in protocol mode ─────────────────────────────
 
 
-def test_global_websocket_opts_in_with_the_protocol_parameter():
-    legacy = create_global_websocket("tok", instance="localhost:7575")
-    modern = create_global_websocket("tok", instance="localhost:7575", protocol=True)
-    assert legacy._get_ws_url() == "ws://localhost:7575/ws?auth_token=tok"
-    assert modern._get_ws_url() == "ws://localhost:7575/ws?auth_token=tok&protocol=1"
+def test_global_websocket_uses_the_protocol_by_default():
+    default = create_global_websocket("tok", instance="localhost:7575")
+    legacy = create_global_websocket("tok", instance="localhost:7575", protocol=False)
+    assert legacy._get_ws_url() == "ws://localhost:7575/ws?auth_token=tok"  # the server now refuses this
+    assert default._get_ws_url() == "ws://localhost:7575/ws?auth_token=tok&protocol=1"
 
 
 def test_global_websocket_delivers_v1_events_as_web_socket_messages_once():
@@ -264,9 +264,9 @@ class _Client:
         return object()
 
 
-def test_bot_asks_for_a_protocol_websocket_only_when_told_to():
-    plain, modern = _Client(), _Client()
-    Bot(BotOptions(host="localhost", port=7575, username="b", password="p"), client=plain).get_global_websocket()
-    Bot(BotOptions(host="localhost", port=7575, username="b", password="p", use_protocol=True), client=modern).get_global_websocket()
-    assert plain.calls == [{}]
-    assert modern.calls == [{"protocol": True}]
+def test_bot_asks_for_a_protocol_websocket_unless_told_not_to():
+    default, opted_out = _Client(), _Client()
+    Bot(BotOptions(host="localhost", port=7575, username="b", password="p"), client=default).get_global_websocket()
+    Bot(BotOptions(host="localhost", port=7575, username="b", password="p", use_protocol=False), client=opted_out).get_global_websocket()
+    assert default.calls == [{"protocol": True}]
+    assert opted_out.calls == [{}]

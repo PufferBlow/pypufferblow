@@ -7,7 +7,7 @@ from pypufferblow.logging_utils import SDK_LOGGER_NAME
 from pypufferblow.models.options_model import OptionsModel
 from pypufferblow.models.user_model import UserModel
 from pypufferblow.system import System, SystemOptions
-from pypufferblow.websocket import create_channel_websocket, create_global_websocket
+from pypufferblow.websocket import create_global_websocket
 
 
 def test_options_model_prefers_instance_url_for_named_domain() -> None:
@@ -68,14 +68,8 @@ def test_websocket_helpers_follow_instance_scheme() -> None:
         auth_token="token",
         instance="https://chat.example.org",
     )
-    channel_ws = create_channel_websocket(
-        channel_id="general",
-        auth_token="token",
-        instance="https://chat.example.org",
-    )
 
-    assert global_ws._get_ws_url() == "wss://chat.example.org/ws?auth_token=token"
-    assert channel_ws._get_ws_url() == "wss://chat.example.org/ws/channels/general?auth_token=token"
+    assert global_ws._get_ws_url() == "wss://chat.example.org/ws?auth_token=token&protocol=1"
 
 
 def test_system_instance_aliases_forward_to_server_methods() -> None:
