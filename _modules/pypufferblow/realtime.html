@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>pypufferblow.realtime &#8212; pypufferblow 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=a1637f0b"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/pypufferblow/realtime';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pypufferblow 0.1.0 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Welcome to pypufferblow’s documentation!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../client.html">Client Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../users.html">Users Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../channels.html">Channels Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../realtime.html">Realtime (protocol v1)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tests/tests.html">Tests</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_client.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_users.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tests/test_channels.html">Test Client Module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../exceptions.html">Exceptions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow/issues/new?title=Issue%20on%20page%20%2F_modules/pypufferblow/realtime.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for pypufferblow.realtime</h1><div class="highlight"><pre>
+<span></span><span class="sd">"""</span>
+<span class="sd">Async client for the Pufferblow command/event protocol (v1).</span>
+
+<span class="sd">One websocket carries everything: you send *commands* (``message.create``, ``message.edit``, ...)</span>
+<span class="sd">and get an acknowledgment once the work is committed, and the server pushes *events*</span>
+<span class="sd">(``message.created``, ...) for the channels you can see. The client handles the parts that are</span>
+<span class="sd">easy to get wrong: matching acks to commands, safe retries with an idempotency ``nonce``,</span>
+<span class="sd">dropping duplicate events, and catching up with ``events.resync`` after a gap or a reconnect.</span>
+
+<span class="sd">Example:</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        async with ProtocolClient(auth_token, "https://chat.example.org") as client:</span>
+<span class="sd">            async for event in client.events():</span>
+<span class="sd">                if event.name == "message.created" and event.data["content"] == "!ping":</span>
+<span class="sd">                    await client.create_message(event.channel_id, "pong")</span>
+<span class="sd">"""</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"ProtocolClient"</span><span class="p">]</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">asyncio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">uuid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">AsyncIterator</span><span class="p">,</span> <span class="n">Awaitable</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">websockets</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pragma: no cover - the dependency is declared, this only guards odd installs</span>
+    <span class="n">websockets</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.models.options_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">http_to_websocket_base</span><span class="p">,</span> <span class="n">normalize_instance</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pypufferblow.protocol</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Ack</span><span class="p">,</span>
+    <span class="n">ErrorFrame</span><span class="p">,</span>
+    <span class="n">EventFrame</span><span class="p">,</span>
+    <span class="n">EventTracker</span><span class="p">,</span>
+    <span class="n">Hello</span><span class="p">,</span>
+    <span class="n">ProtocolError</span><span class="p">,</span>
+    <span class="n">ProtocolMessage</span><span class="p">,</span>
+    <span class="n">build_command</span><span class="p">,</span>
+    <span class="n">parse_frame</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">"pypufferblow.realtime"</span><span class="p">)</span>
+
+<span class="n">EventCallback</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">EventFrame</span><span class="p">],</span> <span class="s2">"Awaitable[None] | None"</span><span class="p">]</span>
+<span class="n">ResyncCallback</span> <span class="o">=</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">ProtocolMessage</span><span class="p">]],</span> <span class="s2">"Awaitable[None] | None"</span><span class="p">]</span>
+
+<span class="n">DEFAULT_RESYNC_LIMIT</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">_CLOSED</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="ProtocolClient">
+<a class="viewcode-back" href="../../realtime.html#pypufferblow.realtime.ProtocolClient">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">ProtocolClient</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""A protocol v1 connection that reconnects by itself.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        auth_token: User authentication token.</span>
+<span class="sd">        instance: Instance URL or authority, e.g. ``https://chat.example.org`` or ``localhost:7575``.</span>
+<span class="sd">        command_timeout: Seconds to wait for an acknowledgment before raising ``TIMEOUT``.</span>
+<span class="sd">        on_event: Called for every event that has not been seen before (sync or async function).</span>
+<span class="sd">        on_resync: Called with ``(channel_id, messages)`` after a gap or reconnect, with the</span>
+<span class="sd">            server's current view of the channel's recent messages.</span>
+<span class="sd">        reconnect: Reconnect with exponential backoff when the socket drops.</span>
+<span class="sd">        ping_interval: Seconds between application-level pings (they also re-check the token).</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">auth_token</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">instance</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">command_timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">15.0</span><span class="p">,</span>
+        <span class="n">on_event</span><span class="p">:</span> <span class="n">EventCallback</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">on_resync</span><span class="p">:</span> <span class="n">ResyncCallback</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">reconnect</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">ping_interval</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">,</span>
+        <span class="n">max_backoff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">30.0</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">websockets</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="s2">"websockets package is required for WebSocket functionality"</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">instance_url</span> <span class="o">=</span> <span class="n">normalize_instance</span><span class="p">(</span><span class="n">instance</span><span class="o">=</span><span class="n">instance</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">auth_token</span> <span class="o">=</span> <span class="n">auth_token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ws_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">http_to_websocket_base</span><span class="p">(</span><span class="n">instance_url</span><span class="p">)</span><span class="si">}</span><span class="s2">/ws?protocol=1&amp;auth_token=</span><span class="si">{</span><span class="n">auth_token</span><span class="si">}</span><span class="s2">"</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">command_timeout</span> <span class="o">=</span> <span class="n">command_timeout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_event</span> <span class="o">=</span> <span class="n">on_event</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">on_resync</span> <span class="o">=</span> <span class="n">on_resync</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reconnect</span> <span class="o">=</span> <span class="n">reconnect</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ping_interval</span> <span class="o">=</span> <span class="n">ping_interval</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_backoff</span> <span class="o">=</span> <span class="n">max_backoff</span>
+
+        <span class="c1">#: Channels :meth:`resync` is run for after a reconnect (add with :meth:`watch`).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">watched</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tracker</span> <span class="o">=</span> <span class="n">EventTracker</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_socket</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_runner</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pinger</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_closing</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_hello_seen</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pending</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Future</span><span class="p">[</span><span class="n">Ack</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Queue</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Queue</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resync_queue</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resync_task</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">asyncio</span><span class="o">.</span><span class="n">Task</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_failure</span><span class="p">:</span> <span class="ne">Exception</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="c1"># ── lifecycle ──────────────────────────────────────────────</span>
+
+<div class="viewcode-block" id="ProtocolClient.start">
+<a class="viewcode-back" href="../../realtime.html#pypufferblow.realtime.ProtocolClient.start">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">15.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"ProtocolClient"</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Connect and wait for the server's ``hello``."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_runner</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_closing</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_runner</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_run</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="s2">"pypufferblow-protocol"</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ready</span><span class="o">.</span><span class="n">wait</span><span class="p">(),</span> <span class="n">timeout</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">TimeoutError</span><span class="p">:</span>
+            <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">"NOT_CONNECTED"</span><span class="p">,</span> <span class="s2">"Could not connect to the server in time."</span><span class="p">,</span> <span class="n">retryable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">self._failure</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
+
+
+<div class="viewcode-block" id="ProtocolClient.close">
+<a class="viewcode-back" href="../../pypufferblow.realtime.html#pypufferblow.realtime.ProtocolClient.close">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_closing</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+        <span class="n">socket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_socket</span>
+        <span class="k">if</span> <span class="n">socket</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">socket</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># noqa: BLE001</span>
+                <span class="k">pass</span>
+        <span class="k">for</span> <span class="n">task</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_runner</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pinger</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resync_task</span><span class="p">,</span> <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">task</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">task</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
+                <span class="n">task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_runner</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pinger</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resync_task</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fail_pending</span><span class="p">(</span><span class="s2">"DISCONNECTED"</span><span class="p">,</span> <span class="s2">"The client was closed."</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="n">_CLOSED</span><span class="p">)</span></div>
+
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="fm">__aenter__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"ProtocolClient"</span><span class="p">:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="fm">__aexit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">_exc</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">connected</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span><span class="o">.</span><span class="n">is_set</span><span class="p">()</span>
+
+    <span class="c1"># ── events ─────────────────────────────────────────────────</span>
+
+<div class="viewcode-block" id="ProtocolClient.events">
+<a class="viewcode-back" href="../../realtime.html#pypufferblow.realtime.ProtocolClient.events">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">events</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AsyncIterator</span><span class="p">[</span><span class="n">EventFrame</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Iterate new events as they arrive; ends when the client is closed."""</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">item</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">item</span> <span class="ow">is</span> <span class="n">_CLOSED</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="n">_CLOSED</span><span class="p">)</span>  <span class="c1"># let other iterators end too</span>
+                <span class="k">return</span>
+            <span class="k">yield</span> <span class="n">item</span></div>
+
+
+    <span class="c1"># ── commands ───────────────────────────────────────────────</span>
+
+<div class="viewcode-block" id="ProtocolClient.request">
+<a class="viewcode-back" href="../../realtime.html#pypufferblow.realtime.ProtocolClient.request">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Ack</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Send a command and wait for its acknowledgment (the work is committed when it arrives)."""</span>
+        <span class="n">socket</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_socket</span>
+        <span class="k">if</span> <span class="n">socket</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span><span class="o">.</span><span class="n">is_set</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">"NOT_CONNECTED"</span><span class="p">,</span> <span class="s2">"Not connected to the server."</span><span class="p">,</span> <span class="n">retryable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_counter</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">command_id</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"cmd_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_counter</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">future</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Future</span><span class="p">[</span><span class="n">Ack</span><span class="p">]</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_running_loop</span><span class="p">()</span><span class="o">.</span><span class="n">create_future</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pending</span><span class="p">[</span><span class="n">command_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">future</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">build_command</span><span class="p">(</span><span class="n">command_id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>  <span class="c1"># noqa: BLE001</span>
+                <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">"NOT_CONNECTED"</span><span class="p">,</span> <span class="s2">"The connection closed while sending."</span><span class="p">,</span> <span class="n">retryable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">exc</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">wait_for</span><span class="p">(</span><span class="n">future</span><span class="p">,</span> <span class="n">timeout</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">command_timeout</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">TimeoutError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">"TIMEOUT"</span><span class="p">,</span> <span class="s2">"The server did not answer in time."</span><span class="p">,</span> <span class="n">retryable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="kc">None</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_pending</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">command_id</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProtocolClient.send">
+<a class="viewcode-back" href="../../realtime.html#pypufferblow.realtime.ProtocolClient.send">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">*</span><span class="p">,</span> <span class="n">timeout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Like :meth:`request`, returning just the result object."""</span>
+        <span class="k">return</span> <span class="p">(</span><span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">))</span><span class="o">.</span><span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="ProtocolClient.create_message">
+<a class="viewcode-back" href="../../realtime.html#pypufferblow.realtime.ProtocolClient.create_message">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">create_message</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">nonce</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProtocolMessage</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Post a message.</span>
+
+<span class="sd">        The ``nonce`` is the idempotency key. Retryable failures (a dropped connection, a timeout,</span>
+<span class="sd">        a rate limit) are retried with the *same* nonce, so a message the server did commit is never</span>
+<span class="sd">        posted twice. Pass your own nonce to retry across calls.</span>
+<span class="sd">        """</span>
+        <span class="n">nonce</span> <span class="o">=</span> <span class="n">nonce</span> <span class="ow">or</span> <span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">()</span><span class="o">.</span><span class="n">hex</span>
+        <span class="n">attempt</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">"message.create"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"channel_id"</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">content</span><span class="p">,</span> <span class="s2">"nonce"</span><span class="p">:</span> <span class="n">nonce</span><span class="p">})</span>
+                <span class="k">break</span>
+            <span class="k">except</span> <span class="n">ProtocolError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">error</span><span class="o">.</span><span class="n">retryable</span> <span class="ow">or</span> <span class="n">attempt</span> <span class="o">&gt;=</span> <span class="n">retries</span><span class="p">:</span>
+                    <span class="k">raise</span>
+                <span class="n">attempt</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">error</span><span class="o">.</span><span class="n">retry_after</span> <span class="k">if</span> <span class="n">error</span><span class="o">.</span><span class="n">retry_after</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">min</span><span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="n">attempt</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">))</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="n">ProtocolMessage</span><span class="o">.</span><span class="n">from_view</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"message"</span><span class="p">),</span> <span class="n">channel_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">message</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ProtocolError</span><span class="p">(</span><span class="s2">"INTERNAL"</span><span class="p">,</span> <span class="s2">"The server sent an unreadable message."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">message</span></div>
+
+
+<div class="viewcode-block" id="ProtocolClient.edit_message">
+<a class="viewcode-back" href="../../pypufferblow.realtime.html#pypufferblow.realtime.ProtocolClient.edit_message">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">edit_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">content</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">"message.edit"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"channel_id"</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">,</span> <span class="s2">"message_id"</span><span class="p">:</span> <span class="n">message_id</span><span class="p">,</span> <span class="s2">"content"</span><span class="p">:</span> <span class="n">content</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="ProtocolClient.delete_message">
+<a class="viewcode-back" href="../../pypufferblow.realtime.html#pypufferblow.realtime.ProtocolClient.delete_message">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">delete_message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">"message.delete"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"channel_id"</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">,</span> <span class="s2">"message_id"</span><span class="p">:</span> <span class="n">message_id</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="ProtocolClient.add_reaction">
+<a class="viewcode-back" href="../../pypufferblow.realtime.html#pypufferblow.realtime.ProtocolClient.add_reaction">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">add_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">emoji</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">"reaction.add"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"channel_id"</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">,</span> <span class="s2">"message_id"</span><span class="p">:</span> <span class="n">message_id</span><span class="p">,</span> <span class="s2">"emoji"</span><span class="p">:</span> <span class="n">emoji</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="ProtocolClient.remove_reaction">
+<a class="viewcode-back" href="../../pypufferblow.realtime.html#pypufferblow.realtime.ProtocolClient.remove_reaction">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">remove_reaction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">emoji</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">"reaction.remove"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"channel_id"</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">,</span> <span class="s2">"message_id"</span><span class="p">:</span> <span class="n">message_id</span><span class="p">,</span> <span class="s2">"emoji"</span><span class="p">:</span> <span class="n">emoji</span><span class="p">})</span></div>
+
+
+<div class="viewcode-block" id="ProtocolClient.subscribe">
+<a class="viewcode-back" href="../../realtime.html#pypufferblow.realtime.ProtocolClient.subscribe">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">subscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Start receiving a channel's events. The server already subscribes you to the channels you</span>
+<span class="sd">        can see when you connect; this is for channels created afterwards."""</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">"channel.subscribe"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"channel_id"</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tracker</span><span class="o">.</span><span class="n">set_baseline</span><span class="p">(</span><span class="n">channel_id</span><span class="p">,</span> <span class="n">_int</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"seq"</span><span class="p">)),</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"epoch"</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="ProtocolClient.unsubscribe">
+<a class="viewcode-back" href="../../pypufferblow.realtime.html#pypufferblow.realtime.ProtocolClient.unsubscribe">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">unsubscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">"channel.unsubscribe"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"channel_id"</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tracker</span><span class="o">.</span><span class="n">forget</span><span class="p">(</span><span class="n">channel_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">watched</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">channel_id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProtocolClient.watch">
+<a class="viewcode-back" href="../../realtime.html#pypufferblow.realtime.ProtocolClient.watch">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">watch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">channel_ids</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Mark channels to catch up automatically after a reconnect or restart of the server."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">watched</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">channel_ids</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ProtocolClient.resync">
+<a class="viewcode-back" href="../../realtime.html#pypufferblow.realtime.ProtocolClient.resync">[docs]</a>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">resync</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">DEFAULT_RESYNC_LIMIT</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ProtocolMessage</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""The server's recent messages for a channel. Also moves the sequence baseline forward."""</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s2">"events.resync"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"channel_id"</span><span class="p">:</span> <span class="n">channel_id</span><span class="p">,</span> <span class="s2">"limit"</span><span class="p">:</span> <span class="n">limit</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tracker</span><span class="o">.</span><span class="n">set_baseline</span><span class="p">(</span><span class="n">channel_id</span><span class="p">,</span> <span class="n">_int</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"seq"</span><span class="p">)),</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"epoch"</span><span class="p">))</span>
+        <span class="n">views</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"messages"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="p">(</span><span class="n">ProtocolMessage</span><span class="o">.</span><span class="n">from_view</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="p">(</span><span class="n">views</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">views</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="k">else</span> <span class="p">[]))</span> <span class="k">if</span> <span class="n">m</span><span class="p">]</span></div>
+
+
+    <span class="c1"># ── internals ──────────────────────────────────────────────</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">attempt</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closing</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">async</span> <span class="k">with</span> <span class="n">websockets</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ws_url</span><span class="p">)</span> <span class="k">as</span> <span class="n">socket</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_socket</span> <span class="o">=</span> <span class="n">socket</span>
+                    <span class="n">attempt</span> <span class="o">=</span> <span class="mi">0</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_pinger</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ping_loop</span><span class="p">(</span><span class="n">socket</span><span class="p">))</span>
+                    <span class="k">async</span> <span class="k">for</span> <span class="n">raw</span> <span class="ow">in</span> <span class="n">socket</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_handle</span><span class="p">(</span><span class="n">parse_frame</span><span class="p">(</span><span class="n">raw</span><span class="p">))</span>
+            <span class="k">except</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">CancelledError</span><span class="p">:</span>
+                <span class="k">raise</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>  <span class="c1"># noqa: BLE001 - connection errors of every kind end up here</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_failure</span> <span class="o">=</span> <span class="n">exc</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"protocol connection ended: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">exc</span><span class="p">)</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_socket</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pinger</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_pinger</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_tracker</span><span class="o">.</span><span class="n">reset_connection</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_resync_queue</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_fail_pending</span><span class="p">(</span><span class="s2">"DISCONNECTED"</span><span class="p">,</span> <span class="s2">"The connection dropped before the server answered."</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_closing</span> <span class="ow">or</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">reconnect</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_backoff</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="mi">2</span><span class="o">**</span><span class="n">attempt</span><span class="p">))</span>
+            <span class="n">attempt</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="n">_CLOSED</span><span class="p">)</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_ping_loop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">socket</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ping_interval</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">await</span> <span class="n">socket</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="s1">'{"type": "ping"}'</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># noqa: BLE001</span>
+                <span class="k">return</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_fail_pending</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">code</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">future</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_pending</span><span class="o">.</span><span class="n">values</span><span class="p">()):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">future</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
+                <span class="n">future</span><span class="o">.</span><span class="n">set_exception</span><span class="p">(</span><span class="n">ProtocolError</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">retryable</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_handle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frame</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">frame</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">Hello</span><span class="p">):</span>
+            <span class="n">epoch_changed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tracker</span><span class="o">.</span><span class="n">observe_epoch</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">epoch</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">session_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">epoch</span> <span class="o">=</span> <span class="n">frame</span><span class="o">.</span><span class="n">session_id</span><span class="p">,</span> <span class="n">frame</span><span class="o">.</span><span class="n">epoch</span>
+            <span class="n">reconnected</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hello_seen</span> <span class="ow">or</span> <span class="n">epoch_changed</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_hello_seen</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ready</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">reconnected</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">channel_id</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">watched</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_schedule_resync</span><span class="p">(</span><span class="n">channel_id</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">Ack</span><span class="p">):</span>
+            <span class="n">future</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pending</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">future</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">future</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
+                <span class="n">future</span><span class="o">.</span><span class="n">set_result</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">ErrorFrame</span><span class="p">):</span>
+            <span class="n">future</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pending</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">id</span><span class="p">)</span> <span class="k">if</span> <span class="n">frame</span><span class="o">.</span><span class="n">id</span> <span class="k">else</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">future</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">future</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
+                <span class="n">future</span><span class="o">.</span><span class="n">set_exception</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">to_exception</span><span class="p">())</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"server error </span><span class="si">%s</span><span class="s2">: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">frame</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="n">frame</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">EventFrame</span><span class="p">):</span>
+            <span class="n">apply</span><span class="p">,</span> <span class="n">resync</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tracker</span><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">apply</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">frame</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"channel.updated"</span> <span class="ow">and</span> <span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"deleted"</span><span class="p">)</span> <span class="ow">or</span> <span class="n">frame</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"access"</span><span class="p">)</span> <span class="o">==</span> <span class="s2">"revoked"</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">frame</span><span class="o">.</span><span class="n">channel_id</span><span class="p">:</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">_tracker</span><span class="o">.</span><span class="n">forget</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">channel_id</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">watched</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">channel_id</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="o">.</span><span class="n">put_nowait</span><span class="p">(</span><span class="n">frame</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_call</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_event</span><span class="p">,</span> <span class="n">frame</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">resync</span> <span class="ow">and</span> <span class="n">frame</span><span class="o">.</span><span class="n">channel_id</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_schedule_resync</span><span class="p">(</span><span class="n">frame</span><span class="o">.</span><span class="n">channel_id</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">callback</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">outcome</span> <span class="o">=</span> <span class="n">callback</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isawaitable</span><span class="p">(</span><span class="n">outcome</span><span class="p">):</span>
+                <span class="n">task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">ensure_future</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_guard</span><span class="p">(</span><span class="n">outcome</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+                <span class="n">task</span><span class="o">.</span><span class="n">add_done_callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_tasks</span><span class="o">.</span><span class="n">discard</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># noqa: BLE001 - a bad handler must not kill the connection</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">"event handler failed"</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_guard</span><span class="p">(</span><span class="n">awaitable</span><span class="p">:</span> <span class="n">Awaitable</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">awaitable</span>
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># noqa: BLE001</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s2">"event handler failed"</span><span class="p">)</span>
+
+    <span class="c1"># Resyncs run one at a time so a reconnect with many channels cannot trip the server's rate limit.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_schedule_resync</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resync_queue</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">channel_id</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resync_task</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resync_task</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resync_task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_drain_resyncs</span><span class="p">())</span>
+
+    <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">_drain_resyncs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resync_queue</span><span class="p">:</span>
+            <span class="n">channel_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resync_queue</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">messages</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">resync</span><span class="p">(</span><span class="n">channel_id</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">ProtocolError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">error</span><span class="o">.</span><span class="n">code</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">"DISCONNECTED"</span><span class="p">,</span> <span class="s2">"NOT_CONNECTED"</span><span class="p">):</span>
+                    <span class="k">return</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"resync of </span><span class="si">%s</span><span class="s2"> failed: </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">,</span> <span class="n">error</span><span class="o">.</span><span class="n">code</span><span class="p">)</span>
+                <span class="k">continue</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_call</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">on_resync</span><span class="p">,</span> <span class="n">channel_id</span><span class="p">,</span> <span class="n">messages</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_int</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">value</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ramsy0dev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, ramsy0dev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
