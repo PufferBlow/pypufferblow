@@ -73,6 +73,7 @@ class Server:
         self.connections: list = []
         self.commands: list[dict] = []
         self.paths: list[str] = []
+        self.offered: list[str] = []
         self.hello_epoch = "ep_1"
         self._server = None
         self.port = 0
@@ -80,6 +81,7 @@ class Server:
     async def handler(self, ws) -> None:
         self.connections.append(ws)
         self.paths.append(ws.request.path)
+        self.offered.append(ws.request.headers.get("Sec-WebSocket-Protocol", ""))
         await ws.send(hello(self.hello_epoch))
         async for raw in ws:
             frame = json.loads(raw)
@@ -90,7 +92,7 @@ class Server:
                 await self.script(self, ws, frame)
 
     async def __aenter__(self) -> "Server":
-        self._server = await websockets.serve(self.handler, "127.0.0.1", 0)
+        self._server = await websockets.serve(self.handler, "127.0.0.1", 0, subprotocols=["pufferblow.v1"])
         self.port = self._server.sockets[0].getsockname()[1]
         return self
 
@@ -115,12 +117,13 @@ async def until(condition: Callable[[], bool], timeout: float = 3.0) -> None:
         await asyncio.sleep(0.01)
 
 
-def test_connects_with_the_protocol_flag_and_token_and_waits_for_hello():
+def test_connects_with_the_protocol_flag_and_the_token_in_a_subprotocol_and_waits_for_hello():
     async def main():
         async with Server() as server:
             async with server.client() as client:
                 assert client.connected and client.session_id == "s" and client.epoch == "ep_1"
-                assert server.paths == ["/ws?protocol=1&auth_token=tok"]
+                assert server.paths == ["/ws?protocol=1"]  # no token in the URL
+                assert server.offered == ["pufferblow.v1, bearer.tok"]
 
     run(main())
 

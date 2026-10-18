@@ -41,6 +41,7 @@ from pypufferblow.protocol import (
     ProtocolMessage,
     build_command,
     parse_frame,
+    split_credential,
 )
 
 logger = logging.getLogger("pypufferblow.realtime")
@@ -259,7 +260,8 @@ class ProtocolClient:
         attempt = 0
         while not self._closing:
             try:
-                async with websockets.connect(self.ws_url) as socket:
+                url, subprotocols = split_credential(self.ws_url)  # the token rides in a subprotocol, not the URL
+                async with websockets.connect(url, subprotocols=subprotocols or None) as socket:
                     self._socket = socket
                     attempt = 0
                     self._pinger = asyncio.create_task(self._ping_loop(socket))

@@ -270,3 +270,14 @@ def test_bot_asks_for_a_protocol_websocket_unless_told_not_to():
     Bot(BotOptions(host="localhost", port=7575, username="b", password="p", use_protocol=False), client=opted_out).get_global_websocket()
     assert default.calls == [{"protocol": True}]
     assert opted_out.calls == [{}]
+
+
+def test_split_credential_moves_the_token_into_subprotocols():
+    from pypufferblow.protocol import split_credential
+
+    assert split_credential("ws://h:7575/ws?auth_token=a.b-c&protocol=1") == (
+        "ws://h:7575/ws?protocol=1",
+        ["pufferblow.v1", "bearer.a.b-c"],
+    )
+    assert split_credential("ws://h/ws?protocol=1") == ("ws://h/ws?protocol=1", [])
+    assert split_credential("ws://h/ws?auth_token=a%20b") == ("ws://h/ws?auth_token=a%20b", [])

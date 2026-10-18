@@ -21,7 +21,7 @@ except ImportError:
 
 from pypufferblow.models.message_model import WebSocketMessage
 from pypufferblow.models.options_model import http_to_websocket_base, normalize_instance
-from pypufferblow.protocol import EventFrame, EventTracker, Hello, event_to_legacy, parse_frame
+from pypufferblow.protocol import EventFrame, EventTracker, Hello, event_to_legacy, parse_frame, split_credential
 
 
 class WebSocketBase:
@@ -98,8 +98,8 @@ class WebSocketBase:
         """Main WebSocket event loop"""
         while self._should_reconnect():
             try:
-                url = self._get_ws_url()
-                async with websockets.connect(url) as websocket:
+                url, subprotocols = split_credential(self._get_ws_url())
+                async with websockets.connect(url, subprotocols=subprotocols or None) as websocket:
                     self.websocket = websocket
                     self.is_connected = True
                     self.reconnect_attempts = 0

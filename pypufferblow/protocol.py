@@ -21,9 +21,11 @@ __all__ = [
 ]
 
 import json
+import re
 from collections import OrderedDict
 from dataclasses import dataclass, field
 from typing import Any, Union
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 PROTOCOL_VERSION = 1
 
@@ -78,6 +80,24 @@ class ErrorFrame:
 
     def to_exception(self) -> ProtocolError:
         return ProtocolError(self.code, self.message, retryable=self.retryable, retry_after=self.retry_after)
+
+
+WS_SUBPROTOCOL = "pufferblow.v1"
+_SUBPROTOCOL_TOKEN = re.compile(r"^[A-Za-z0-9._~-]+$")
+
+
+def split_credential(url: str) -> tuple[str, list[str]]:
+    """Move ``auth_token`` out of a websocket URL into the subprotocols the server reads it from.
+
+    Keeps the token out of access logs. A token a subprotocol cannot carry stays in the URL.
+    """
+    parts = urlsplit(url)
+    pairs = parse_qsl(parts.query, keep_blank_values=True)
+    token = next((v for k, v in pairs if k == "auth_token"), None)
+    if not token or not _SUBPROTOCOL_TOKEN.match(token):
+        return url, []
+    query = urlencode([(k, v) for k, v in pairs if k != "auth_token"])
+    return urlunsplit(parts._replace(query=query)), [WS_SUBPROTOCOL, f"bearer.{token}"]
 
 
 @dataclass(frozen=True)
