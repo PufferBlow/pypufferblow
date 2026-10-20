@@ -23,7 +23,9 @@ from pypufferblow.exceptions import (
     InvalidPassword,
     UsernameAlreadyExists,
     BadAuthToken,
-    InvalidStatusValue
+    InvalidStatusValue,
+    InvalidProfileValue,
+    ServerError,
 )
 
 # Models
@@ -70,6 +72,7 @@ class Users:
     LIST_USERS_API_ROUTE: Route = users_routes[4]
     UPLOAD_AVATAR_API_ROUTE: Route = users_routes[5]
     UPLOAD_BANNER_API_ROUTE: Route = users_routes[6]
+    UPDATE_APPEARANCE_API_ROUTE: Route = users_routes[7]
     
     user: UserModel = None
     
@@ -414,6 +417,109 @@ class Users:
 
     async def update_user_about_async(self, new_about: str) -> None:
         await asyncio.to_thread(self.update_user_about, new_about)
+
+    @staticmethod
+    def _raise_for_profile_error(response, auth_token: str | None) -> None:
+        """Turn the instance's refusal into the exception that says what was wrong."""
+        if response.status_code < 400:
+            return
+        try:
+            body = response.json() or {}
+        except ValueError:
+            body = {}
+        if str(body.get("error_code", "")).startswith("validation."):
+            details = body.get("details") or {}
+            raise InvalidProfileValue(body.get("message") or "The instance refused that value", details.get("field"))
+        if response.status_code in (400, 401, 404):
+            raise BadAuthToken(f"The provided auth-token '{auth_token}' is not correctly formatted")
+        raise ServerError(f"The instance answered {response.status_code}")
+
+    def update_user_profile_text(self, *, pronouns: str | None = None, custom_status: str | None = None) -> None:
+        """
+        Set the pronouns and/or the custom status line.
+
+        An omitted argument is left alone and an empty string clears it. The instance limits
+        pronouns to 40 characters and the status to 60.
+
+        Raises:
+            InvalidProfileValue: A value is over its limit.
+
+        Example:
+            .. code-block:: python
+
+                >>> client.users.update_user_profile_text(pronouns="she/her", custom_status="grinding to Phantom")
+        """
+        payload: dict = {"auth_token": self.user.auth_token}
+        if pronouns is not None:
+            payload["pronouns"] = pronouns
+        if custom_status is not None:
+            payload["custom_status"] = custom_status
+        if len(payload) == 1:
+            return
+
+        response = requests.put(self.PROFILE_API_ROUTE.api_route, json=payload)
+        self._raise_for_profile_error(response, self.user.auth_token)
+
+        if pronouns is not None:
+            self.user.pronouns = pronouns.strip() or None
+        if custom_status is not None:
+            self.user.custom_status = custom_status.strip() or None
+
+    async def update_user_profile_text_async(self, *, pronouns: str | None = None, custom_status: str | None = None) -> None:
+        await asyncio.to_thread(lambda: self.update_user_profile_text(pronouns=pronouns, custom_status=custom_status))
+
+    def update_user_appearance(
+        self,
+        *,
+        avatar_kind: str | None = None,
+        banner_kind: str | None = None,
+        accent_color: str | None = None,
+        shuffle_avatar_seed: bool = False,
+        profile_settings: dict | None = None,
+    ) -> dict:
+        """
+        Change how the profile looks: the avatar/banner mode, the accent colour, and the profile settings.
+
+        Only what is given changes. ``profile_settings`` is a partial object (frame, tone, tone2,
+        card_theme, banner_pattern, name_font, motion, sections); the update is all-or-nothing.
+
+        Returns:
+            dict: The instance's answer, with the resulting ``avatar_url``, ``banner_url`` and
+            the complete ``profile_settings``.
+
+        Raises:
+            InvalidProfileValue: A value is not an allowed choice; ``field`` names it.
+
+        Example:
+            .. code-block:: python
+
+                >>> client.users.update_user_appearance(profile_settings={"frame": "spines", "sections": {"accounts": True}})
+        """
+        payload: dict = {"auth_token": self.user.auth_token}
+        if avatar_kind is not None:
+            payload["avatar_kind"] = avatar_kind
+        if banner_kind is not None:
+            payload["banner_kind"] = banner_kind
+        if accent_color is not None:
+            payload["accent_color"] = accent_color
+        if shuffle_avatar_seed:
+            payload["shuffle_avatar_seed"] = True
+        if profile_settings is not None:
+            payload["profile_settings"] = profile_settings
+
+        response = requests.put(self.UPDATE_APPEARANCE_API_ROUTE.api_route, json=payload)
+        self._raise_for_profile_error(response, self.user.auth_token)
+
+        result = response.json() or {}
+        for attribute in ("avatar_url", "banner_url", "avatar_kind", "banner_kind", "profile_settings"):
+            if result.get(attribute) is not None:
+                setattr(self.user, attribute, result[attribute])
+        if accent_color is not None:
+            self.user.accent_color = accent_color
+        return result
+
+    async def update_user_appearance_async(self, **kwargs) -> dict:
+        return await asyncio.to_thread(lambda: self.update_user_appearance(**kwargs))
 
     def upload_user_avatar(self, avatar_file_path: str) -> str:
         """

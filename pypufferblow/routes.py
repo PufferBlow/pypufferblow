@@ -22,6 +22,7 @@ users_routes: list[Route] = [
     Route(f"{users_base_route}/list", methods=["GET"]),
     Route(f"{users_base_route}/profile/avatar", methods=["POST"]),
     Route(f"{users_base_route}/profile/banner", methods=["POST"]),
+    Route(f"{users_base_route}/profile/appearance", methods=["PUT"]),
 ]
 
 channels_base_route = f"{base_route}/channels"

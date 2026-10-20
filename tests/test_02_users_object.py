@@ -223,3 +223,68 @@ def test_users_verbose_logging_emits_readable_auth_and_list_messages(mock_sdk_ba
     assert any("Signing in username=user1 on home instance=https://chat.example.org" in message for message in log_messages)
     assert any("Signed in username=user1" in message for message in log_messages)
     assert any("Listed 2 users on home instance=https://chat.example.org" in message for message in log_messages)
+
+
+def test_users_model_update_profile_text(mock_sdk_backend) -> None:
+    mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+    client.users.sign_in()
+
+    client.users.update_user_profile_text(pronouns="  she/her ", custom_status="grinding to Phantom")
+    assert client.users.user.pronouns == "she/her"
+    assert client.users.user.custom_status == "grinding to Phantom"
+
+    client.users.update_user_profile_text(custom_status="")  # clears only that one
+    assert client.users.user.custom_status is None
+    assert client.users.user.pronouns == "she/her"
+
+    assert client.users.get_user_profile() is not None
+
+
+def test_users_model_profile_text_over_the_limit_names_the_field(mock_sdk_backend) -> None:
+    from pypufferblow.exceptions import InvalidProfileValue
+
+    mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+    client.users.sign_in()
+
+    with pytest.raises(InvalidProfileValue) as caught:
+        client.users.update_user_profile_text(pronouns="x" * 41)
+
+    assert caught.value.field == "pronouns"
+    assert client.users.user.pronouns is None  # nothing was recorded locally either
+
+
+def test_users_model_update_appearance_keeps_the_settings_the_instance_returns(mock_sdk_backend) -> None:
+    mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+    client.users.sign_in()
+
+    result = client.users.update_user_appearance(profile_settings={"frame": "spines", "sections": {"accounts": True}}, accent_color="#112233")
+
+    assert result["profile_settings"]["frame"] == "spines"
+    assert client.users.user.profile_settings["frame"] == "spines"
+    assert client.users.user.accent_color == "#112233"
+
+
+def test_users_model_update_appearance_refusal_names_the_setting(mock_sdk_backend) -> None:
+    from pypufferblow.exceptions import InvalidProfileValue
+
+    mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+    client.users.sign_in()
+
+    with pytest.raises(InvalidProfileValue) as caught:
+        client.users.update_user_appearance(profile_settings={"sparkles": True})
+
+    assert caught.value.field == "sparkles"
+
+
+def test_users_model_update_appearance_async(mock_sdk_backend) -> None:
+    mock_sdk_backend.seed_user(username="user1", password="12345678")
+    client = create_client("user1", "12345678")
+    client.users.sign_in()
+
+    result = asyncio.run(client.users.update_user_appearance_async(profile_settings={"motion": "still"}))
+
+    assert result["profile_settings"]["motion"] == "still"

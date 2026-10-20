@@ -4,6 +4,7 @@ __all__ = [
     "UsernameAlreadyExists",
     "BadAuthToken",
     "InvalidStatusValue",
+    "InvalidProfileValue",
     "FaildToInitChannels",
     "NotAnAdminOrServerOwner",
     "ChannelNameAlreadyExists",
@@ -38,6 +39,17 @@ class BadAuthToken(Exception):
 
 class InvalidStatusValue(Exception):
     """Raised when an unsupported user status value is used."""
+
+
+class InvalidProfileValue(Exception):
+    """Raised when the instance refuses a profile value (too long, or not an allowed choice).
+
+    ``field`` names the offending field, e.g. ``"about"`` or ``"sections.play"``.
+    """
+
+    def __init__(self, message: str, field: str | None = None) -> None:
+        super().__init__(message)
+        self.field = field
 
 
 class FaildToInitChannels(Exception):

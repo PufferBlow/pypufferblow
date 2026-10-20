@@ -297,7 +297,46 @@ class MockSDKBackend:
                 user["about"] = json["about"]
                 return MockResponse(200, {"detail": "about updated"})
 
+            if "pronouns" in (json or {}) or "custom_status" in (json or {}):
+                limits = {"pronouns": 40, "custom_status": 60}
+                for field, limit in limits.items():
+                    if field in json and len(json[field].strip()) > limit:
+                        return MockResponse(
+                            400,
+                            {"error_code": "validation.field_range", "message": f"{field} can be at most {limit} characters", "details": {"field": field, "max": limit}},
+                        )
+                for field in limits:
+                    if field in json:
+                        user[field] = json[field].strip() or None
+                return MockResponse(200, {"detail": "profile updated"})
+
             return MockResponse(200, {"detail": "profile updated"})
+
+        if path.endswith("/api/v1/users/profile/appearance"):
+            auth_username = self._authenticate((json or {}).get("auth_token"))
+            if auth_username is None:
+                return MockResponse(400, {"detail": "bad auth token"})
+            user = self.users_by_username[auth_username]
+            settings = (json or {}).get("profile_settings")
+            if settings is not None:
+                for key, value in settings.items():
+                    if key not in {"frame", "tone", "tone2", "card_theme", "banner_pattern", "name_font", "motion", "sections"}:
+                        return MockResponse(
+                            400,
+                            {"error_code": "validation.field_range", "message": f"{key} is not a profile setting", "details": {"field": key}},
+                        )
+                merged = {**user.get("profile_settings", {}), **settings}
+                user["profile_settings"] = merged
+            return MockResponse(
+                200,
+                {
+                    "status_code": 200,
+                    "message": "Appearance updated",
+                    "profile_settings": user.get("profile_settings", {}),
+                    "avatar_url": user.get("avatar_url"),
+                    "banner_url": user.get("banner_url"),
+                },
+            )
 
         raise AssertionError(f"Unhandled PUT request in tests: {url}")
 

@@ -28,6 +28,14 @@ class UserModel:
     avatar_url: str | None = None
     banner_url: str | None = None
     about: str | None = None
+    avatar_kind: str | None = None
+    banner_kind: str | None = None
+    accent_color: str | None = None
+    avatar_seed: str | None = None
+    pronouns: str | None = None
+    custom_status: str | None = None
+    #: Choices from short lists: frame, tone, tone2, card_theme, banner_pattern, name_font, motion, sections.
+    profile_settings: dict | None = None
 
     # Additional API fields
     inbox_id: str | None = None
@@ -55,6 +63,13 @@ class UserModel:
         avatar_url: str | None = None,
         banner_url: str | None = None,
         about: str | None = None,
+        avatar_kind: str | None = None,
+        banner_kind: str | None = None,
+        accent_color: str | None = None,
+        avatar_seed: str | None = None,
+        pronouns: str | None = None,
+        custom_status: str | None = None,
+        profile_settings: dict | None = None,
 
         inbox_id: str | None = None,
         origin_server: str | None = None,
@@ -80,6 +95,13 @@ class UserModel:
         self.avatar_url = avatar_url
         self.banner_url = banner_url
         self.about = about
+        self.avatar_kind = avatar_kind
+        self.banner_kind = banner_kind
+        self.accent_color = accent_color
+        self.avatar_seed = avatar_seed
+        self.pronouns = pronouns
+        self.custom_status = custom_status
+        self.profile_settings = profile_settings
 
         self.inbox_id = inbox_id
         self.origin_server = origin_server
