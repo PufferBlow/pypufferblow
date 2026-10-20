@@ -288,3 +288,13 @@ def test_users_model_update_appearance_async(mock_sdk_backend) -> None:
     result = asyncio.run(client.users.update_user_appearance_async(profile_settings={"motion": "still"}))
 
     assert result["profile_settings"]["motion"] == "still"
+
+
+def test_users_model_profile_update_with_a_bad_token_does_not_put_the_token_in_the_error(mock_sdk_backend) -> None:
+    client = create_client("user1", "12345678")
+    client.users.user.auth_token = "secret-token-value"
+
+    with pytest.raises(BadAuthToken) as caught:
+        client.users.update_user_appearance(profile_settings={"frame": "ring"})
+
+    assert "secret-token-value" not in str(caught.value)

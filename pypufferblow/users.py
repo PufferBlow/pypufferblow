@@ -419,7 +419,7 @@ class Users:
         await asyncio.to_thread(self.update_user_about, new_about)
 
     @staticmethod
-    def _raise_for_profile_error(response, auth_token: str | None) -> None:
+    def _raise_for_profile_error(response) -> None:
         """Turn the instance's refusal into the exception that says what was wrong."""
         if response.status_code < 400:
             return
@@ -431,7 +431,8 @@ class Users:
             details = body.get("details") or {}
             raise InvalidProfileValue(body.get("message") or "The instance refused that value", details.get("field"))
         if response.status_code in (400, 401, 404):
-            raise BadAuthToken(f"The provided auth-token '{auth_token}' is not correctly formatted")
+            # Never the token itself: exception text ends up in logs and tracebacks.
+            raise BadAuthToken("The instance rejected the auth token (it is missing, malformed or expired)")
         raise ServerError(f"The instance answered {response.status_code}")
 
     def update_user_profile_text(self, *, pronouns: str | None = None, custom_status: str | None = None) -> None:
@@ -458,7 +459,7 @@ class Users:
             return
 
         response = requests.put(self.PROFILE_API_ROUTE.api_route, json=payload)
-        self._raise_for_profile_error(response, self.user.auth_token)
+        self._raise_for_profile_error(response)
 
         if pronouns is not None:
             self.user.pronouns = pronouns.strip() or None
@@ -508,7 +509,7 @@ class Users:
             payload["profile_settings"] = profile_settings
 
         response = requests.put(self.UPDATE_APPEARANCE_API_ROUTE.api_route, json=payload)
-        self._raise_for_profile_error(response, self.user.auth_token)
+        self._raise_for_profile_error(response)
 
         result = response.json() or {}
         for attribute in ("avatar_url", "banner_url", "avatar_kind", "banner_kind", "profile_settings"):
