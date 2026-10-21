@@ -5,6 +5,7 @@ __all__ = [
     "SystemOptions"
 ]
 
+import asyncio
 import requests
 try:
     from loguru import logger
@@ -68,6 +69,7 @@ class System:
     ONLINE_USERS_CHART_API_ROUTE: Route = system_routes[12]
     CHANNEL_CREATION_CHART_API_ROUTE: Route = system_routes[13]
     USER_STATUS_CHART_API_ROUTE: Route = system_routes[14]
+    HEALTH_API_ROUTE: Route = system_routes[15]
 
     def __init__(self, options: SystemOptions) -> None:
         """
@@ -195,6 +197,30 @@ class System:
         Preferred alias for `get_server_usage()` when referring to the home instance.
         """
         return self.get_server_usage()
+
+    def get_health(self) -> dict:
+        """
+        Get the instance's detailed health (admins only): checks and timings, request latency,
+        resource use, 90 days of uptime, recent incidents and linked instances.
+
+        Raises:
+            ServerError: The instance refused (not an admin) or could not answer.
+
+        Example:
+            .. code-block:: python
+
+                >>> health = client.system.get_health()
+                >>> health["latency"]["p95"]
+        """
+        response = requests.get(self.HEALTH_API_ROUTE.api_route, params={"auth_token": self.auth_token})
+
+        if response.status_code != 200:
+            raise ServerError(f"Failed to fetch instance health (HTTP {response.status_code})")
+
+        return response.json().get("health", {})
+
+    async def get_health_async(self) -> dict:
+        return await asyncio.to_thread(self.get_health)
 
     def get_server_stats(self) -> dict:
         """

@@ -141,3 +141,38 @@ def test_user_model_exposes_instance_oriented_aliases() -> None:
     assert user.is_owner is False
     assert user.joined_servers_ids == ["community-2"]
     assert user.origin_server == "chat2.example.org"
+
+
+def test_system_get_health_asks_with_the_token_and_returns_the_health(monkeypatch) -> None:
+    import asyncio
+
+    import pypufferblow.system as system_module
+    from pypufferblow.exceptions import ServerError
+
+    class Reply:
+        def __init__(self, status: int, body: dict) -> None:
+            self.status_code, self._body = status, body
+
+        def json(self) -> dict:
+            return self._body
+
+    seen: dict = {}
+
+    def fake_get(url, params=None, **kwargs):
+        seen.update(url=url, params=params)
+        return Reply(200, {"health": {"status": "ok", "latency": {"p95": 88.0}}})
+
+    monkeypatch.setattr(system_module.requests, "get", fake_get)
+    system = System(SystemOptions(instance="https://chat.example.org", auth_token="tok"))
+
+    assert system.get_health()["latency"]["p95"] == 88.0
+    assert seen["url"].endswith("/api/v1/system/health") and seen["params"] == {"auth_token": "tok"}
+    assert asyncio.run(system.get_health_async())["status"] == "ok"
+
+    monkeypatch.setattr(system_module.requests, "get", lambda *a, **k: Reply(403, {}))
+    try:
+        system.get_health()
+    except ServerError as error:
+        assert "403" in str(error) and "tok" not in str(error)
+    else:
+        raise AssertionError("a refusal must raise")

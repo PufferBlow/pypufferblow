@@ -64,6 +64,7 @@ system_routes: list[Route] = [
     Route(f"{system_base_route}/charts/online-users", methods=["POST"]),
     Route(f"{system_base_route}/charts/channel-creation", methods=["POST"]),
     Route(f"{system_base_route}/charts/user-status", methods=["POST"]),
+    Route(f"{system_base_route}/health", methods=["GET"]),
 ]
 
 admin_routes: list[Route] = [
