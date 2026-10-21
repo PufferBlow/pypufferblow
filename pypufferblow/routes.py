@@ -35,6 +35,12 @@ channels_routes: list[Route] = [
     Route(f"{channels_base_route}/{{channel_id}}/load_messages", methods=["GET"]),
     Route(f"{channels_base_route}/{{channel_id}}/send_message", methods=["POST"]),
     Route(f"{channels_base_route}/{{channel_id}}/mark_message_as_read", methods=["PUT"]),
+    Route(f"{channels_base_route}/{{channel_id}}/update", methods=["PUT"]),
+    Route(f"{channels_base_route}/categories", methods=["GET", "POST"]),
+    Route(f"{channels_base_route}/categories/order", methods=["PUT"]),
+    Route(f"{channels_base_route}/categories/{{category_id}}", methods=["PUT", "DELETE"]),
+    Route(f"{channels_base_route}/{{channel_id}}/pins", methods=["GET"]),
+    Route(f"{channels_base_route}/{{channel_id}}/messages/{{message_id}}/pin", methods=["PUT", "DELETE"]),
 ]
 
 storage_base_route = f"{base_route}/storage"

@@ -13,6 +13,10 @@ class ChannelModel:
     is_private: bool | None = False
     allowed_users: list[str]
     created_at: str
+    #: The category the channel sits in, its order in it, and one line about what it is for.
+    category_id: str | None = None
+    position: int = 0
+    topic: str | None = None
     
     def __init__(
         self,

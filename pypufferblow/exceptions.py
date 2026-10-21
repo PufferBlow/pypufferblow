@@ -5,6 +5,9 @@ __all__ = [
     "BadAuthToken",
     "InvalidStatusValue",
     "InvalidProfileValue",
+    "CategoryNotFound",
+    "CategoryNameAlreadyExists",
+    "PinLimitReached",
     "FaildToInitChannels",
     "NotAnAdminOrServerOwner",
     "ChannelNameAlreadyExists",
@@ -50,6 +53,18 @@ class InvalidProfileValue(Exception):
     def __init__(self, message: str, field: str | None = None) -> None:
         super().__init__(message)
         self.field = field
+
+
+class CategoryNotFound(Exception):
+    """Raised when a channel category could not be found."""
+
+
+class CategoryNameAlreadyExists(Exception):
+    """Raised when a channel category name is already taken."""
+
+
+class PinLimitReached(Exception):
+    """Raised when a channel already has the most pins it can hold."""
 
 
 class FaildToInitChannels(Exception):

@@ -20,6 +20,9 @@ from pypufferblow.exceptions import (
     NotAnAdminOrServerOwner,
     ChannelNameAlreadyExists,
     ChannelNotFound,
+    CategoryNameAlreadyExists,
+    CategoryNotFound,
+    PinLimitReached,
     UserNotFound,
     FaildToRemoveUserFromChannelUserIsAdmin,
     ExceededMaxMessagesPerPage,
@@ -64,6 +67,12 @@ class Channels:
     LOAD_MESSAGES_API_ROUTE: Route = channels_routes[5]
     SEND_MESSAGE_API_ROUTE: Route = channels_routes[6]
     MARK_MESSAGE_AS_READ_API_ROUTE: Route = channels_routes[7]
+    UPDATE_CHANNEL_API_ROUTE: Route = channels_routes[8]
+    CATEGORIES_API_ROUTE: Route = channels_routes[9]
+    CATEGORY_ORDER_API_ROUTE: Route = channels_routes[10]
+    CATEGORY_API_ROUTE: Route = channels_routes[11]
+    PINS_API_ROUTE: Route = channels_routes[12]
+    PIN_API_ROUTE: Route = channels_routes[13]
 
     STORAGE_UPLOAD_API_ROUTE: Route = storage_routes[0]
     
@@ -211,6 +220,97 @@ class Channels:
 
         return channel
     
+    # ── organisation: topic, categories, pins ──────────────────
+
+    def _check(self, response, *, what: str = "channel") -> None:
+        """Turn a refusal into the exception that says what was wrong (never quoting the token)."""
+        status = response.status_code
+        if status < 400:
+            return
+        if status == 403:
+            raise NotAnAdminOrServerOwner("Operation not permitted for this account.")
+        if status == 404:
+            if what == "category":
+                raise CategoryNotFound("That category does not exist.")
+            if what == "message":
+                raise MessageNotFound("That message is not in this channel.")
+            raise ChannelNotFound("That channel does not exist.")
+        if status == 409:
+            if what == "pin":
+                raise PinLimitReached("This channel already has the most pins it can hold. Unpin one first.")
+            raise CategoryNameAlreadyExists("A category with that name already exists.")
+        if status in (400, 401):
+            raise BadAuthToken("The instance rejected the auth token (it is missing, malformed or expired).")
+        raise ValueError(f"The instance answered {status}.")
+
+    def update_channel(self, channel_id: str, **fields) -> dict:
+        """
+        Change a channel's ``channel_name``, ``is_private``, ``topic``, ``category_id`` or ``position``.
+
+        Only the fields given change. ``topic=""`` clears the topic and ``category_id=None`` takes the
+        channel out of its category. Needs the ``edit_channels`` privilege.
+
+        Returns:
+            dict: The channel as the instance now has it.
+        """
+        allowed = {"channel_name", "is_private", "topic", "category_id", "position"}
+        unknown = set(fields) - allowed
+        if unknown:
+            raise TypeError(f"Unknown channel field(s): {sorted(unknown)}")
+        payload = {"auth_token": self.user.auth_token, **fields}
+        response = requests.put(self.UPDATE_CHANNEL_API_ROUTE.api_route.format(channel_id=channel_id), json=payload)
+        if response.status_code == 404 and "category_id" in fields and fields["category_id"]:
+            raise CategoryNotFound(f"The category '{fields['category_id']}' does not exist.")
+        self._check(response)
+        return response.json().get("channel_data", {})
+
+    def list_categories(self) -> list[dict]:
+        """The channel categories, in order: ``{category_id, name, position}``."""
+        response = requests.get(self.CATEGORIES_API_ROUTE.api_route, params={"auth_token": self.user.auth_token})
+        self._check(response)
+        return response.json().get("categories", [])
+
+    def create_category(self, name: str) -> dict:
+        """Add a category at the end. Needs ``edit_channels``; ``CategoryNameAlreadyExists`` if the name is taken."""
+        response = requests.post(self.CATEGORIES_API_ROUTE.api_route, json={"auth_token": self.user.auth_token, "name": name})
+        self._check(response, what="category")
+        return response.json().get("category", {})
+
+    def rename_category(self, category_id: str, name: str) -> dict:
+        """Rename a category. Needs ``edit_channels``."""
+        response = requests.put(self.CATEGORY_API_ROUTE.api_route.format(category_id=category_id), json={"auth_token": self.user.auth_token, "name": name})
+        self._check(response, what="category")
+        return response.json().get("category", {})
+
+    def delete_category(self, category_id: str) -> None:
+        """Delete a category; its channels stay, uncategorised. Needs ``edit_channels``."""
+        response = requests.delete(self.CATEGORY_API_ROUTE.api_route.format(category_id=category_id), params={"auth_token": self.user.auth_token})
+        self._check(response, what="category")
+
+    def reorder_categories(self, category_ids: list[str]) -> list[dict]:
+        """Put these categories first, in this order. Needs ``edit_channels``."""
+        response = requests.put(self.CATEGORY_ORDER_API_ROUTE.api_route, json={"auth_token": self.user.auth_token, "category_ids": list(category_ids)})
+        self._check(response, what="category")
+        return response.json().get("categories", [])
+
+    def list_pins(self, channel_id: str) -> list[dict]:
+        """A channel's pinned messages, newest pin first (each message also has ``pinned_by`` and ``pinned_at``)."""
+        response = requests.get(self.PINS_API_ROUTE.api_route.format(channel_id=channel_id), params={"auth_token": self.user.auth_token})
+        self._check(response)
+        return response.json().get("pins", [])
+
+    def pin_message(self, channel_id: str, message_id: str) -> bool:
+        """Pin a message (needs ``moderate_content``). True if it was newly pinned, False if it already was."""
+        response = requests.put(self.PIN_API_ROUTE.api_route.format(channel_id=channel_id, message_id=message_id), params={"auth_token": self.user.auth_token})
+        self._check(response, what="pin" if response.status_code == 409 else "message")
+        return not response.json().get("already", False)
+
+    def unpin_message(self, channel_id: str, message_id: str) -> bool:
+        """Unpin a message (needs ``moderate_content``). True if it was pinned, False if it was not."""
+        response = requests.delete(self.PIN_API_ROUTE.api_route.format(channel_id=channel_id, message_id=message_id), params={"auth_token": self.user.auth_token})
+        self._check(response)
+        return bool(response.json().get("removed", False))
+
     def delete_channel(self, channel_id: str) -> None:
         """
         Delete a channel.
