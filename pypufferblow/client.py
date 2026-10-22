@@ -46,6 +46,11 @@ from pypufferblow.decentralized_auth import (
     DecentralizedAuth,
     DecentralizedAuthOptions,
 )
+# Calls class
+from pypufferblow.calls import (
+    Calls,
+    CallsOptions,
+)
 # Federation class
 from pypufferblow.federation import (
     Federation,
@@ -65,6 +70,7 @@ from pypufferblow.routes import (
     decentralized_auth_routes,
     federation_routes,
     direct_messages_routes,
+    calls_routes,
 )
 
 # Models
@@ -110,6 +116,7 @@ class Client:
     admin: Admin = None
     decentralized_auth: DecentralizedAuth = None
     federation: Federation = None
+    calls: Calls = None
     websocket: GlobalWebSocket = None
     
     def __init__(self, options: ClientOptions) -> None:
@@ -418,6 +425,34 @@ class Client:
             "REVOKE_API_ROUTE",
         )
         return self.decentralized_auth
+
+    def calls(self) -> Calls:
+        """
+        Create a Calls object for 1:1 voice calls and identity keys.
+        """
+        if not self.users.is_signed_in:
+            raise Exception(
+                "Calls require user authentication. Please call users().sign_in() first."
+            )
+
+        options = CallsOptions(
+            instance=self.instance_url,
+            auth_token=self.users.user.auth_token,
+        )
+        self.calls = Calls(options)
+        self._assign_routes(
+            self.calls,
+            self._build_routes(calls_routes),
+            "INVITE_API_ROUTE",
+            "ACCEPT_API_ROUTE",
+            "REJECT_API_ROUTE",
+            "END_API_ROUTE",
+            "SIGNAL_API_ROUTE",
+            "FALLBACK_API_ROUTE",
+            "IDENTITY_KEYS_API_ROUTE",
+            "IDENTITY_KEY_API_ROUTE",
+        )
+        return self.calls
 
     def federation(self) -> Federation:
         """

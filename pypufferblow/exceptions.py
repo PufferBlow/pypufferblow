@@ -8,6 +8,8 @@ __all__ = [
     "CategoryNotFound",
     "CategoryNameAlreadyExists",
     "PinLimitReached",
+    "CallBusy",
+    "CallRefused",
     "PeerNotFound",
     "PeerAlreadyExists",
     "InvalidPeerValue",
@@ -68,6 +70,21 @@ class CategoryNameAlreadyExists(Exception):
 
 class PinLimitReached(Exception):
     """Raised when a channel already has the most pins it can hold."""
+
+
+class CallRefused(Exception):
+    """Raised when the instance refuses a call action. ``status_code`` is what it answered."""
+
+    def __init__(self, message: str, status_code: int | None = None) -> None:
+        super().__init__(message)
+        self.status_code = status_code
+
+
+class CallBusy(CallRefused):
+    """Raised when a call cannot be started because of the caller's own state (already calling, or rang too soon)."""
+
+    def __init__(self, message: str) -> None:
+        super().__init__(message, 409)
 
 
 class PeerNotFound(Exception):

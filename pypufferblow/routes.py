@@ -9,6 +9,7 @@ __all__ = [
     "decentralized_auth_routes",
     "federation_routes",
     "direct_messages_routes",
+    "calls_routes",
 ]
 
 base_route = "/api/v1"
@@ -99,6 +100,19 @@ federation_routes: list[Route] = [
     Route(f"{federation_base_route}/peers/{{host}}/policy", methods=["PUT"]),
     Route(f"{federation_base_route}/peers/{{host}}/refresh", methods=["POST"]),
     Route(f"{federation_base_route}/peers/import", methods=["POST"]),
+]
+
+calls_base_route = f"{base_route}/dm-calls"
+identity_keys_base_route = f"{base_route}/identity-keys"
+calls_routes: list[Route] = [
+    Route(f"{calls_base_route}/{{callee_id}}/invite", methods=["POST"]),
+    Route(f"{calls_base_route}/{{call_id}}/accept", methods=["POST"]),
+    Route(f"{calls_base_route}/{{call_id}}/reject", methods=["POST"]),
+    Route(f"{calls_base_route}/{{call_id}}/end", methods=["POST"]),
+    Route(f"{calls_base_route}/{{call_id}}/signal", methods=["POST"]),
+    Route(f"{calls_base_route}/{{call_id}}/fallback", methods=["POST"]),
+    Route(identity_keys_base_route, methods=["PUT"]),
+    Route(f"{identity_keys_base_route}/{{id}}", methods=["GET", "DELETE"]),
 ]
 
 direct_messages_base_route = f"{base_route}/dms"
