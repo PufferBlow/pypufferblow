@@ -8,6 +8,9 @@ __all__ = [
     "CategoryNotFound",
     "CategoryNameAlreadyExists",
     "PinLimitReached",
+    "PeerNotFound",
+    "PeerAlreadyExists",
+    "InvalidPeerValue",
     "FaildToInitChannels",
     "NotAnAdminOrServerOwner",
     "ChannelNameAlreadyExists",
@@ -65,6 +68,22 @@ class CategoryNameAlreadyExists(Exception):
 
 class PinLimitReached(Exception):
     """Raised when a channel already has the most pins it can hold."""
+
+
+class PeerNotFound(Exception):
+    """Raised when an instance is not one of this instance's federation peers."""
+
+
+class PeerAlreadyExists(Exception):
+    """Raised when adding a federation peer that is already known."""
+
+
+class InvalidPeerValue(ValueError):
+    """Raised when a host, status, mode or policy switch is not valid. ``field`` names the offender."""
+
+    def __init__(self, message: str, field: str | None = None) -> None:
+        super().__init__(message)
+        self.field = field
 
 
 class FaildToInitChannels(Exception):

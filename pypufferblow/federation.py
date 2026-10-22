@@ -8,6 +8,13 @@ __all__ = [
 import asyncio
 import requests
 
+from pypufferblow.exceptions import (
+    BadAuthToken,
+    InvalidPeerValue,
+    NotAnAdminOrServerOwner,
+    PeerAlreadyExists,
+    PeerNotFound,
+)
 from pypufferblow.logging_utils import get_sdk_logger
 from pypufferblow.models.options_model import OptionsModel
 from pypufferblow.models.route_model import Route
@@ -25,6 +32,13 @@ class Federation:
 
     API_ROUTES: list[Route] = [*federation_routes, *direct_messages_routes]
     FOLLOW_REMOTE_API_ROUTE: Route = federation_routes[0]
+    PEERS_API_ROUTE: Route = federation_routes[1]
+    MODE_API_ROUTE: Route = federation_routes[2]
+    PEER_API_ROUTE: Route = federation_routes[3]
+    PEER_STATUS_API_ROUTE: Route = federation_routes[4]
+    PEER_POLICY_API_ROUTE: Route = federation_routes[5]
+    PEER_REFRESH_API_ROUTE: Route = federation_routes[6]
+    PEERS_IMPORT_API_ROUTE: Route = federation_routes[7]
     SEND_DIRECT_MESSAGE_API_ROUTE: Route = direct_messages_routes[0]
     LOAD_DIRECT_MESSAGES_API_ROUTE: Route = direct_messages_routes[1]
 
@@ -37,6 +51,85 @@ class Federation:
         self.instance_url = options.instance_url
         self.auth_token = options.auth_token
         self.logger = get_sdk_logger("federation")
+
+    # -- peers (admins and the owner) --------------------------------
+
+    def _check_peer(self, response, host: str | None = None) -> None:
+        """Turn a refusal into the exception that says what was wrong (never quoting the token)."""
+        status = response.status_code
+        if status < 400:
+            return
+        if status == 403:
+            raise NotAnAdminOrServerOwner("Operation not permitted for this account.")
+        if status == 404:
+            raise PeerNotFound(f"{host or 'That instance'} is not a peer.")
+        if status == 409:
+            raise PeerAlreadyExists(f"{host or 'That instance'} is already a peer.")
+        if status == 401:
+            raise BadAuthToken("The instance rejected the auth token (it is missing, malformed or expired).")
+        if status in (400, 422):
+            try:
+                details = response.json().get("details") or {}
+            except Exception:
+                details = {}
+            raise InvalidPeerValue("The instance rejected the value.", details.get("field"))
+        raise ValueError(f"The instance answered {status}.")
+
+    def list_peers(self) -> dict:
+        """The federation mode, how many peers are in each status, and every peer: ``{mode, modes, counts, peers}``."""
+        response = requests.get(self.PEERS_API_ROUTE.api_route, params={"auth_token": self.auth_token})
+        self._check_peer(response)
+        body = response.json()
+        return {key: body.get(key) for key in ("mode", "modes", "counts", "peers")}
+
+    def set_federation_mode(self, mode: str) -> str:
+        """Set the mode: ``open``, ``allowlist`` or ``closed``."""
+        response = requests.put(self.MODE_API_ROUTE.api_route, json={"auth_token": self.auth_token, "mode": mode})
+        self._check_peer(response)
+        return response.json().get("mode", mode)
+
+    def add_peer(self, host: str, status: str = "federating") -> dict:
+        """Add an instance by hand. ``PeerAlreadyExists`` if it is already a peer."""
+        response = requests.post(self.PEERS_API_ROUTE.api_route, json={"auth_token": self.auth_token, "host": host, "status": status})
+        self._check_peer(response, host)
+        return response.json().get("peer", {})
+
+    def set_peer_status(self, host: str, status: str) -> dict:
+        """Accept (``federating``), ``limited``, ``blocked`` or ``pending`` for a peer."""
+        response = requests.put(self.PEER_STATUS_API_ROUTE.api_route.format(host=host), json={"auth_token": self.auth_token, "status": status})
+        self._check_peer(response, host)
+        return response.json().get("peer", {})
+
+    def block_peer(self, host: str) -> dict:
+        return self.set_peer_status(host, "blocked")
+
+    def accept_peer(self, host: str) -> dict:
+        return self.set_peer_status(host, "federating")
+
+    def set_peer_policy(self, host: str, **switches: bool) -> dict:
+        """Set some of a peer's switches by hand: ``media``, ``voice``, ``discover`` (True or False)."""
+        response = requests.put(self.PEER_POLICY_API_ROUTE.api_route.format(host=host), json={"auth_token": self.auth_token, "policy": switches})
+        self._check_peer(response, host)
+        return response.json().get("peer", {})
+
+    def remove_peer(self, host: str) -> None:
+        """Forget a peer."""
+        response = requests.delete(self.PEER_API_ROUTE.api_route.format(host=host), params={"auth_token": self.auth_token})
+        self._check_peer(response, host)
+
+    def refresh_peer(self, host: str) -> dict | None:
+        """Ask the peer what it is (software, version, users). The peer, or None if it said nothing usable."""
+        response = requests.post(self.PEER_REFRESH_API_ROUTE.api_route.format(host=host), json={"auth_token": self.auth_token})
+        self._check_peer(response, host)
+        body = response.json()
+        return body.get("peer") if body.get("found") else None
+
+    def import_peers(self, hosts: list[str], status: str = "blocked") -> dict:
+        """Add up to 500 hosts with one status (a shared blocklist). ``{added, skipped, invalid}``."""
+        response = requests.post(self.PEERS_IMPORT_API_ROUTE.api_route, json={"auth_token": self.auth_token, "hosts": list(hosts), "status": status})
+        self._check_peer(response)
+        body = response.json()
+        return {key: body.get(key, []) for key in ("added", "skipped", "invalid")}
 
     def follow_remote_account(self, remote_handle: str) -> dict:
         """

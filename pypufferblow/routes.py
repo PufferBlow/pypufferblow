@@ -92,6 +92,13 @@ decentralized_auth_routes: list[Route] = [
 federation_base_route = f"{base_route}/federation"
 federation_routes: list[Route] = [
     Route(f"{federation_base_route}/follow", methods=["POST"]),
+    Route(f"{federation_base_route}/peers", methods=["GET", "POST"]),
+    Route(f"{federation_base_route}/mode", methods=["PUT"]),
+    Route(f"{federation_base_route}/peers/{{host}}", methods=["DELETE"]),
+    Route(f"{federation_base_route}/peers/{{host}}/status", methods=["PUT"]),
+    Route(f"{federation_base_route}/peers/{{host}}/policy", methods=["PUT"]),
+    Route(f"{federation_base_route}/peers/{{host}}/refresh", methods=["POST"]),
+    Route(f"{federation_base_route}/peers/import", methods=["POST"]),
 ]
 
 direct_messages_base_route = f"{base_route}/dms"

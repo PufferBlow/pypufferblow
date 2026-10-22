@@ -437,6 +437,15 @@ class Client:
         direct_message_api_routes = self._build_routes(direct_messages_routes)
         self.federation.API_ROUTES = [*federation_api_routes, *direct_message_api_routes]
         self.federation.FOLLOW_REMOTE_API_ROUTE = federation_api_routes[0]
+        (
+            self.federation.PEERS_API_ROUTE,
+            self.federation.MODE_API_ROUTE,
+            self.federation.PEER_API_ROUTE,
+            self.federation.PEER_STATUS_API_ROUTE,
+            self.federation.PEER_POLICY_API_ROUTE,
+            self.federation.PEER_REFRESH_API_ROUTE,
+            self.federation.PEERS_IMPORT_API_ROUTE,
+        ) = federation_api_routes[1:8]
         self.federation.SEND_DIRECT_MESSAGE_API_ROUTE = direct_message_api_routes[0]
         self.federation.LOAD_DIRECT_MESSAGES_API_ROUTE = direct_message_api_routes[1]
         return self.federation
