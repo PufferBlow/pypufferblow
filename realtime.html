@@ -1,0 +1,802 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Realtime (protocol v1) &#8212; pypufferblow 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=a1637f0b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'realtime';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tests" href="tests/tests.html" />
+    <link rel="prev" title="Channels Module" href="channels.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pypufferblow 0.1.0 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Welcome to pypufferblow’s documentation!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="client.html">Client Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">Users Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="channels.html">Channels Module</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Realtime (protocol v1)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tests/tests.html">Tests</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/test_client.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/test_users.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/test_channels.html">Test Client Module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow/edit/main/docs/realtime.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow/issues/new?title=Issue%20on%20page%20%2Frealtime.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/realtime.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Realtime (protocol v1)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrying-a-send">Retrying a send</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recovery">Recovery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pypufferblow.realtime">API</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient"><code class="docutils literal notranslate"><span class="pre">ProtocolClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.create_message"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.create_message()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.events"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.events()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.request"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.request()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.resync"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.resync()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.send"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.send()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.start"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.subscribe"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.subscribe()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.watch"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.watch()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.watched"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.watched</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.Ack"><code class="docutils literal notranslate"><span class="pre">Ack</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.Ack.duplicate"><code class="docutils literal notranslate"><span class="pre">Ack.duplicate</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.ErrorFrame"><code class="docutils literal notranslate"><span class="pre">ErrorFrame</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.ErrorFrame.id"><code class="docutils literal notranslate"><span class="pre">ErrorFrame.id</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.EventFrame"><code class="docutils literal notranslate"><span class="pre">EventFrame</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.EventTracker"><code class="docutils literal notranslate"><span class="pre">EventTracker</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.EventTracker.accept"><code class="docutils literal notranslate"><span class="pre">EventTracker.accept()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.EventTracker.observe_epoch"><code class="docutils literal notranslate"><span class="pre">EventTracker.observe_epoch()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.EventTracker.set_baseline"><code class="docutils literal notranslate"><span class="pre">EventTracker.set_baseline()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.Hello"><code class="docutils literal notranslate"><span class="pre">Hello</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.ProtocolError"><code class="docutils literal notranslate"><span class="pre">ProtocolError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.ProtocolMessage"><code class="docutils literal notranslate"><span class="pre">ProtocolMessage</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.ProtocolMessage.from_view"><code class="docutils literal notranslate"><span class="pre">ProtocolMessage.from_view()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.build_command"><code class="docutils literal notranslate"><span class="pre">build_command()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.event_to_legacy"><code class="docutils literal notranslate"><span class="pre">event_to_legacy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.parse_frame"><code class="docutils literal notranslate"><span class="pre">parse_frame()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="realtime-protocol-v1">
+<h1>Realtime (protocol v1)<a class="headerlink" href="#realtime-protocol-v1" title="Link to this heading">#</a></h1>
+<p>The server speaks a command/event protocol on <code class="docutils literal notranslate"><span class="pre">/ws?protocol=1</span></code>. Commands are acknowledged once
+the work is committed; events are pushed for the channels you can see, in order per channel, at
+least once. <a class="reference internal" href="#pypufferblow.realtime.ProtocolClient" title="pypufferblow.realtime.ProtocolClient"><code class="xref py py-class docutils literal notranslate"><span class="pre">ProtocolClient</span></code></a> handles correlation, idempotent retries,
+duplicate events and recovery after a gap or a reconnect.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">with</span> <span class="n">client</span><span class="o">.</span><span class="n">realtime</span><span class="p">()</span> <span class="k">as</span> <span class="n">live</span><span class="p">:</span>
+    <span class="n">live</span><span class="o">.</span><span class="n">watch</span><span class="p">(</span><span class="n">channel_id</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">live</span><span class="o">.</span><span class="n">create_message</span><span class="p">(</span><span class="n">channel_id</span><span class="p">,</span> <span class="s2">"hello"</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">live</span><span class="o">.</span><span class="n">events</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="retrying-a-send">
+<h2>Retrying a send<a class="headerlink" href="#retrying-a-send" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">create_message</span></code> takes a <code class="docutils literal notranslate"><span class="pre">nonce</span></code> (generated when omitted). Retryable failures are retried with
+the same nonce, so a message the server did commit is never posted twice.</p>
+</section>
+<section id="recovery">
+<h2>Recovery<a class="headerlink" href="#recovery" title="Link to this heading">#</a></h2>
+<p>Each event carries a per-channel sequence number and the server’s epoch. A gap, or a new epoch after
+a server restart, makes the client call <code class="docutils literal notranslate"><span class="pre">events.resync</span></code> for that channel and report the server’s
+recent messages to <code class="docutils literal notranslate"><span class="pre">on_resync</span></code>. After a reconnect the channels added with <code class="docutils literal notranslate"><span class="pre">watch</span></code> are caught up
+the same way.</p>
+</section>
+<section id="module-pypufferblow.realtime">
+<span id="api"></span><h2>API<a class="headerlink" href="#module-pypufferblow.realtime" title="Link to this heading">#</a></h2>
+<p>Async client for the Pufferblow command/event protocol (v1).</p>
+<p>One websocket carries everything: you send <em>commands</em> (<code class="docutils literal notranslate"><span class="pre">message.create</span></code>, <code class="docutils literal notranslate"><span class="pre">message.edit</span></code>, …)
+and get an acknowledgment once the work is committed, and the server pushes <em>events</em>
+(<code class="docutils literal notranslate"><span class="pre">message.created</span></code>, …) for the channels you can see. The client handles the parts that are
+easy to get wrong: matching acks to commands, safe retries with an idempotency <code class="docutils literal notranslate"><span class="pre">nonce</span></code>,
+dropping duplicate events, and catching up with <code class="docutils literal notranslate"><span class="pre">events.resync</span></code> after a gap or a reconnect.</p>
+<p class="rubric">Example</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">async</span> <span class="k">with</span> <span class="n">ProtocolClient</span><span class="p">(</span><span class="n">auth_token</span><span class="p">,</span> <span class="s2">"https://chat.example.org"</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+    <span class="k">async</span> <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">client</span><span class="o">.</span><span class="n">events</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">event</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"message.created"</span> <span class="ow">and</span> <span class="n">event</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">"content"</span><span class="p">]</span> <span class="o">==</span> <span class="s2">"!ping"</span><span class="p">:</span>
+            <span class="k">await</span> <span class="n">client</span><span class="o">.</span><span class="n">create_message</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">channel_id</span><span class="p">,</span> <span class="s2">"pong"</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="pypufferblow.realtime.ProtocolClient">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypufferblow.realtime.</span></span><span class="sig-name descname"><span class="pre">ProtocolClient</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">command_timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_event</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pypufferblow.protocol.EventFrame" title="pypufferblow.protocol.EventFrame"><span class="pre">EventFrame</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on_resync</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pypufferblow.protocol.ProtocolMessage" title="pypufferblow.protocol.ProtocolMessage"><span class="pre">ProtocolMessage</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Awaitable</span><span class="p"><span class="pre">[</span></span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reconnect</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ping_interval</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_backoff</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">30.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypufferblow/realtime.html#ProtocolClient"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.realtime.ProtocolClient" title="Link to this definition">#</a></dt>
+<dd><p>A protocol v1 connection that reconnects by itself.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>auth_token</strong> – User authentication token.</p></li>
+<li><p><strong>instance</strong> – Instance URL or authority, e.g. <code class="docutils literal notranslate"><span class="pre">https://chat.example.org</span></code> or <code class="docutils literal notranslate"><span class="pre">localhost:7575</span></code>.</p></li>
+<li><p><strong>command_timeout</strong> – Seconds to wait for an acknowledgment before raising <code class="docutils literal notranslate"><span class="pre">TIMEOUT</span></code>.</p></li>
+<li><p><strong>on_event</strong> – Called for every event that has not been seen before (sync or async function).</p></li>
+<li><p><strong>on_resync</strong> – Called with <code class="docutils literal notranslate"><span class="pre">(channel_id,</span> <span class="pre">messages)</span></code> after a gap or reconnect, with the
+server’s current view of the channel’s recent messages.</p></li>
+<li><p><strong>reconnect</strong> – Reconnect with exponential backoff when the socket drops.</p></li>
+<li><p><strong>ping_interval</strong> – Seconds between application-level pings (they also re-check the token).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.realtime.ProtocolClient.create_message">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nonce</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pypufferblow.protocol.ProtocolMessage" title="pypufferblow.protocol.ProtocolMessage"><span class="pre">ProtocolMessage</span></a></span></span><a class="reference internal" href="_modules/pypufferblow/realtime.html#ProtocolClient.create_message"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.realtime.ProtocolClient.create_message" title="Link to this definition">#</a></dt>
+<dd><p>Post a message.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">nonce</span></code> is the idempotency key. Retryable failures (a dropped connection, a timeout,
+a rate limit) are retried with the <em>same</em> nonce, so a message the server did commit is never
+posted twice. Pass your own nonce to retry across calls.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.realtime.ProtocolClient.events">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">events</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AsyncIterator</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pypufferblow.protocol.EventFrame" title="pypufferblow.protocol.EventFrame"><span class="pre">EventFrame</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/pypufferblow/realtime.html#ProtocolClient.events"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.realtime.ProtocolClient.events" title="Link to this definition">#</a></dt>
+<dd><p>Iterate new events as they arrive; ends when the client is closed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.realtime.ProtocolClient.request">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pypufferblow.protocol.Ack" title="pypufferblow.protocol.Ack"><span class="pre">Ack</span></a></span></span><a class="reference internal" href="_modules/pypufferblow/realtime.html#ProtocolClient.request"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.realtime.ProtocolClient.request" title="Link to this definition">#</a></dt>
+<dd><p>Send a command and wait for its acknowledgment (the work is committed when it arrives).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.realtime.ProtocolClient.resync">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">resync</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">limit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#pypufferblow.protocol.ProtocolMessage" title="pypufferblow.protocol.ProtocolMessage"><span class="pre">ProtocolMessage</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/pypufferblow/realtime.html#ProtocolClient.resync"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.realtime.ProtocolClient.resync" title="Link to this definition">#</a></dt>
+<dd><p>The server’s recent messages for a channel. Also moves the sequence baseline forward.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.realtime.ProtocolClient.send">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">send</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/pypufferblow/realtime.html#ProtocolClient.send"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.realtime.ProtocolClient.send" title="Link to this definition">#</a></dt>
+<dd><p>Like <a class="reference internal" href="#pypufferblow.realtime.ProtocolClient.request" title="pypufferblow.realtime.ProtocolClient.request"><code class="xref py py-meth docutils literal notranslate"><span class="pre">request()</span></code></a>, returning just the result object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.realtime.ProtocolClient.start">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">15.0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pypufferblow.realtime.ProtocolClient" title="pypufferblow.realtime.ProtocolClient"><span class="pre">ProtocolClient</span></a></span></span><a class="reference internal" href="_modules/pypufferblow/realtime.html#ProtocolClient.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.realtime.ProtocolClient.start" title="Link to this definition">#</a></dt>
+<dd><p>Connect and wait for the server’s <code class="docutils literal notranslate"><span class="pre">hello</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.realtime.ProtocolClient.subscribe">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subscribe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pypufferblow/realtime.html#ProtocolClient.subscribe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.realtime.ProtocolClient.subscribe" title="Link to this definition">#</a></dt>
+<dd><p>Start receiving a channel’s events. The server already subscribes you to the channels you
+can see when you connect; this is for channels created afterwards.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.realtime.ProtocolClient.watch">
+<span class="sig-name descname"><span class="pre">watch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">channel_ids</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pypufferblow/realtime.html#ProtocolClient.watch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.realtime.ProtocolClient.watch" title="Link to this definition">#</a></dt>
+<dd><p>Mark channels to catch up automatically after a reconnect or restart of the server.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypufferblow.realtime.ProtocolClient.watched">
+<span class="sig-name descname"><span class="pre">watched</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">set</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#pypufferblow.realtime.ProtocolClient.watched" title="Link to this definition">#</a></dt>
+<dd><p>Channels <a class="reference internal" href="#pypufferblow.realtime.ProtocolClient.resync" title="pypufferblow.realtime.ProtocolClient.resync"><code class="xref py py-meth docutils literal notranslate"><span class="pre">resync()</span></code></a> is run for after a reconnect (add with <a class="reference internal" href="#pypufferblow.realtime.ProtocolClient.watch" title="pypufferblow.realtime.ProtocolClient.watch"><code class="xref py py-meth docutils literal notranslate"><span class="pre">watch()</span></code></a>).</p>
+</dd></dl>
+
+</dd></dl>
+
+<p id="module-pypufferblow.protocol">Wire format of the Pufferblow command/event protocol, version 1.</p>
+<p>The server’s <code class="docutils literal notranslate"><span class="pre">docs/protocol/v1/fixtures/*.json</span></code> are the contract; <code class="docutils literal notranslate"><span class="pre">tests/fixtures/protocol_v1</span></code>
+holds an identical copy that the test suite parses. Unknown frames resolve to <code class="docutils literal notranslate"><span class="pre">None</span></code> so a
+newer server can add frames without breaking an older SDK.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pypufferblow.protocol.Ack">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypufferblow.protocol.</span></span><span class="sig-name descname"><span class="pre">Ack</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">result</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duplicate</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypufferblow/protocol.html#Ack"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.Ack" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pypufferblow.protocol.Ack.duplicate">
+<span class="sig-name descname"><span class="pre">duplicate</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#pypufferblow.protocol.Ack.duplicate" title="Link to this definition">#</a></dt>
+<dd><p>True when the server recognised the command’s nonce and returned the stored result.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypufferblow.protocol.ErrorFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypufferblow.protocol.</span></span><span class="sig-name descname"><span class="pre">ErrorFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retryable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retry_after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypufferblow/protocol.html#ErrorFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.ErrorFrame" title="Link to this definition">#</a></dt>
+<dd><dl class="py attribute">
+<dt class="sig sig-object py" id="pypufferblow.protocol.ErrorFrame.id">
+<span class="sig-name descname"><span class="pre">id</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#pypufferblow.protocol.ErrorFrame.id" title="Link to this definition">#</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">None</span></code> when the server could not tell which command the frame was for.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypufferblow.protocol.EventFrame">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypufferblow.protocol.</span></span><span class="sig-name descname"><span class="pre">EventFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypufferblow/protocol.html#EventFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.EventFrame" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypufferblow.protocol.EventTracker">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypufferblow.protocol.</span></span><span class="sig-name descname"><span class="pre">EventTracker</span></span><a class="reference internal" href="_modules/pypufferblow/protocol.html#EventTracker"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.EventTracker" title="Link to this definition">#</a></dt>
+<dd><p>Skips duplicate events (by event id) and notices gaps.</p>
+<p>Delivery is at-least-once and in order per channel within one server epoch. Sequence numbers
+are per channel; the epoch changes when the server restarts, so a new epoch means anything
+may have been missed.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.protocol.EventTracker.accept">
+<span class="sig-name descname"><span class="pre">accept</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pypufferblow.protocol.EventFrame" title="pypufferblow.protocol.EventFrame"><span class="pre">EventFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">bool</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/pypufferblow/protocol.html#EventTracker.accept"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.EventTracker.accept" title="Link to this definition">#</a></dt>
+<dd><p>Return <code class="docutils literal notranslate"><span class="pre">(apply,</span> <span class="pre">resync)</span></code>: whether to handle the event and whether a channel needs a resync.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.protocol.EventTracker.observe_epoch">
+<span class="sig-name descname"><span class="pre">observe_epoch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="reference internal" href="_modules/pypufferblow/protocol.html#EventTracker.observe_epoch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.EventTracker.observe_epoch" title="Link to this definition">#</a></dt>
+<dd><p>Record the epoch from a <code class="docutils literal notranslate"><span class="pre">hello</span></code>; True when it differs from the previous one.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.protocol.EventTracker.set_baseline">
+<span class="sig-name descname"><span class="pre">set_baseline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pypufferblow/protocol.html#EventTracker.set_baseline"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.EventTracker.set_baseline" title="Link to this definition">#</a></dt>
+<dd><p>Take the position a subscribe or resync ack reports for a channel.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypufferblow.protocol.Hello">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypufferblow.protocol.</span></span><span class="sig-name descname"><span class="pre">Hello</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">supported</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">session_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epoch</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypufferblow/protocol.html#Hello"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.Hello" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="pypufferblow.protocol.ProtocolError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypufferblow.protocol.</span></span><span class="sig-name descname"><span class="pre">ProtocolError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retryable</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">retry_after</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypufferblow/protocol.html#ProtocolError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.ProtocolError" title="Link to this definition">#</a></dt>
+<dd><p>A command the server refused, or that never got an answer.</p>
+<p><code class="docutils literal notranslate"><span class="pre">code</span></code> is one of the server’s codes (<code class="docutils literal notranslate"><span class="pre">PERMISSION_DENIED</span></code>, <code class="docutils literal notranslate"><span class="pre">RATE_LIMITED</span></code>, …) or one of
+three raised locally: <code class="docutils literal notranslate"><span class="pre">NOT_CONNECTED</span></code>, <code class="docutils literal notranslate"><span class="pre">DISCONNECTED</span></code> and <code class="docutils literal notranslate"><span class="pre">TIMEOUT</span></code>. <code class="docutils literal notranslate"><span class="pre">retryable</span></code> means
+sending the same command again is safe; for <code class="docutils literal notranslate"><span class="pre">message.create</span></code> the repeated <code class="docutils literal notranslate"><span class="pre">nonce</span></code> makes
+sure the server never posts the message twice.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypufferblow.protocol.ProtocolMessage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypufferblow.protocol.</span></span><span class="sig-name descname"><span class="pre">ProtocolMessage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">channel_id:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">author_id:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">author_name:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">content:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">created_at:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">author_avatar_url:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attachments:</span> <span class="pre">list[~typing.Any]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reactions:</span> <span class="pre">list[dict[str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">~typing.Any]]</span> <span class="pre">=</span> <span class="pre">&lt;factory&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edit_count:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">last_edited_at:</span> <span class="pre">str</span> <span class="pre">|</span> <span class="pre">None</span> <span class="pre">=</span> <span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypufferblow/protocol.html#ProtocolMessage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.ProtocolMessage" title="Link to this definition">#</a></dt>
+<dd><p>A message as the v1 protocol describes it (<code class="docutils literal notranslate"><span class="pre">message.created</span></code>, acks, resync).</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.protocol.ProtocolMessage.from_view">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_view</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">view</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fallback_channel_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pypufferblow.protocol.ProtocolMessage" title="pypufferblow.protocol.ProtocolMessage"><span class="pre">ProtocolMessage</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pypufferblow/protocol.html#ProtocolMessage.from_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.ProtocolMessage.from_view" title="Link to this definition">#</a></dt>
+<dd><p>Build from a v1 message object; <code class="docutils literal notranslate"><span class="pre">None</span></code> when it has no id or timestamp.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pypufferblow.protocol.build_command">
+<span class="sig-prename descclassname"><span class="pre">pypufferblow.protocol.</span></span><span class="sig-name descname"><span class="pre">build_command</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/pypufferblow/protocol.html#build_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.build_command" title="Link to this definition">#</a></dt>
+<dd><p>Serialise a command frame, ready to send.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pypufferblow.protocol.event_to_legacy">
+<span class="sig-prename descclassname"><span class="pre">pypufferblow.protocol.</span></span><span class="sig-name descname"><span class="pre">event_to_legacy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pypufferblow.protocol.EventFrame" title="pypufferblow.protocol.EventFrame"><span class="pre">EventFrame</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pypufferblow/protocol.html#event_to_legacy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.event_to_legacy" title="Link to this definition">#</a></dt>
+<dd><p>Translate a v1 event to the dict shape the pre-protocol websocket pushed.</p>
+<p>This lets code written for <code class="docutils literal notranslate"><span class="pre">WebSocketMessage</span></code> (including <a class="reference internal" href="pypufferblow.bot.html#pypufferblow.bot.Bot" title="pypufferblow.bot.Bot"><code class="xref py py-class docutils literal notranslate"><span class="pre">pypufferblow.bot.Bot</span></code></a>) keep
+working over protocol v1. Events with no legacy equivalent return <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pypufferblow.protocol.parse_frame">
+<span class="sig-prename descclassname"><span class="pre">pypufferblow.protocol.</span></span><span class="sig-name descname"><span class="pre">parse_frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#pypufferblow.protocol.Hello" title="pypufferblow.protocol.Hello"><span class="pre">Hello</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#pypufferblow.protocol.Ack" title="pypufferblow.protocol.Ack"><span class="pre">Ack</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#pypufferblow.protocol.ErrorFrame" title="pypufferblow.protocol.ErrorFrame"><span class="pre">ErrorFrame</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="#pypufferblow.protocol.EventFrame" title="pypufferblow.protocol.EventFrame"><span class="pre">EventFrame</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pypufferblow/protocol.html#parse_frame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.protocol.parse_frame" title="Link to this definition">#</a></dt>
+<dd><p>Decode one inbound text frame. Anything that is not a well-formed v1 frame is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="channels.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Channels Module</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tests/tests.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tests</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#retrying-a-send">Retrying a send</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recovery">Recovery</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-pypufferblow.realtime">API</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient"><code class="docutils literal notranslate"><span class="pre">ProtocolClient</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.create_message"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.create_message()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.events"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.events()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.request"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.request()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.resync"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.resync()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.send"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.send()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.start"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.start()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.subscribe"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.subscribe()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.watch"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.watch()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.realtime.ProtocolClient.watched"><code class="docutils literal notranslate"><span class="pre">ProtocolClient.watched</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.Ack"><code class="docutils literal notranslate"><span class="pre">Ack</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.Ack.duplicate"><code class="docutils literal notranslate"><span class="pre">Ack.duplicate</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.ErrorFrame"><code class="docutils literal notranslate"><span class="pre">ErrorFrame</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.ErrorFrame.id"><code class="docutils literal notranslate"><span class="pre">ErrorFrame.id</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.EventFrame"><code class="docutils literal notranslate"><span class="pre">EventFrame</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.EventTracker"><code class="docutils literal notranslate"><span class="pre">EventTracker</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.EventTracker.accept"><code class="docutils literal notranslate"><span class="pre">EventTracker.accept()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.EventTracker.observe_epoch"><code class="docutils literal notranslate"><span class="pre">EventTracker.observe_epoch()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.EventTracker.set_baseline"><code class="docutils literal notranslate"><span class="pre">EventTracker.set_baseline()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.Hello"><code class="docutils literal notranslate"><span class="pre">Hello</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.ProtocolError"><code class="docutils literal notranslate"><span class="pre">ProtocolError</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.ProtocolMessage"><code class="docutils literal notranslate"><span class="pre">ProtocolMessage</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.ProtocolMessage.from_view"><code class="docutils literal notranslate"><span class="pre">ProtocolMessage.from_view()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.build_command"><code class="docutils literal notranslate"><span class="pre">build_command()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.event_to_legacy"><code class="docutils literal notranslate"><span class="pre">event_to_legacy()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.protocol.parse_frame"><code class="docutils literal notranslate"><span class="pre">parse_frame()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ramsy0dev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, ramsy0dev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

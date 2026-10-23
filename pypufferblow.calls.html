@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>pypufferblow.calls module &#8212; pypufferblow 0.1.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=a1637f0b"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'pypufferblow.calls';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">pypufferblow 0.1.0 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Welcome to pypufferblow’s documentation!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="client.html">Client Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="users.html">Users Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="channels.html">Channels Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="realtime.html">Realtime (protocol v1)</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tests/tests.html">Tests</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests/test_client.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/test_users.html">Test Client Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests/test_channels.html">Test Client Module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow/edit/main/docs/pypufferblow.calls.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/your-repo/pypufferblow/issues/new?title=Issue%20on%20page%20%2Fpypufferblow.calls.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/pypufferblow.calls.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>pypufferblow.calls module</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls"><code class="docutils literal notranslate"><span class="pre">Calls</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.ACCEPT_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.ACCEPT_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.API_ROUTES"><code class="docutils literal notranslate"><span class="pre">Calls.API_ROUTES</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.END_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.END_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.FALLBACK_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.FALLBACK_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.IDENTITY_KEYS_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.IDENTITY_KEYS_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.IDENTITY_KEY_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.IDENTITY_KEY_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.INVITE_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.INVITE_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.REJECT_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.REJECT_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.SIGNAL_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.SIGNAL_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.accept"><code class="docutils literal notranslate"><span class="pre">Calls.accept()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.end"><code class="docutils literal notranslate"><span class="pre">Calls.end()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.invite"><code class="docutils literal notranslate"><span class="pre">Calls.invite()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.invite_async"><code class="docutils literal notranslate"><span class="pre">Calls.invite_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.join_relay"><code class="docutils literal notranslate"><span class="pre">Calls.join_relay()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.list_identity_keys"><code class="docutils literal notranslate"><span class="pre">Calls.list_identity_keys()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.register_identity_key"><code class="docutils literal notranslate"><span class="pre">Calls.register_identity_key()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.reject"><code class="docutils literal notranslate"><span class="pre">Calls.reject()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.remove_identity_key"><code class="docutils literal notranslate"><span class="pre">Calls.remove_identity_key()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.signal"><code class="docutils literal notranslate"><span class="pre">Calls.signal()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.CallsOptions"><code class="docutils literal notranslate"><span class="pre">CallsOptions</span></code></a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-pypufferblow.calls">
+<span id="pypufferblow-calls-module"></span><h1>pypufferblow.calls module<a class="headerlink" href="#module-pypufferblow.calls" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypufferblow.calls.</span></span><span class="sig-name descname"><span class="pre">Calls</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#pypufferblow.calls.CallsOptions" title="pypufferblow.calls.CallsOptions"><span class="pre">CallsOptions</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypufferblow/calls.html#Calls"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.calls.Calls" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>1:1 voice calls and the identity keys that make them end-to-end encrypted.</p>
+<p>The instance only relays the set-up messages of a call (and stores public keys); the audio, the
+signatures and the encryption are the clients’ business. A bot has no use for the media itself, but
+can ring, answer and relay signals, which is what this wraps.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.ACCEPT_API_ROUTE">
+<span class="sig-name descname"><span class="pre">ACCEPT_API_ROUTE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Route</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pypufferblow.calls.Calls.ACCEPT_API_ROUTE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.API_ROUTES">
+<span class="sig-name descname"><span class="pre">API_ROUTES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Route</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;,</span> <span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;,</span> <span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;,</span> <span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;,</span> <span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;,</span> <span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;,</span> <span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;,</span> <span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;]</span></em><a class="headerlink" href="#pypufferblow.calls.Calls.API_ROUTES" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.END_API_ROUTE">
+<span class="sig-name descname"><span class="pre">END_API_ROUTE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Route</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pypufferblow.calls.Calls.END_API_ROUTE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.FALLBACK_API_ROUTE">
+<span class="sig-name descname"><span class="pre">FALLBACK_API_ROUTE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Route</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pypufferblow.calls.Calls.FALLBACK_API_ROUTE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.IDENTITY_KEYS_API_ROUTE">
+<span class="sig-name descname"><span class="pre">IDENTITY_KEYS_API_ROUTE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Route</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pypufferblow.calls.Calls.IDENTITY_KEYS_API_ROUTE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.IDENTITY_KEY_API_ROUTE">
+<span class="sig-name descname"><span class="pre">IDENTITY_KEY_API_ROUTE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Route</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pypufferblow.calls.Calls.IDENTITY_KEY_API_ROUTE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.INVITE_API_ROUTE">
+<span class="sig-name descname"><span class="pre">INVITE_API_ROUTE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Route</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pypufferblow.calls.Calls.INVITE_API_ROUTE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.REJECT_API_ROUTE">
+<span class="sig-name descname"><span class="pre">REJECT_API_ROUTE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Route</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pypufferblow.calls.Calls.REJECT_API_ROUTE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.SIGNAL_API_ROUTE">
+<span class="sig-name descname"><span class="pre">SIGNAL_API_ROUTE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Route</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;pypufferblow.models.route_model.Route</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#pypufferblow.calls.Calls.SIGNAL_API_ROUTE" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.accept">
+<span class="sig-name descname"><span class="pre">accept</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">call_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/pypufferblow/calls.html#Calls.accept"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.calls.Calls.accept" title="Link to this definition">#</a></dt>
+<dd><p>Answer a call you were rung for. Returns <code class="docutils literal notranslate"><span class="pre">{status:</span> <span class="pre">&quot;accepted&quot;,</span> <span class="pre">ice_servers}</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.end">
+<span class="sig-name descname"><span class="pre">end</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">call_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/pypufferblow/calls.html#Calls.end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.calls.Calls.end" title="Link to this definition">#</a></dt>
+<dd><p>End a call.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.invite">
+<span class="sig-name descname"><span class="pre">invite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callee_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/pypufferblow/calls.html#Calls.invite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.calls.Calls.invite" title="Link to this definition">#</a></dt>
+<dd><p>Ring someone. Returns <code class="docutils literal notranslate"><span class="pre">{call_id,</span> <span class="pre">status,</span> <span class="pre">ice_servers,</span> <span class="pre">...}</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.UserNotFound" title="pypufferblow.exceptions.UserNotFound"><strong>UserNotFound</strong></a> – There is no such user.</p></li>
+<li><p><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.CallBusy" title="pypufferblow.exceptions.CallBusy"><strong>CallBusy</strong></a> – You are already on a call, or rang this person a moment ago. (Whether the <em>other</em>
+    person is on a call is not reported: they are not rung and the call rings out.)</p></li>
+<li><p><a class="reference internal" href="pypufferblow.exceptions.html#pypufferblow.exceptions.CallRefused" title="pypufferblow.exceptions.CallRefused"><strong>CallRefused</strong></a> – Either of you has blocked the other, or you tried to call yourself.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.invite_async">
+<em class="property"><span class="pre">async</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">invite_async</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callee_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/pypufferblow/calls.html#Calls.invite_async"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.calls.Calls.invite_async" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.join_relay">
+<span class="sig-name descname"><span class="pre">join_relay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">call_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quality_profile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'balanced'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/pypufferblow/calls.html#Calls.join_relay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.calls.Calls.join_relay" title="Link to this definition">#</a></dt>
+<dd><p>Join the media-server session for a call that cannot connect directly (<code class="docutils literal notranslate"><span class="pre">session_id</span></code>, <code class="docutils literal notranslate"><span class="pre">join_token</span></code>, <code class="docutils literal notranslate"><span class="pre">signaling_url</span></code>).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.list_identity_keys">
+<span class="sig-name descname"><span class="pre">list_identity_keys</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="_modules/pypufferblow/calls.html#Calls.list_identity_keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.calls.Calls.list_identity_keys" title="Link to this definition">#</a></dt>
+<dd><p>A person’s registered keys, oldest first: <code class="docutils literal notranslate"><span class="pre">{key_id,</span> <span class="pre">public_key,</span> <span class="pre">label,</span> <span class="pre">created_at}</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.register_identity_key">
+<span class="sig-name descname"><span class="pre">register_identity_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">public_key</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/pypufferblow/calls.html#Calls.register_identity_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.calls.Calls.register_identity_key" title="Link to this definition">#</a></dt>
+<dd><p>Register the public half of a P-256 signing key (a JWK with <code class="docutils literal notranslate"><span class="pre">kty</span></code>, <code class="docutils literal notranslate"><span class="pre">crv</span></code>, <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>).
+Returns <code class="docutils literal notranslate"><span class="pre">{created,</span> <span class="pre">key}</span></code>. Idempotent. Raises <code class="docutils literal notranslate"><span class="pre">CallRefused</span></code> for a key that is invalid, a private
+key, held by another account, or when you already have 10.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.reject">
+<span class="sig-name descname"><span class="pre">reject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">call_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/pypufferblow/calls.html#Calls.reject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.calls.Calls.reject" title="Link to this definition">#</a></dt>
+<dd><p>Decline a call, or cancel one that is still ringing.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.remove_identity_key">
+<span class="sig-name descname"><span class="pre">remove_identity_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pypufferblow/calls.html#Calls.remove_identity_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.calls.Calls.remove_identity_key" title="Link to this definition">#</a></dt>
+<dd><p>Remove one of your own keys.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pypufferblow.calls.Calls.signal">
+<span class="sig-name descname"><span class="pre">signal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">call_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signal_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">payload</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="_modules/pypufferblow/calls.html#Calls.signal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.calls.Calls.signal" title="Link to this definition">#</a></dt>
+<dd><p>Relay one set-up message to the other person: <code class="docutils literal notranslate"><span class="pre">offer</span></code>, <code class="docutils literal notranslate"><span class="pre">answer</span></code>, <code class="docutils literal notranslate"><span class="pre">candidate</span></code> or <code class="docutils literal notranslate"><span class="pre">relay</span></code>.
+Only once the call has been accepted; the payload may weigh at most 32 KB.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pypufferblow.calls.CallsOptions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pypufferblow.calls.</span></span><span class="sig-name descname"><span class="pre">CallsOptions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">auth_token</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pypufferblow/calls.html#CallsOptions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pypufferblow.calls.CallsOptions" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OptionsModel</span></code></p>
+<p>Calls options.</p>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls"><code class="docutils literal notranslate"><span class="pre">Calls</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.ACCEPT_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.ACCEPT_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.API_ROUTES"><code class="docutils literal notranslate"><span class="pre">Calls.API_ROUTES</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.END_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.END_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.FALLBACK_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.FALLBACK_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.IDENTITY_KEYS_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.IDENTITY_KEYS_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.IDENTITY_KEY_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.IDENTITY_KEY_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.INVITE_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.INVITE_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.REJECT_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.REJECT_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.SIGNAL_API_ROUTE"><code class="docutils literal notranslate"><span class="pre">Calls.SIGNAL_API_ROUTE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.accept"><code class="docutils literal notranslate"><span class="pre">Calls.accept()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.end"><code class="docutils literal notranslate"><span class="pre">Calls.end()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.invite"><code class="docutils literal notranslate"><span class="pre">Calls.invite()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.invite_async"><code class="docutils literal notranslate"><span class="pre">Calls.invite_async()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.join_relay"><code class="docutils literal notranslate"><span class="pre">Calls.join_relay()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.list_identity_keys"><code class="docutils literal notranslate"><span class="pre">Calls.list_identity_keys()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.register_identity_key"><code class="docutils literal notranslate"><span class="pre">Calls.register_identity_key()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.reject"><code class="docutils literal notranslate"><span class="pre">Calls.reject()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.remove_identity_key"><code class="docutils literal notranslate"><span class="pre">Calls.remove_identity_key()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.Calls.signal"><code class="docutils literal notranslate"><span class="pre">Calls.signal()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pypufferblow.calls.CallsOptions"><code class="docutils literal notranslate"><span class="pre">CallsOptions</span></code></a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By ramsy0dev
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, ramsy0dev.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
