@@ -70,6 +70,7 @@ class System:
     CHANNEL_CREATION_CHART_API_ROUTE: Route = system_routes[13]
     USER_STATUS_CHART_API_ROUTE: Route = system_routes[14]
     HEALTH_API_ROUTE: Route = system_routes[15]
+    UPDATE_SERVER_APPEARANCE_API_ROUTE: Route = system_routes[16]
 
     def __init__(self, options: SystemOptions) -> None:
         """
@@ -139,9 +140,11 @@ class System:
             "instance_description": "server_description",
         }
         allowed_fields = [
-            'server_name', 'server_description', 'is_private', 'max_users',
+            'server_name', 'server_description', 'welcome_message', 'is_private', 'max_users',
             'max_message_length', 'max_image_size', 'max_video_size',
-            'max_sticker_size', 'max_gif_size'
+            'max_sticker_size', 'max_gif_size',
+            'allowed_image_types', 'allowed_video_types', 'allowed_file_types',
+            'allowed_sticker_types', 'allowed_gif_types',
         ]
 
         update_data = {}
@@ -166,6 +169,45 @@ class System:
             raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can update instance settings.")
         elif response.status_code != 200:
             raise ServerError("Failed to update instance information")
+
+    def update_server_look(self, **look) -> dict:
+        """
+        Choose how the server looks. Server Owner (or anyone who manages server settings) only.
+
+        Every part is a choice from a short list, and a part left out is not changed. `None` puts a
+        part back to the one derived from the server's id, which is what clients draw until chosen.
+
+        Args:
+            icon_style: `initials`, `crop`, `bubble` or `school`.
+            tone, tone2: `brass`, `coral`, `rose`, `violet`, `sky` or `sage`.
+            banner_pattern: `ripple`, `burst`, `halftone`, `crowd` or `duo`.
+
+        Returns:
+            dict: The whole look after the change.
+
+        Raises:
+            ValueError: Nothing was given, or a name is not a look setting.
+            BadAuthToken: Invalid auth token.
+            NotAnAdminOrServerOwner: The caller may not change server settings.
+            ServerError: The instance refused the value (the message names it).
+        """
+        allowed = ("icon_style", "tone", "tone2", "banner_pattern")
+        unknown = sorted(set(look) - set(allowed))
+        if not look or unknown:
+            raise ValueError(f"Give any of {', '.join(allowed)}" + (f"; not {', '.join(unknown)}" if unknown else ""))
+
+        response = requests.put(
+            self.UPDATE_SERVER_APPEARANCE_API_ROUTE.api_route,
+            json={"auth_token": self.auth_token, "look": look},
+        )
+
+        if response.status_code == 401:
+            raise BadAuthToken("Invalid auth token")
+        elif response.status_code == 403:
+            raise NotAnAdminOrServerOwner("Access forbidden. Only server owners can change how the server looks.")
+        elif response.status_code != 200:
+            raise ServerError(response.json().get("message") or "Failed to update the server look")
+        return response.json().get("look", {})
 
     def update_instance_info(self, **kwargs) -> None:
         """
