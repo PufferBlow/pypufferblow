@@ -45,6 +45,8 @@ class Access:
     JOIN_API_ROUTE: Route = access_routes[6]
     JOIN_STATUS_API_ROUTE: Route = access_routes[7]
     LEAVE_API_ROUTE: Route = access_routes[8]
+    KICK_API_ROUTE: Route = access_routes[9]
+    REINSTATE_API_ROUTE: Route = access_routes[10]
 
     def __init__(self, options: AccessOptions) -> None:
         self.options = options
@@ -128,6 +130,23 @@ class Access:
         self._check(response)
         return response.json()
 
+    # -- removing people (owner and moderators) ----------------------------
+
+    def kick_member(self, user_id: str, reason: str | None = None) -> dict:
+        """Take someone's membership away. Their account stays; they cannot get into this server until reinstated.
+
+        Only the owner can remove another member of staff. Raises ``NotAnAdminOrServerOwner`` without the privilege.
+        """
+        response = requests.post(self.KICK_API_ROUTE.api_route.format(user_id=user_id), json={"auth_token": self.auth_token, "reason": reason})
+        self._check(response)
+        return response.json()
+
+    def reinstate_member(self, user_id: str) -> dict:
+        """Let someone who was removed back in."""
+        response = requests.post(self.REINSTATE_API_ROUTE.api_route.format(user_id=user_id), json={"auth_token": self.auth_token})
+        self._check(response)
+        return response.json()
+
     # -- joining other servers with this account ---------------------------
 
     @staticmethod
@@ -194,6 +213,12 @@ class Access:
 
     async def deny_join_request_async(self, request_id: str) -> dict:
         return await asyncio.to_thread(self.deny_join_request, request_id)
+
+    async def kick_member_async(self, user_id: str, reason: str | None = None) -> dict:
+        return await asyncio.to_thread(self.kick_member, user_id, reason)
+
+    async def reinstate_member_async(self, user_id: str) -> dict:
+        return await asyncio.to_thread(self.reinstate_member, user_id)
 
     async def join_server_async(self, instance: str, invite_code: str | None = None, message: str | None = None) -> dict:
         return await asyncio.to_thread(self.join_server, instance, invite_code, message)

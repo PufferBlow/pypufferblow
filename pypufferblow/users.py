@@ -352,6 +352,35 @@ class Users:
     async def update_user_password_async(self, old_password: str, new_password: str) -> None:
         await asyncio.to_thread(self.update_user_password, old_password, new_password)
     
+    def delete_account(self) -> None:
+        """Delete this account for good. Only the account's own person can (it asks for the password again).
+
+        The name, picture, bio, friends and keys are erased and every session ends; what the account wrote stays in
+        the channels, shown as "Deleted user". The server owner has to hand the server over first.
+
+        Raises:
+            InvalidPassword: The password is wrong.
+            BadAuthToken: The session is not valid.
+            ServerError: The owner tried to delete their account (or the server failed).
+        """
+        # Next to sign-in: <instance>/api/v1/users/delete
+        url = self.SIGNIN_API_ROUTE.api_route.rsplit("/signin", 1)[0] + "/delete"
+        response = requests.post(url, json={"auth_token": self.user.auth_token, "password": self.password})
+
+        if response.status_code == 401:
+            code = str(response.json().get("error_code") or "")
+            if code == "auth.invalid_credentials":
+                raise InvalidPassword("The password is wrong.")
+            raise BadAuthToken("The instance rejected the auth token (it is missing, malformed or expired).")
+        if response.status_code == 409:
+            raise ServerError("The owner cannot delete their account. Hand the server over first.")
+        if response.status_code >= 400:
+            raise ServerError(f"The instance answered {response.status_code}.")
+        self.is_signed_in = False
+
+    async def delete_account_async(self) -> None:
+        await asyncio.to_thread(self.delete_account)
+
     def reset_user_auth_token(self) -> None:
         """
         Reset the user's auth_token.

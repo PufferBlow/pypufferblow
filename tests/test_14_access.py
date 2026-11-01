@@ -32,6 +32,8 @@ def make() -> Access:
         access.JOIN_API_ROUTE,
         access.JOIN_STATUS_API_ROUTE,
         access.LEAVE_API_ROUTE,
+        access.KICK_API_ROUTE,
+        access.REINSTATE_API_ROUTE,
     ) = built
     return access
 
@@ -135,3 +137,20 @@ def test_leaving_uses_the_session_of_the_server_left(calls):
     make().leave_server("http://away.example:7575", "away-token")
     assert log[-1][1] == "http://away.example:7575/api/v1/federation/leave"
     assert log[-1][2]["json"] == {"auth_token": "away-token"}
+
+
+def test_staff_remove_someone_and_let_them_back(calls):
+    log, answers = calls
+    access = make()
+    answers[("POST", "http://home.example:7575/api/v1/server/members/u1/kick")] = Reply(200, {"removed": True})
+    assert access.kick_member("u1", reason="spam")["removed"] is True
+    assert log[-1][2]["json"] == {"auth_token": "tok", "reason": "spam"}
+    access.reinstate_member("u1")
+    assert log[-1][1] == "http://home.example:7575/api/v1/server/members/u1/reinstate"
+
+
+def test_removing_without_the_privilege_is_refused(calls):
+    _, answers = calls
+    answers[("POST", "http://home.example:7575/api/v1/server/members/u1/kick")] = Reply(403, {"error_code": "auth.privilege_denied"})
+    with pytest.raises(NotAnAdminOrServerOwner):
+        make().kick_member("u1")

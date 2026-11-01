@@ -478,6 +478,8 @@ class Client:
             self.access.JOIN_API_ROUTE,
             self.access.JOIN_STATUS_API_ROUTE,
             self.access.LEAVE_API_ROUTE,
+            self.access.KICK_API_ROUTE,
+            self.access.REINSTATE_API_ROUTE,
         ) = self.access.API_ROUTES
         return self.access
 

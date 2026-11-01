@@ -115,6 +115,8 @@ access_routes: list[Route] = [
     Route(f"{federation_base_route}/join", methods=["POST"]),
     Route(f"{federation_base_route}/join/status", methods=["POST"]),
     Route(f"{federation_base_route}/leave", methods=["POST"]),
+    Route(f"{server_access_base_route}/members/{{user_id}}/kick", methods=["POST"]),
+    Route(f"{server_access_base_route}/members/{{user_id}}/reinstate", methods=["POST"]),
 ]
 
 calls_base_route = f"{base_route}/dm-calls"
