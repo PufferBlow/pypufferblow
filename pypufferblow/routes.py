@@ -8,6 +8,7 @@ __all__ = [
     "admin_routes",
     "decentralized_auth_routes",
     "federation_routes",
+    "access_routes",
     "direct_messages_routes",
     "calls_routes",
 ]
@@ -101,6 +102,19 @@ federation_routes: list[Route] = [
     Route(f"{federation_base_route}/peers/{{host}}/policy", methods=["PUT"]),
     Route(f"{federation_base_route}/peers/{{host}}/refresh", methods=["POST"]),
     Route(f"{federation_base_route}/peers/import", methods=["POST"]),
+]
+
+server_access_base_route = f"{base_route}/server"
+access_routes: list[Route] = [
+    Route(f"{server_access_base_route}/invites", methods=["GET", "POST"]),
+    Route(f"{server_access_base_route}/invites/{{code}}", methods=["DELETE"]),
+    Route(f"{server_access_base_route}/join-requests", methods=["GET"]),
+    Route(f"{server_access_base_route}/join-requests/{{request_id}}/approve", methods=["POST"]),
+    Route(f"{server_access_base_route}/join-requests/{{request_id}}/deny", methods=["POST"]),
+    Route(f"{federation_base_route}/assertions", methods=["POST"]),
+    Route(f"{federation_base_route}/join", methods=["POST"]),
+    Route(f"{federation_base_route}/join/status", methods=["POST"]),
+    Route(f"{federation_base_route}/leave", methods=["POST"]),
 ]
 
 calls_base_route = f"{base_route}/dm-calls"

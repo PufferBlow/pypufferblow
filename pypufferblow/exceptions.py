@@ -153,3 +153,23 @@ class IPSecurityError(Exception):
 
 class ServerError(Exception):
     """Raised when server-side operations fail."""
+
+class InviteInvalid(Exception):
+    """Raised when an invitation code is wrong, expired, revoked or used up (the server says the same for all of them)."""
+
+
+class InviteRequired(Exception):
+    """Raised when the server being joined needs an invitation code and none was given."""
+
+
+class JoinPending(Exception):
+    """Raised when an action needs a membership that is still waiting for a moderator to approve it."""
+
+
+class JoinDenied(Exception):
+    """Raised when a request to join was declined, or the person is no longer a member."""
+
+
+class JoinRefused(Exception):
+    """Raised when the server being joined refused the join (its federation policy, or a home it could not trust)."""
+

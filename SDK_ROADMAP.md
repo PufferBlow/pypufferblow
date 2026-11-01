@@ -40,6 +40,14 @@ gaps in priority order.
 
 ---
 
+### Done: joining servers (`client.access()`)
+
+`pypufferblow/access.py`: invitation codes (`create_invite`, `list_invites`, `revoke_invite`), requests to join
+(`list_join_requests`, `approve_join_request`, `deny_join_request`) and joining another server with the signed-in
+account (`join_server`, `check_join_request`, `leave_server`), each with an `_async` twin. Refusals raise
+`InviteInvalid`, `InviteRequired`, `JoinPending`, `JoinDenied` or `JoinRefused`. Not covered: setting a server's join
+mode (it is in the server settings), and the realtime `join_request.created` / `join_request.decided` events.
+
 ## Tier 1 — must land next release
 
 The Tier-1 items are blocking real bot use cases that maintainers

@@ -52,6 +52,7 @@ from pypufferblow.calls import (
     CallsOptions,
 )
 # Federation class
+from pypufferblow.access import Access, AccessOptions
 from pypufferblow.federation import (
     Federation,
     FederationOptions,
@@ -69,6 +70,7 @@ from pypufferblow.routes import (
     admin_routes,
     decentralized_auth_routes,
     federation_routes,
+    access_routes,
     direct_messages_routes,
     calls_routes,
 )
@@ -116,6 +118,7 @@ class Client:
     admin: Admin = None
     decentralized_auth: DecentralizedAuth = None
     federation: Federation = None
+    access: Access = None
     calls: Calls = None
     websocket: GlobalWebSocket = None
     
@@ -453,6 +456,30 @@ class Client:
             "IDENTITY_KEY_API_ROUTE",
         )
         return self.calls
+
+    def access(self) -> Access:
+        """
+        Create an Access object: invitation codes, join requests and joining other servers with this account.
+        """
+        if not self.users.is_signed_in:
+            raise Exception("Access operations require user authentication. Please call users().sign_in() first.")
+
+        options = AccessOptions(instance=self.instance_url, auth_token=self.users.user.auth_token)
+        self.access = Access(options)
+        self.access.options.api_base_url = self.api_base_url
+        self.access.API_ROUTES = self._build_routes(access_routes)
+        (
+            self.access.INVITES_API_ROUTE,
+            self.access.INVITE_API_ROUTE,
+            self.access.JOIN_REQUESTS_API_ROUTE,
+            self.access.APPROVE_REQUEST_API_ROUTE,
+            self.access.DENY_REQUEST_API_ROUTE,
+            self.access.ASSERTIONS_API_ROUTE,
+            self.access.JOIN_API_ROUTE,
+            self.access.JOIN_STATUS_API_ROUTE,
+            self.access.LEAVE_API_ROUTE,
+        ) = self.access.API_ROUTES
+        return self.access
 
     def federation(self) -> Federation:
         """
